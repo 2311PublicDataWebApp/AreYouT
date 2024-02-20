@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-Mapper.dtd">
+  <mapper namespace="MemberManagerMapper">
+  	<resultMap type="Member" id="memberManagerResultMap">
+  		<id	property="memberId"			column="MEMBER_ID"/>
+  		<result	 property="memberPw"	column="MEMBER_PW"/>
+  		<result	 property="memberName"	column="MEMBER_NAME"/>
+  		<result	 property="memberNickname"	column="MEMBER_NICKNAME"/>
+  		<result	 property="memberAge"	column="MEMBER_AGE"/>
+  		<result	 property="memberGender"	column="MEMBER_GENDER"/>
+  		<result	 property="memberMbti"	column="MEMBER_MBTI"/>
+  		<result	 property="memberEmail"	column="MEMBER_EMAIL"/>
+  		<result	 property="memberPhone"	column="MEMBER_PHONE"/>
+  		<result	 property="memberDate"	column="MEMBER_DATE"/>
+  		<result	 property="memberBlockYn"	column="BLACK_LIST_YN"/>
+  	</resultMap>
+  	
+  	<select id="selectTotalCount" resultType="_int">
+  		SELECT COUNT(*) FROM MEMBER_TBL WHERE BLACK_LIST_YN = 'N'
+  	</select>
+  	<select id="blackTotalCount" resultType="_int">
+  		SELECT COUNT(*) FROM MEMBER_TBL WHERE BLACK_LIST_YN = 'Y'
+  	</select>
+  	
+  	<select id="selectMemberList" resultMap="memberManagerResultMap">
+  		SELECT * FROM MEMBER_TBL WHERE BLACK_LIST_YN = 'N'
+  	</select>
+  	<select id="selectBlackList" resultMap="memberManagerResultMap">
+  		SELECT * FROM MEMBER_TBL WHERE BLACK_LIST_YN = 'Y'
+  	</select>
+  	
+  	<select id="selectSearchList" resultMap="memberManagerResultMap" parameterType="java.util.Map">
+  		SELECT * FROM MEMBER_TBL WHERE BLACK_LIST_YN = 'N'
+  		<choose>
+  			<when test="type.equals('name')">
+  			AND MEMBER_NAME LIKE '%' || #{keyword} || '%'
+  			</when>
+  			<when test="type.equals('id')">
+  			AND MEMBER_ID LIKE '%' || #{keyword} || '%'
+  			</when>
+  		</choose>
+  	</select>
+  	<select id="searchTotalCount" parameterType="java.util.Map" resultType="_int">
+  		SELECT COUNT(*) FROM MEMBER_TBL WHERE BLACK_LIST_YN = 'N'
+  		<choose>
+  			<when test="type.equals('name')">
+  			AND MEMBER_NAME LIKE '%' || #{keyword} || '%'
+  			</when>
+  			<when test="type.equals('id')">
+  			AND MEMBER_ID LIKE '%' || #{keyword} || '%'
+  			</when>
+  		</choose>
+  	</select>
+  	<select id="searchBlackTotalCount" parameterType="java.util.Map" resultType="_int">
+  		SELECT COUNT(*) FROM MEMBER_TBL WHERE BLACK_LIST_YN = 'Y'
+  		<choose>
+  			<when test="type.equals('name')">
+  			AND MEMBER_NAME LIKE '%' || #{keyword} || '%'
+  			</when>
+  			<when test="type.equals('id')">
+  			AND MEMBER_ID LIKE '%' || #{keyword} || '%'
+  			</when>
+  		</choose>
+  	</select>
+  	<delete id="deleteMember">
+  		DELETE FROM MEMBER_TBL WHERE MEMBER_ID = #{memberId}
+  	</delete>
+  	<update id="blackMember">
+  		UPDATE MEMBER_TBL
+  		SET BLACK_LIST_YN = 'Y'
+  		WHERE MEMBER_ID = #{memberId}
+  	</update>
+  	<update id="whiteMember">
+  		UPDATE MEMBER_TBL
+  		SET BLACK_LIST_YN = 'N'
+  		WHERE MEMBER_ID = #{memberId}
+  	</update>
+  </mapper>
