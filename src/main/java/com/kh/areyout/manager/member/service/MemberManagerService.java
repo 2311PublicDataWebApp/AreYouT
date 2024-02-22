@@ -73,5 +73,11 @@ public interface MemberManagerService {
 	 * @return result
 	 */
 	int getBlackSearchTotalCount(Map<String, Object> searchMap);
+	/**
+	 * 정지 회원 검색 조회 Service
+	 * @param pInfo
+	 * @return mmList
+	 */
+	List<MemberVO> searchBlackList(PageInfo pInfo);
 
 }

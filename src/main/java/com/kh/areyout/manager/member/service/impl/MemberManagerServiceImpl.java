@@ -79,5 +79,11 @@ public class MemberManagerServiceImpl implements MemberManagerService{
 		int result = mmStore.getBlackSearchTotalCount(session, searchMap);
 		return result;
 	}
+
+	@Override
+	public List<MemberVO> searchBlackList(PageInfo pInfo) {
+		List<MemberVO> mmList = mmStore.searchBlackList(session, pInfo);
+		return mmList;
+	}
 	
 }

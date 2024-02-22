@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-Mapper.dtd">
+  <mapper namespace="AskMessageMapper">
+  	<resultMap type="AskMessage" id="askMessageResultMap">
+	  	<id	property="askMessageNo"				column="ASK_MESSAGE_NO"/>
+	  	<result	 property="askMessageReceive"	column="ASK_MESSAGE_RECEIVE"/>
+	  	<result	 property="askMessageSender"	column="ASK_MESSAGE_SENDER"/>
+	  	<result	 property="askSendDate"			column="ASK_SEND_DATE"/>
+	  	<result	 property="askMessageTitle"		column="ASK_MESSAGE_TITLE"/>
+	  	<result	 property="askMessageContent"	column="ASK_MESSAGE_CONTENT"/>
+	  	<result	 property="askReadYn"			column="ASK_READ_YN"/>
+  	</resultMap>
+  	<select id="selectTotalCount" resultType="_int">
+  			SELECT COUNT(*) FROM ASK_MESSAGE_TBL
+  	</select>
+  	<select id="selectAskMessageList" resultMap="askMessageResultMap">
+  		SELECT * FROM ASK_MESSAGE_TBL
+  		ORDER BY ASK_READ_YN ASC, ASK_MESSAGE_TITLE ASC
+  	</select>
+  	<select id="selectAskMessage" resultMap="askMessageResultMap">
+  		SELECT * FROM ASK_MESSAGE_TBL
+  		WHERE ASK_MESSAGE_NO = #{askMessageNo}
+  	</select>
+  	<update id="deleteAskMessage">
+  		DELETE FROM ASK_MESSAGE_TBL
+  		WHERE ASK_MESSAGE_NO = #{num}
+  	</update>
+  	<update id="changeYn">
+  			UPDATE ASK_MESSAGE_TBL
+  			SET ASK_READ_YN = 'Y'
+  			WHERE ASK_MESSAGE_NO = #{askMessageNo}
+  		</update>
+  </mapper>

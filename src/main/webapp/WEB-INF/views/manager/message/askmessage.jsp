@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>1 대 1 문의 쪽지함</title>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
         <style>
             body {
@@ -177,15 +178,15 @@
                         <li class="menu-item"><a href="#">대쉬보드</a></li><br><br><br>
                         <li class="menu-item"><a href="#">회원 관리</a>
                             <ul class="sub-menu">
-                                <li><a href="#">일반 회원 관리</a></li>
-                                <li><a href="#">블랙리스트 관리</a></li>
+                                <li><a href="/manager/member/list.do">일반 회원 관리</a></li>
+                                <li><a href="/manager/member/blacklist.do">블랙리스트 관리</a></li>
                             </ul>
                         </li><br><br><br>
                         <li class="menu-item"><a href="#">여행신청 게시판 관리</a></li><hr id="menu-line"><br><br><br><br><br><br><br>
                         <li class="menu-item"><a href="#">쪽지 관리</a>
                             <ul class="sub-menu">
-                                <li><a href="#">1대1 문의 쪽지함</a></li>
-                                <li><a href="#">일반 쪽지 관리</a></li>
+                                <li><a href="/manager/message/askmessage.do">1대1 문의 쪽지함</a></li>
+                                <li><a href="/manager/message/list.do">일반 쪽지 관리</a></li>
                             </ul>
                         </li><br>
                     </ul>
@@ -194,8 +195,8 @@
                 <div class="container mt-3" id="member-manager">
                     <h3>1대1 문의 쪽지함</h3>
                     <hr>
-                        <form class="form-inline" id="search">
-                            <div class="input-group mr-sm-2">
+                        <div class="input-group mr-sm-2">
+                        	<form class="form-inline" id="search">
                                 <div class="input-group-prepend">
                                     <select class="custom-select">
                                         <option value="title" selected>제목</option>
@@ -207,14 +208,17 @@
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-success" type="submit">검색</button>
                                 </div>
+                        		</form>
                             </div>
                             <div class="ml-auto">
-                                <button type="button" class="btn btn-success" onclick="pop();">쪽지 보내기</button>
-                                <button type="button" class="btn btn-danger">쪽지 정보 삭제</button>
-                            </div>
-                        </form>
+                                <button type="button" class="btn btn-success" onclick="popSend();">쪽지 보내기</button>
+                            <form action="/manager/message/askdelete.do" method="post">
+                            	<input type="hidden" id="check-delete-message" name="check-delete-message">
+                                <button type="submit" class="btn btn-danger" onclick="getDeleteMessage();">쪽지 정보 삭제</button>
+                            </form>
+                        </div>
                         <br>
-                        <form action="" id="member-list">
+                        <form action="/manager/message/askmessage.do" method="get" id="member-list">
                             <div id="board-list">
                                 <div class="container" id="board-list-container">
                                     <table class="board-table">
@@ -226,36 +230,41 @@
                                             <th scope="col">보낸 날짜</th>
                                             <th scope="col">제목</th>
                                             <th scope="col">쪽지 번호</th>
+                                            <th scope="col">읽음 여부</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>홍길동</td>
-                                            <td>홍길동</td>
-                                            <td>2018-04-04</td>
-                                            <td><a href="javascript:void(0);" onclick="pop();">나에게 보내는 쪽지</a></td>
-                                            <td>00001</td>
-                                        </tr>
-                        
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>고길동</td>
-                                            <td>홍길동</td>
-                                            <td>2017-07-13</td>
-                                            <td><a href="javascript:void(0);" onclick="pop();">히말라야 등산 갔다 오실?</a></td>
-                                            <td>12345</td>
-                                        </tr>
-                        
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>김길동</td>
-                                            <td>홍길동</td>
-                                            <td>2017-07-13</td>
-                                            <td><a href="javascript:void(0);" onclick="pop();">중동 배낭여행 줄 서봅니다.</a></td>
-                                            <td>88888</td>
-                                        </tr>
+                                        <c:forEach items="${amList}" var="askMessage" varStatus="i">
+                                        	<tr>
+                                            	<td><input type="checkbox" name="select-message" value="${askMessage.askMessageNo}"></td>
+                                            	<td>${askMessage.askMessageSender}</td>
+                                            	<td>${askMessage.askMessageReceive}</td>
+                                            	<td>${askMessage.askSendDate}</td>
+                                            	<td>
+                                            		<a href="javascript:void(0);" onclick="popDetail(${askMessage.askMessageNo});">
+                                            			${askMessage.askMessageTitle}
+                                            		</a>
+                                            	</td>
+                                            	<td>${askMessage.askMessageNo}</td>
+                                            	<td>${askMessage.askReadYn}</td>
+                                        	</tr>
+                        				</c:forEach>
                                         </tbody>
+                                        <tfoot>
+                                        	<tr align="center">
+                                        		<td colspan="7">
+                                        	<c:if test="${pInfo.startNavi ne '1'}">
+												<a href="/manager/message/askmessage.do?page=${pInfo.startNavi - 1}">[이전]</a>
+											</c:if>
+											<c:forEach begin="${pInfo.startNavi}" end="${pInfo.endNavi}" var="p">
+							               		<a href="/manager/message/askmessage.do?page=${p}">${p}</a>
+							            	</c:forEach>
+							            	<c:if test="${pInfo.endNavi ne pInfo.naviTotalCount}">
+												<a href="/manager/message/askmessage.do?page=${pInfo.endNavi + 1}">[다음]</a>
+                                        	</c:if>
+                                        		</td>
+                                        	</tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -274,9 +283,36 @@
                 e.stopPropagation();
             });
         });
-        function pop()
+        function popSend()
         {
-            window.open("./exam.html", "pop", "width=400,height=500,history=no,resizable=no,status=no,scrollbars=yes,menubar=no")
+            window.open("/manager/message/asksend.do", "pop", "width=400,height=500,history=no,resizable=no,status=no,scrollbars=yes,menubar=no")
+        }
+        function popDetail(askMessageNo)
+        {
+            window.open("/manager/message/askdetail.do?askMessageNo=" + askMessageNo, "pop", "width=400,height=500,history=no,resizable=no,status=no,scrollbars=yes,menubar=no")
+        }
+        function getDeleteMessage(){
+    		// 체크된 input 요소 선택
+    		var checkedCheckboxes = document.querySelectorAll('input[name="select-message"]:checked');
+
+    		// 체크된 input 요소의 값을 저장할 배열
+    		var checkedValues = [];
+
+    		// 각 체크된 input 요소의 값을 배열에 추가
+    		checkedCheckboxes.forEach(function(checkbox) {
+    		    checkedValues.push(checkbox.value);
+    		});
+
+    		// 배열에 저장된 값 확인
+    		console.log(checkedValues);
+    		
+    		//체크 된 회원 없을 시 오류 메세지 출력
+    		if(checkedValues.length == 0){
+    			alert("체크된 메세지가 없습니다.");
+    		}
+    		else{
+    			document.getElementById('check-delete-message').value = checkedValues.join(',');
+    	    }
         }
     </script>
         

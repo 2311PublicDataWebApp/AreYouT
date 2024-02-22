@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원 관리</title>
+    <title>일반 쪽지 관리</title>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
         <style>
             body {
@@ -158,6 +158,9 @@
             width: 1px;
             height: 1px;
             }
+            table a{
+                color: black;
+            }
         </style>
 </head>
 <body>
@@ -172,19 +175,17 @@
                     <h2>사이트 관리</h2>
                     <hr id="menu-line">
                     <ul class="list-unstyled">
-                        <li class="menu-item"><a href="#">대쉬보드</a></li>
-                        <br><br><br>
+                        <li class="menu-item"><a href="#">대쉬보드</a></li><br><br><br>
                         <li class="menu-item"><a href="#">회원 관리</a>
                             <ul class="sub-menu">
                                 <li><a href="/manager/member/list.do">일반 회원 관리</a></li>
                                 <li><a href="/manager/member/blacklist.do">블랙리스트 관리</a></li>
                             </ul>
-                        </li>
-                        <br><br><br>
+                        </li><br><br><br>
                         <li class="menu-item"><a href="#">여행신청 게시판 관리</a></li><hr id="menu-line"><br><br><br><br><br><br><br>
                         <li class="menu-item"><a href="#">쪽지 관리</a>
                             <ul class="sub-menu">
-                                <li><a href="#">1대1 문의 쪽지함</a></li>
+                                <li><a href="/manager/message/askmessage.do">1대1 문의 쪽지함</a></li>
                                 <li><a href="/manager/message/list.do">일반 쪽지 관리</a></li>
                             </ul>
                         </li><br>
@@ -192,14 +193,16 @@
                 </div>
                 <div class="col-md-10" id="" style="display: flex; justify-content: center;">
                 <div class="container mt-3" id="member-manager">
-                    <h3>일반회원 관리</h3>
+                    <h3>일반 쪽지 관리</h3>
                     <hr>
-                    <div class="input-group mr-sm-2">
-                        	<form class="form-inline" id="search" action="/manager/member/search.do" method="GET">
+                            <div class="input-group mr-sm-2">
+                            	<form class="form-inline" id="search" action="/manager/message/search.do" method="get">
                                 <div class="input-group-prepend">
-                                    <select class="custom-select" name=search-type>
-                                        <option value="name" selected>이름</option>
-                                        <option value="id">아이디</option>
+                                    <select class="custom-select" name="search-type">
+                                        <option value="title" selected>제목</option>
+                                        <option value="content">내용</option>
+                                        <option value="message-number">쪽지 번호</option>
+                                        <option value="sender">보낸 사람</option>
                                     </select>
                                 </div>
                                 <input class="form-control" type="search" placeholder="검색어를 입력하세요" aria-label="Search"
@@ -207,64 +210,62 @@
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-success" type="submit">검색</button>
                                 </div>
-                            </form>
+                                </form>
                             </div>
                             <div class="ml-auto">
-                                <form action="/manager/member/black.do" method="post">
-                            		<input type="hidden" id="check-black-members" name="check-black-members">
-                             		<button type="submit" class="btn btn-dark" onclick="getBlackMembersSearch();">블랙 리스트</button>
-                            	</form>
-                             	<form action="/manager/member/delete.do" method="post">
-                             		<input type="hidden" id="check-delete-members" name="check-delete-members">
-                             		<button type="submit" class="btn btn-danger" onclick="getDeleteMembersSearch();">회원 탈퇴 처리</button>
-                             	</form>
-                      		</div>
+                            <form action="/manager/message/delete.do" method="post">
+                            	<input type="hidden" id="check-delete-message" name="check-delete-message">
+                                <button type="submit" class="btn btn-danger" onclick="getDeleteMessage();">쪽지 정보 삭제</button>
+                            </form>
+                            </div>
                         <br>
-                        <form action="/manager/member/search.do" id="member-list" method="get">
+                        <form action="/manager/message/search.do" id="member-list" method="get">
                             <div id="board-list">
                                 <div class="container" id="board-list-container">
                                     <table class="board-table">
                                         <thead>
                                         <tr>
                                             <th scope="col">선택/해제</th>
-                                            <th scope="col">이름</th>
-                                            <th scope="col">가입날짜</th>
-                                            <th scope="col">성별</th>
-                                            <th scope="col">아이디</th>
-                                            <th scope="col">이메일</th>
-                                            <th scope="col">전화번호</th>
-                                            <th scope="col">mbti(성향)</th>
+                                            <th scope="col">보낸 이</th>
+                                            <th scope="col">받는 이</th>
+                                            <th scope="col">보낸 날짜</th>
+                                            <th scope="col">제목</th>
+                                            <th scope="col">쪽지 번호</th>
+                                            <th scope="col">읽음 여부</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach items="${mmList}" var="member" varStatus="i">
-	                                        <tr>
-	                                            <td><input type="checkbox" name="select-member" value="${member.memberId}"></td>
-	                                            <td>${member.memberName}</td>
-	                                            <td>${member.memberDate}</td>
-	                                            <td>${member.memberGender}</td>
-	                                            <td>${member.memberId}</td>
-	                                            <td>${member.memberEmail}</td>
-	                                            <td>${member.memberPhone}</td>
-	                                            <td>${member.memberMbti}</td>
-	                                        </tr>
-                                        </c:forEach>
+                                        <c:forEach items="${mList}" var="message" varStatus="i">
+                                        	<tr>
+                                            	<td><input type="checkbox" name="select-message" value="${message.messageNo}"></td>
+                                            	<td>${message.messageSender}</td>
+                                            	<td>${message.messageReceive}</td>
+                                            	<td>${message.messageReceive}</td>
+                                            	<td>
+                                            		<a href="javascript:void(0);" onclick="pop(${message.messageNo});">
+                                            			${message.messageTitle}
+                                            		</a>
+                                            	</td>
+                                            	<td>${message.messageNo}</td>
+                                            	<td>${message.readYn}</td>
+                                        	</tr>
+                        				</c:forEach>
                                         </tbody>
                                         <tfoot>
-											<tr align="center">
-												<td colspan="5">
-													<c:if test="${pInfo.startNavi ne '1'}">
-														<a href="/manager/member/search.do?page=${pInfo.startNavi - 1}&search-type=${pInfo.searchType}&search-keyword=${pInfo.searchKeyword}">[이전]</a>
-													</c:if>
-													<c:forEach begin="${pInfo.startNavi}" end="${pInfo.endNavi}" var="p">
-							               				<a href="/manager/member/search.do?page=${p}&search-type=${pInfo.searchType}&search-keyword=${pInfo.searchKeyword}">${p}</a>
-							            			</c:forEach>
-							            			<c:if test="${pInfo.endNavi ne pInfo.naviTotalCount}">
-														<a href="/manager/member/search.do?page=${pInfo.endNavi + 1}&search-type=${pInfo.searchType}&search-keyword=${pInfo.searchKeyword}">[다음]</a>
-													</c:if>
-												</td>
-											</tr>
-										</tfoot>
+                                        	<tr align="center">
+                                        		<td colspan="7">
+                                        	<c:if test="${pInfo.startNavi ne '1'}">
+												<a href="/manager/message/search.do?page=${pInfo.startNavi - 1}&search-type=${pInfo.searchType}&search-keyword=${pInfo.searchKeyword}">[이전]</a>
+											</c:if>
+											<c:forEach begin="${pInfo.startNavi}" end="${pInfo.endNavi}" var="p">
+							               		<a href="/manager/message/search.do?page=${p}&search-type=${pInfo.searchType}&search-keyword=${pInfo.searchKeyword}">${p}</a>
+							            	</c:forEach>
+							            	<c:if test="${pInfo.endNavi ne pInfo.naviTotalCount}">
+												<a href="/manager/message/search.do?page=${pInfo.endNavi + 1}&search-type=${pInfo.searchType}&search-keyword=${pInfo.searchKeyword}">[다음]</a>
+                                        	</c:if>
+                                        		</td>
+                                        	</tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -283,9 +284,14 @@
                 e.stopPropagation();
             });
         });
-        function getDeleteMembersSearch(){
+        function pop(messageNo)
+        {
+            window.open("/manager/message/detail.do?messageNo=" + messageNo, "pop", "width=400,height=500,history=no,resizable=no,status=no,scrollbars=yes,menubar=no")
+        }
+        
+        function getDeleteMessage(){
     		// 체크된 input 요소 선택
-    		var checkedCheckboxes = document.querySelectorAll('input[name="select-member"]:checked');
+    		var checkedCheckboxes = document.querySelectorAll('input[name="select-message"]:checked');
 
     		// 체크된 input 요소의 값을 저장할 배열
     		var checkedValues = [];
@@ -300,33 +306,10 @@
     		
     		//체크 된 회원 없을 시 오류 메세지 출력
     		if(checkedValues.length == 0){
-    			alert("체크된 회원이 없습니다.");
+    			alert("체크된 메세지가 없습니다.");
     		}
     		else{
-    			document.getElementById('check-delete-members').value = checkedValues.join(',');
-    	    }
-    	}
-    	function getBlackMembersSearch(){
-    		// 체크된 input 요소 선택
-    		var checkedCheckboxes = document.querySelectorAll('input[name="select-member"]:checked');
-
-    		// 체크된 input 요소의 값을 저장할 배열
-    		var checkedValues = [];
-
-    		// 각 체크된 input 요소의 값을 배열에 추가
-    		checkedCheckboxes.forEach(function(checkbox) {
-    		    checkedValues.push(checkbox.value);
-    		});
-
-    		// 배열에 저장된 값 확인
-    		console.log(checkedValues);
-    		
-    		//체크 된 회원 없을 시 오류 메세지 출력
-    		if(checkedValues.length == 0){
-    			alert("체크된 회원이 없습니다.");
-    		}
-    		else{
-    			document.getElementById('check-black-members').value = checkedValues.join(',');
+    			document.getElementById('check-delete-message').value = checkedValues.join(',');
     	    }
     	}
     </script>

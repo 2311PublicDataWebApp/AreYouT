@@ -159,6 +159,7 @@ public class MemberManagerController {
 		return mv;
 	}
 	
+	//블랙리스트 검색 조회
 	@RequestMapping(value = "/manager/member/blacksearch.do", method = RequestMethod.GET)
 	public ModelAndView showSearchBlack(ModelAndView mv
 			, @RequestParam("search-type") String type
@@ -174,7 +175,7 @@ public class MemberManagerController {
 			pInfo.setSearchKeyword(keyword);
 			
 			
-			List<MemberVO> mmList = mmService.selectSearchList(pInfo);
+			List<MemberVO> mmList = mmService.searchBlackList(pInfo);
 			mv.addObject("mmList", mmList);
 			mv.addObject("pInfo", pInfo);
 			mv.setViewName("manager/member/blacksearch");

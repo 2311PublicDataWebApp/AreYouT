@@ -88,4 +88,12 @@ public interface MemberManagerStore {
 	 */
 	int getBlackSearchTotalCount(SqlSession session, Map<String, Object> searchMap);
 
+	/**
+	 * 정지 회원 검색 조회 Store
+	 * @param session
+	 * @param pInfo
+	 * @return mmList
+	 */
+	List<MemberVO> searchBlackList(SqlSession session, PageInfo pInfo);
+
 }

@@ -185,7 +185,7 @@
                         <li class="menu-item"><a href="#">쪽지 관리</a>
                             <ul class="sub-menu">
                                 <li><a href="#">1대1 문의 쪽지함</a></li>
-                                <li><a href="#">일반 쪽지 관리</a></li>
+                                <li><a href="/manager/message/list.do">일반 쪽지 관리</a></li>
                             </ul>
                         </li><br>
                     </ul>
@@ -252,7 +252,7 @@
                                         </tbody>
                                         <tfoot>
 											<tr align="center">
-												<td colspan="5">
+												<td colspan="8">
 													<c:if test="${pInfo.startNavi ne '1'}">
 														<a href="/manager/member/list.do?page=${pInfo.startNavi - 1}">[이전]</a>
 													</c:if>

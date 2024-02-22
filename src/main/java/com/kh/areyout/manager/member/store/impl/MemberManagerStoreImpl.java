@@ -89,4 +89,18 @@ public class MemberManagerStoreImpl implements MemberManagerStore{
 		return result;
 	}
 
+	@Override
+	public List<MemberVO> searchBlackList(SqlSession session, PageInfo pInfo) {
+		int limit = pInfo.getRecordCountPerPage();
+		int offset = (pInfo.getCurrentPage() - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		Map<String, Object> paramMap = new HashMap<>();
+	    paramMap.put("keyword", pInfo.getSearchKeyword()); // 검색할 키워드
+	    paramMap.put("type", pInfo.getSearchType());     // 검색할 타입
+		
+		List<MemberVO> mmList = session.selectList("MemberManagerMapper.searchBlackList", paramMap, rowBounds);		
+		return mmList;
+	}
+
 }
