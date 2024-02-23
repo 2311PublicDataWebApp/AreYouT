@@ -27,6 +27,15 @@
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+body {
+	font-family: 'SUITE-Regular';
+}
 #profilesmall {
 border: 2px solid lightgray;
 }
@@ -102,6 +111,12 @@ border: 2px solid lightgray;
         .pic1 {
             position: relative;
         }
+        .pic3 {
+        	background-image:url("/resources/img/travel2.jpg");
+        	background-size: 600px 440px;
+   			background-repeat: no-repeat;
+   			background-position: center;
+        }
         .imp {
             position: absolute;
             top: 50%;
@@ -112,16 +127,16 @@ border: 2px solid lightgray;
         }
         .circle {
             position: absolute;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
+            width: 130px;
+            height: 130px;
+            border-radius: 100%;
             background-color: #ddd;
             margin-top: -510px;
             margin-left: 1000px;
         }
         .log {
             position: absolute;
-            width: 120px;
+            width: 250px;
             height: 40px;
             background-color: #ddd;
             margin-top: -360px;
@@ -361,14 +376,16 @@ style="width: 300px; height: 500px; margin-left: 320px; margin-top: 100px; borde
 	<div class="pic3" style="width: 600px; height: 440px; margin-left: 990px; margin-top:-470px; border-radius: 20px; border:1px solid #EEEEEE; box-shadow: 5px 5px 5px #EEEEEE;">
 <!--     <img src="./img/Superfresco Easy 56-sq ft Green Non-Woven Textured Solid Unpasted Wallpaper Lowes_com.jpg" -->
 <!--     style="width: 640px; height: 440px; border-radius: 20px; margin-top: -1000px; margin-left: 980px;"> -->
-    <div class="imp" style="width:450px; margin:700px 0 0 450px;">반가워요~ ${memberName }님👋
+    <div class="imp" style="width:450px; margin:730px 0 0 500px;">반가워요~ ${memberName } 여행자님👋
     <br>나와 잘 맞는 동행을 찾아보세요!</div>
-        <div class="circle" style="margin: 100px 0 0 70px;">
-        	<img src="../resources/muploadFiles/${member.memberFileRename }" style="border-radius: 50px; width: 100px; height: 100px;" >
+        <div class="circle" style="margin: 120px 0 0 70px;">
+        	<img src="../resources/muploadFiles/${memberFilename }" style="border: 3px solid lightgray; border-radius: 70px; width: 130px; height: 130px;" >
         </div>
-        <div class="log" style="margin: 330px 0 0 400px;">
+        <div class="log" style="margin: 290px 0 0 200px;">
+        <button class="w-100 btn btn-lg btn-primary" onclick="location.href='/mbti/matching.kh' "
+						style="background-color:#5AD897; border: 0px; margin: 0 0 0 0;">동행 매칭하기</button>
         <button class="w-100 btn btn-lg btn-primary" onclick="location.href='/member/logout.kh' "
-						style="background-color:#5AD897; border: 0px;">로그아웃</button>
+						style="background-color:#5AD897; border: 0px; margin:20px 0 0 0;">로그아웃</button>
         </div>
     </div>
 </c:if>
