@@ -287,7 +287,7 @@ border: 2px solid lightgray;
 								</c:if>
 								<c:if test="${memberMbti eq null }">
 									<button class="btn btn-lg btn-primary"
-										onclick="location.href='/' "
+										onclick="location.href='/mbti/mbtitest.kh'"
 										style="background-color: #9FA9D8; border: 0px;">MBTI
 										검사</button>
 								</c:if>

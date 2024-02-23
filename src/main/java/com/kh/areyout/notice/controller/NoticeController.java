@@ -36,7 +36,6 @@ public class NoticeController {
 	
 	
 	
-	
 	// 공지사항 목록
 	@RequestMapping(value = "/notice/list.kh", method = RequestMethod.GET)
 	public ModelAndView showNoticeList(ModelAndView mv
