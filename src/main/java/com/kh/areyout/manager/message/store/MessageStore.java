@@ -58,11 +58,29 @@ public interface MessageStore {
 	List<MessageVO> searchMessageList(SqlSession session, PageInfo pInfo);
 
 	/**
-	 * 읽기 상태 변경
+	 * 읽기 상태 변경 Store
 	 * @param session
 	 * @param messageNo
 	 * @return result
 	 */
 	int changeYn(SqlSession session, int messageNo);
+
+	/**
+	 * OverLoading
+	 * 유저 쪽지함 쪽지 수 Store
+	 * @param memberId
+	 * @param session
+	 * @return result
+	 */
+	int getTotalCount(String memberId, SqlSession session);
+
+	/**
+	 * 유저 쪽지함 목록 Store
+	 * @param session
+	 * @param pInfo
+	 * @param memberId
+	 * @return
+	 */
+	List<MessageVO> selectMessageList(SqlSession session, PageInfo pInfo, String memberId);
 
 }

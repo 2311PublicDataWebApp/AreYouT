@@ -15,6 +15,16 @@
 		<select id="selectTotalCount" resultType="_int">
   			SELECT COUNT(*) FROM MEMBER_MESSAGE_TBL
   		</select>
+  		<select id="selectUserTotalCount" resultType="_int">
+  			SELECT COUNT(*) FROM MEMBER_MESSAGE_TBL
+  			WHERE MESSAGE_RECEIVE LIKE #{memberId}
+			OR MESSAGE_SENDER LIKE #{memberId}
+  		</select>
+  		<select id="selectUserMessage" resultMap="messageManagerResultMap">
+  			SELECT * FROM MEMBER_MESSAGE_TBL
+  			WHERE MESSAGE_RECEIVE LIKE #{memberId}
+			OR MESSAGE_SENDER LIKE #{memberId}
+  		</select>
   		<select id="searchTotalCount" parameterType="java.util.Map" resultType="_int">
   			SELECT COUNT(*) FROM MEMBER_MESSAGE_TBL
   			<if test="type == 'title'">

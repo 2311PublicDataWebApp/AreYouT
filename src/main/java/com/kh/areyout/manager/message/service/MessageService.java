@@ -50,10 +50,27 @@ public interface MessageService {
 	List<MessageVO> searchMessageList(PageInfo pInfo);
 
 	/**
-	 * 읽음/안읽음 상태 변경
+	 * 읽음/안읽음 상태 변경 Service
 	 * @param message
 	 * @return	result
 	 */
 	int changeYn(int messageNo);
+
+	/**
+	 * OverLoading
+	 * 유저 쪽지함 쪽지 갯수 Service
+	 * @param memberId
+	 * @return result
+	 */
+	int getTotalCount(String memberId);
+
+	/**
+	 * OverLoading
+	 * 유저 쪽지함 목록 Service
+	 * @param pInfo
+	 * @param memberId
+	 * @return mList
+	 */
+	List<MessageVO> selectMessageList(PageInfo pInfo, String memberId);
 
 }

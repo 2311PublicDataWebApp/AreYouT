@@ -244,13 +244,13 @@
                                         	<tr align="center">
                                         		<td colspan="5">
                                         	<c:if test="${pInfo.startNavi ne '1'}">
-												<a href="/manager/notice/list.kh?page=${pInfo.startNavi - 1}">[이전]</a>
+												<a href="/manager/notice/search.kh?page=${pInfo.startNavi - 1 }&searchCondition=${pInfo.searchType}&searchKeyword=${pInfo.searchKeyword}">[이전]</a>
 											</c:if>
 											<c:forEach begin="${pInfo.startNavi}" end="${pInfo.endNavi}" var="p">
-							               		<a href="/manager/notice/list.kh?page=${p}">${p}</a>
+							               		<a href="/manager/notice/search.kh?page=${p }&searchCondition=${pInfo.searchType}&searchKeyword=${pInfo.searchKeyword}">${p}</a>
 							            	</c:forEach>
 							            	<c:if test="${pInfo.endNavi ne pInfo.naviTotalCount}">
-												<a href="/manager/notice/list.kh?page=${pInfo.endNavi + 1}">[다음]</a>
+												<a href="/manager/notice/search.kh?page=${pInfo.endNavi + 1 }&searchCondition=${pInfo.searchType}&searchKeyword=${pInfo.searchKeyword}">[다음]</a>
                                         	</c:if>
                                         		</td>
                                         	</tr>

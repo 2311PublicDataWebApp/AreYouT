@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -151,48 +152,53 @@
                         </div>
                     </form>
                     <br>
-                    <form action="" id="member-list">
+                    <form action="/message/list.kh" method="get" id="member-list">
                         <div id="board-list">
                             <div class="container" id="board-list-container">
                                 <table class="board-table">
                                     <thead>
                                     <tr>
-                                        <th scope="col">선택/해제</th>
-                                        <th scope="col">보낸 이</th>
-                                        <th scope="col">받는 이</th>
-                                        <th scope="col">보낸 날짜</th>
-                                        <th scope="col">제목</th>
-                                        <th scope="col">쪽지 번호</th>
-                                    </tr>
+                                            <th scope="col">선택/해제</th>
+                                            <th scope="col">보낸 이</th>
+                                            <th scope="col">받는 이</th>
+                                            <th scope="col">보낸 날짜</th>
+                                            <th scope="col">제목</th>
+                                            <th scope="col">쪽지 번호</th>
+                                            <th scope="col">읽음 여부</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td><input type="checkbox"></td>
-                                        <td>홍길동</td>
-                                        <td>홍길동</td>
-                                        <td>2018-04-04</td>
-                                        <td><a href="javascript:void(0);" onclick="pop();">나에게 보내는 쪽지</a></td>
-                                        <td>00001</td>
-                                    </tr>
-                    
-                                    <tr>
-                                        <td><input type="checkbox"></td>
-                                        <td>고길동</td>
-                                        <td>홍길동</td>
-                                        <td>2017-07-13</td>
-                                        <td><a href="javascript:void(0);" onclick="pop();">히말라야 등산 갔다 오실?</a></td>
-                                        <td>12345</td>
-                                    </tr>
-                    
-                                    <tr>
-                                        <td><input type="checkbox"></td>
-                                        <td>김길동</td>
-                                        <td>홍길동</td>
-                                        <td>2017-07-13</td>
-                                        <td><a href="javascript:void(0);" onclick="pop();">중동 배낭여행 줄 서봅니다.</a></td>
-                                        <td>88888</td>
-                                    </tr>
+                                        <c:forEach items="${mmList}" var="message" varStatus="i">
+                                        	<tr>
+                                            	<td><input type="checkbox" name="select-message" value="${message.messageNo}"></td>
+                                            	<td>${message.messageSender}</td>
+                                            	<td>${message.messageReceive}</td>
+                                            	<td>${message.sendDate}</td>
+                                            	<td>
+                                            		<a href="javascript:void(0);" onclick="pop(${message.messageNo});">
+                                            			${message.messageTitle}
+                                            		</a>
+                                            	</td>
+                                            	<td>${message.messageNo}</td>
+                                            	<td>${message.readYn}</td>
+                                        	</tr>
+                        				</c:forEach>
                                     </tbody>
+                                    <tfoot>
+                                        	<tr align="center">
+                                        		<td colspan="5">
+                                        	<c:if test="${pInfo.startNavi ne '1'}">
+												<a href="/message/list.kh?page=${pInfo.startNavi - 1}">[이전]</a>
+											</c:if>
+											<c:forEach begin="${pInfo.startNavi}" end="${pInfo.endNavi}" var="p">
+							               		<a href="/message/list.kh?page=${p}">${p}</a>
+							            	</c:forEach>
+							            	<c:if test="${pInfo.endNavi ne pInfo.naviTotalCount}">
+												<a href="/message/list.kh?page=${pInfo.endNavi + 1}">[다음]</a>
+                                        	</c:if>
+                                        		</td>
+                                        	</tr>
+                                        </tfoot>
                                 </table>
                             </div>
                         </div>
