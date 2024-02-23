@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원 관리</title>
+    <title>Document</title>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
         <style>
             body {
@@ -158,6 +158,9 @@
             width: 1px;
             height: 1px;
             }
+            table a{
+                color: black;
+            }
         </style>
 </head>
 <body>
@@ -172,99 +175,67 @@
                     <h2>사이트 관리</h2>
                     <hr id="menu-line">
                     <ul class="list-unstyled">
-                        <li class="menu-item"><a href="#">대쉬보드</a></li>
-                        <br><br><br>
+                        <li class="menu-item"><a href="#">대쉬보드</a></li><br><br><br>
                         <li class="menu-item"><a href="#">회원 관리</a>
                             <ul class="sub-menu">
-                                <li><a href="/manager/member/list.do">일반 회원 관리</a></li>
-                                <li><a href="/manager/member/blacklist.do">블랙리스트 관리</a></li>
+                                <li><a href="#">일반 회원 관리</a></li>
+                                <li><a href="#">블랙리스트 관리</a></li>
                             </ul>
-                        </li>
-                        <br><br><br>
+                        </li><br><br><br>
                         <li class="menu-item"><a href="#">여행신청 게시판 관리</a></li><hr id="menu-line"><br><br><br><br><br><br><br>
                         <li class="menu-item"><a href="#">쪽지 관리</a>
                             <ul class="sub-menu">
-                                <li><a href="/manager/message/askmessage.do">1대1 문의 쪽지함</a></li>
-                                <li><a href="/manager/message/list.do">일반 쪽지 관리</a></li>
+                                <li><a href="#">1대1 문의 쪽지함</a></li>
+                                <li><a href="#">일반 쪽지 관리</a></li>
                             </ul>
                         </li><br>
                     </ul>
                 </div>
                 <div class="col-md-10" id="" style="display: flex; justify-content: center;">
                 <div class="container mt-3" id="member-manager">
-                    <h3>일반회원 관리</h3>
+                    <h3>여행신청 게시판 관리</h3>
                     <hr>
-                    <div class="input-group mr-sm-2">
-                        	<form class="form-inline" id="search" action="/manager/member/search.do" method="GET">
+                        <form class="form-inline" id="search">
+                            <div class="input-group mr-sm-2">
                                 <div class="input-group-prepend">
-                                    <select class="custom-select" name=search-type>
-                                        <option value="name" selected>이름</option>
-                                        <option value="id">아이디</option>
+                                    <select class="custom-select">
+                                        <option value="title" selected>제목</option>
+                                        <option value="author">작성자</option>
+                                        <option value="post-number">게시글 번호</option>
                                     </select>
                                 </div>
-                                <input class="form-control" type="search" placeholder="검색어를 입력하세요" aria-label="Search"
-                                value="${pInfo.searchKeyword}" name="search-keyword">
+                                <input class="form-control" type="search" placeholder="검색어를 입력하세요" aria-label="Search">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-success" type="submit">검색</button>
                                 </div>
-                            </form>
                             </div>
                             <div class="ml-auto">
-                                <form action="/manager/member/black.do" method="post">
-                            		<input type="hidden" id="check-black-members" name="check-black-members">
-                             		<button type="submit" class="btn btn-dark" onclick="getBlackMembersSearch();">블랙 리스트</button>
-                            	</form>
-                             	<form action="/manager/member/delete.do" method="post">
-                             		<input type="hidden" id="check-delete-members" name="check-delete-members">
-                             		<button type="submit" class="btn btn-danger" onclick="getDeleteMembersSearch();">회원 탈퇴 처리</button>
-                             	</form>
-                      		</div>
+                                <button type="button" class="btn btn-danger">게시글 삭제</button>
+                            </div>
+                        </form>
                         <br>
-                        <form action="/manager/member/search.do" id="member-list" method="get">
+                        <form action="" id="member-list">
                             <div id="board-list">
                                 <div class="container" id="board-list-container">
                                     <table class="board-table">
                                         <thead>
                                         <tr>
                                             <th scope="col">선택/해제</th>
-                                            <th scope="col">이름</th>
-                                            <th scope="col">가입날짜</th>
-                                            <th scope="col">성별</th>
-                                            <th scope="col">아이디</th>
-                                            <th scope="col">이메일</th>
-                                            <th scope="col">전화번호</th>
-                                            <th scope="col">mbti(성향)</th>
+                                            <th scope="col">작성자</th>
+                                            <th scope="col">작성날짜</th>
+                                            <th scope="col">제목</th>
+                                            <th scope="col">게시글 번호</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach items="${mmList}" var="member" varStatus="i">
-	                                        <tr>
-	                                            <td><input type="checkbox" name="select-member" value="${member.memberId}"></td>
-	                                            <td>${member.memberName}</td>
-	                                            <td>${member.memberDate}</td>
-	                                            <td>${member.memberGender}</td>
-	                                            <td>${member.memberId}</td>
-	                                            <td>${member.memberEmail}</td>
-	                                            <td>${member.memberPhone}</td>
-	                                            <td>${member.memberMbti}</td>
-	                                        </tr>
-                                        </c:forEach>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td>홍길동</td>
+                                            <td>2018-04-04</td>
+                                            <td><a href="#">아마존 투어 갔다오실 분</a></td>
+                                            <td>00001</td>
+                                        </tr>
                                         </tbody>
-                                        <tfoot>
-											<tr align="center">
-												<td colspan="5">
-													<c:if test="${pInfo.startNavi ne '1'}">
-														<a href="/manager/member/search.do?page=${pInfo.startNavi - 1}&search-type=${pInfo.searchType}&search-keyword=${pInfo.searchKeyword}">[이전]</a>
-													</c:if>
-													<c:forEach begin="${pInfo.startNavi}" end="${pInfo.endNavi}" var="p">
-							               				<a href="/manager/member/search.do?page=${p}&search-type=${pInfo.searchType}&search-keyword=${pInfo.searchKeyword}">${p}</a>
-							            			</c:forEach>
-							            			<c:if test="${pInfo.endNavi ne pInfo.naviTotalCount}">
-														<a href="/manager/member/search.do?page=${pInfo.endNavi + 1}&search-type=${pInfo.searchType}&search-keyword=${pInfo.searchKeyword}">[다음]</a>
-													</c:if>
-												</td>
-											</tr>
-										</tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -283,52 +254,6 @@
                 e.stopPropagation();
             });
         });
-        function getDeleteMembersSearch(){
-    		// 체크된 input 요소 선택
-    		var checkedCheckboxes = document.querySelectorAll('input[name="select-member"]:checked');
-
-    		// 체크된 input 요소의 값을 저장할 배열
-    		var checkedValues = [];
-
-    		// 각 체크된 input 요소의 값을 배열에 추가
-    		checkedCheckboxes.forEach(function(checkbox) {
-    		    checkedValues.push(checkbox.value);
-    		});
-
-    		// 배열에 저장된 값 확인
-    		console.log(checkedValues);
-    		
-    		//체크 된 회원 없을 시 오류 메세지 출력
-    		if(checkedValues.length == 0){
-    			alert("체크된 회원이 없습니다.");
-    		}
-    		else{
-    			document.getElementById('check-delete-members').value = checkedValues.join(',');
-    	    }
-    	}
-    	function getBlackMembersSearch(){
-    		// 체크된 input 요소 선택
-    		var checkedCheckboxes = document.querySelectorAll('input[name="select-member"]:checked');
-
-    		// 체크된 input 요소의 값을 저장할 배열
-    		var checkedValues = [];
-
-    		// 각 체크된 input 요소의 값을 배열에 추가
-    		checkedCheckboxes.forEach(function(checkbox) {
-    		    checkedValues.push(checkbox.value);
-    		});
-
-    		// 배열에 저장된 값 확인
-    		console.log(checkedValues);
-    		
-    		//체크 된 회원 없을 시 오류 메세지 출력
-    		if(checkedValues.length == 0){
-    			alert("체크된 회원이 없습니다.");
-    		}
-    		else{
-    			document.getElementById('check-black-members').value = checkedValues.join(',');
-    	    }
-    	}
     </script>
 </body>
 </html>

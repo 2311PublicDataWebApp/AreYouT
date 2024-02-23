@@ -1,6 +1,7 @@
 package com.kh.areyout.manager.askmessage.store;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -46,5 +47,29 @@ public interface AskMessageStore {
 	 * @param askMessageNo
 	 */
 	void changeYn(SqlSession session, int askMessageNo);
+
+	/**
+	 * 문의 메세지 답변 전송 Store
+	 * @param session
+	 * @param askMessage
+	 * @return
+	 */
+	int sendAskMessage(SqlSession session, AskMessageVO askMessage);
+
+	/**
+	 * 문의 메세지 검색 메세지 갯수 Store
+	 * @param session
+	 * @param searchMap
+	 * @return result
+	 */
+	int getSearchTotalCount(SqlSession session, Map<String, Object> searchMap);
+
+	/**
+	 * 문의 메세지 검색 조회 Store
+	 * @param session
+	 * @param pInfo
+	 * @return amList
+	 */
+	List<AskMessageVO> searchAskMessageList(SqlSession session, PageInfo pInfo);
 
 }

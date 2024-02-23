@@ -196,15 +196,17 @@
                     <h3>1대1 문의 쪽지함</h3>
                     <hr>
                         <div class="input-group mr-sm-2">
-                        	<form class="form-inline" id="search">
+                        	<form class="form-inline" id="search" action="/manager/message/asksearch.do" method="get">
                                 <div class="input-group-prepend">
-                                    <select class="custom-select">
+                                    <select class="custom-select" name="search-type">
                                         <option value="title" selected>제목</option>
-                                        <option value="author">작성자</option>
-                                        <option value="post-number">게시글 번호</option>
+                                        <option value="content">내용</option>
+                                        <option value="message-number">쪽지 번호</option>
+                                        <option value="sender">보낸 사람</option>
                                     </select>
                                 </div>
-                                <input class="form-control" type="search" placeholder="검색어를 입력하세요" aria-label="Search">
+                                <input class="form-control" type="search" placeholder="검색어를 입력하세요" aria-label="Search"
+                                value="${pInfo.searchKeyword}" name="search-keyword">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-success" type="submit">검색</button>
                                 </div>

@@ -1,6 +1,7 @@
 package com.kh.areyout.manager.askmessage.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.areyout.manager.askmessage.domain.AskMessageVO;
 import com.kh.areyout.manager.askmessage.domain.PageInfo;
@@ -39,5 +40,26 @@ public interface AskMessageService {
 	 * @param askMessage
 	 */
 	void changeYn(int askMessageNo);
+
+	/**
+	 * 문의 메세지 답변 전송 Service
+	 * @param askMessage
+	 * @return result
+	 */
+	int sendAskMessage(AskMessageVO askMessage);
+
+	/**
+	 * 문의 메세지 검색 메세지 갯수 Service
+	 * @param searchMap
+	 * @return result
+	 */
+	int getSearchTotalCount(Map<String, Object> searchMap);
+
+	/**
+	 * 문의 메세지 검색 조회 Service
+	 * @param pInfo
+	 * @return amList
+	 */
+	List<AskMessageVO> searchAskMessageList(PageInfo pInfo);
 
 }

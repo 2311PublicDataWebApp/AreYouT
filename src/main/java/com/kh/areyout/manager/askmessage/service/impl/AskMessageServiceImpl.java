@@ -1,6 +1,7 @@
 package com.kh.areyout.manager.askmessage.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,24 @@ public class AskMessageServiceImpl implements AskMessageService{
 	@Override
 	public void changeYn(int askMessageNo) {
 		amStore.changeYn(session, askMessageNo);
+	}
+
+	@Override
+	public int sendAskMessage(AskMessageVO askMessage) {
+		int result = amStore.sendAskMessage(session, askMessage);
+		return result;
+	}
+
+	@Override
+	public int getSearchTotalCount(Map<String, Object> searchMap) {
+		int result = amStore.getSearchTotalCount(session, searchMap);
+		return result;
+	}
+
+	@Override
+	public List<AskMessageVO> searchAskMessageList(PageInfo pInfo) {
+		List<AskMessageVO> amList = amStore.searchAskMessageList(session, pInfo);
+		return amList;
 	}
 
 }

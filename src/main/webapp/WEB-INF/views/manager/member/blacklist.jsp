@@ -360,7 +360,7 @@
                         <li class="menu-item"><a href="#">여행신청 게시판 관리</a></li><hr id="menu-line"><br><br><br><br><br><br><br>
                         <li class="menu-item"><a href="#">쪽지 관리</a>
                             <ul class="sub-menu">
-                                <li><a href="#">1대1 문의 쪽지함</a></li>
+                                <li><a href="/manager/message/askmessage.do">1대1 문의 쪽지함</a></li>
                                 <li><a href="/manager/message/list.do">일반 쪽지 관리</a></li>
                             </ul>
                         </li><br>

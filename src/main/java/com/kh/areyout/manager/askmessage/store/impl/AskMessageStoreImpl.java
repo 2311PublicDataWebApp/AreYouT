@@ -1,6 +1,8 @@
 package com.kh.areyout.manager.askmessage.store.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -44,9 +46,39 @@ public class AskMessageStoreImpl implements AskMessageStore{
 		return askMessage;
 	}
 
+	//읽음/안읽음 상태 조회
 	@Override
 	public void changeYn(SqlSession session, int askMessageNo) {
 		session.update("AskMessageMapper.changeYn", askMessageNo);
+	}
+
+	//문의 메세지 답변 전송
+	@Override
+	public int sendAskMessage(SqlSession session, AskMessageVO askMessage) {
+		int result = session.insert("AskMessageMapper.sendAskMessage", askMessage);
+		return result;
+	}
+
+	//검색 문의 메세지 갯수
+	@Override
+	public int getSearchTotalCount(SqlSession session, Map<String, Object> searchMap) {
+		int result = session.selectOne("AskMessageMapper.searchTotalCount", searchMap);
+		return result;
+	}
+
+	//검색 문의 메세지 조회
+	@Override
+	public List<AskMessageVO> searchAskMessageList(SqlSession session, PageInfo pInfo) {
+		int limit = pInfo.getRecordCountPerPage();
+		int offset = (pInfo.getCurrentPage() - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		Map<String, Object> paramMap = new HashMap<>();
+	    paramMap.put("keyword", pInfo.getSearchKeyword()); // 검색할 키워드
+	    paramMap.put("type", pInfo.getSearchType());     // 검색할 타입
+		
+	    List<AskMessageVO> amList = session.selectList("AskMessageMapper.selectSearchList", paramMap, rowBounds);
+		return amList;
 	}
 
 }

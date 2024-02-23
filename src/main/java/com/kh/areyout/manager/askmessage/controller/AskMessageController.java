@@ -1,10 +1,13 @@
 package com.kh.areyout.manager.askmessage.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +22,51 @@ public class AskMessageController {
 	@Autowired
 	AskMessageService amService;
 	
-	//문의 메세지 작성창 조회
+	//문의 메세지 검색
+	@RequestMapping(value = "/manager/message/asksearch.do", method = RequestMethod.GET)
+	public ModelAndView searchAskMessage(ModelAndView mv
+			, @RequestParam("search-type") String type
+			, @RequestParam("search-keyword") String keyword
+			, @RequestParam(value = "page", required = false, defaultValue = "1") Integer currentPage) {
+		try {
+			Map<String, Object> searchMap = new HashMap<String, Object>();
+			searchMap.put("type", type);
+			searchMap.put("keyword", keyword);
+			int totalCount = amService.getSearchTotalCount(searchMap);
+			PageInfo pInfo = this.getPageInfo(currentPage, totalCount);
+			pInfo.setSearchType(type);
+			pInfo.setSearchKeyword(keyword);
+			
+			List<AskMessageVO> amList = amService.searchAskMessageList(pInfo);
+			mv.addObject("amList",amList);
+			mv.addObject("pInfo", pInfo);
+			mv.setViewName("manager/message/asksearch");
+		} catch (Exception e) {
+			mv.addObject("msg", e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
+	
+	//문의 메세지 답변 전송
+	@RequestMapping(value = "/manager/message/sendmessage.do", method = RequestMethod.POST)
+	public ModelAndView sendAskMessage(ModelAndView mv
+			, @ModelAttribute AskMessageVO askMessage) {
+		try {
+			int result = amService.sendAskMessage(askMessage);
+			if(result > 0) { 
+				mv.setViewName("manager/message/close");
+			} 
+		} catch (Exception e) {
+			mv.addObject("msg", e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
+	
+	//문의 메세지 답변창 조회
 	@RequestMapping(value = "/manager/message/asksend.do", method = RequestMethod.GET)
 	public ModelAndView showSendForm(ModelAndView mv) {
 		try {

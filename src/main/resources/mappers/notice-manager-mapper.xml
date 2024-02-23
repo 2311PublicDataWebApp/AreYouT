@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-Mapper.dtd">
+  <mapper namespace="NoticeManagerMapper">
+  	<resultMap type="Notice" id="NoticeManagerResultMap">
+  		<id property="noticeNo" column="NOTICE_NO"/>
+  		<result property="noticeSubject" column="NOTICE_SUBJECT"/>
+  		<result property="noticeContent" column="NOTICE_CONTENT"/>
+  		<result property="noticeWriter" column="NOTICE_WRITER"/>
+  		<result property="noticeDate" column="NOTICE_DATE"/>
+  		<result property="updateDate" column="UPDATE_DATE"/>
+  		<result property="noticeFileName" column="NOTICE_FILENAME"/>
+  		<result property="noticeFileRename" column="NOTICE_FILERENAME"/>
+  		<result property="noticeFilePath" column="NOTICE_FILEPATH"/>
+  		<result property="noticeFileLength" column="NOTICE_FILELENGTH"/>
+  	</resultMap>
+  
+  </mapper>
