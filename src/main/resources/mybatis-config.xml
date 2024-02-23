@@ -8,13 +8,15 @@
 		</settings>
 		<!-- VO가 생성될 때 마다 추가 -->
  		<typeAliases>
- 			<typeAlias type="com.kh.areyout.manager.member.domain.MemberVO" alias="Member"/>
+ 			<typeAlias type="com.kh.areyout.member.domain.MemberVO" alias="Member"/>
+ 			<typeAlias type="com.kh.areyout.manager.member.domain.MemberVO" alias="MemberVO"/>
  			<typeAlias type="com.kh.areyout.manager.message.domain.MessageVO" alias="Message"/>
  			<typeAlias type="com.kh.areyout.manager.askmessage.domain.AskMessageVO" alias="AskMessage"/>
  			<typeAlias type="com.kh.areyout.manager.notice.domain.NoticeVO" alias="Notice"/>
  		</typeAliases>
  	<!-- mapper.xml이 생성될 때마다 추가 -->
  	<mappers> 
+ 		<mapper resource="mappers/member-mapper.xml"/>
  		<mapper resource="mappers/member-manager-mapper.xml"/>
  		<mapper resource="mappers/message-manager-mapper.xml"/>
  		<mapper resource="mappers/ask-message-mapper.xml"/>
