@@ -27,9 +27,116 @@
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
-#profilesmall {
-border: 2px solid lightgray;
+@font-face {
+	font-family: 'SUITE-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
+		format('woff2');
+	font-weight: 400;
+	font-style: normal;
 }
+
+body {
+	font-family: 'SUITE-Regular';
+}
+
+#profilesmall {
+	border: 2px solid lightgray;
+}
+/* 더보기 */
+/* Top left text */
+.top-left {
+	position: absolute;
+	top: 8px;
+	left: 16px;
+}
+/* 사진 */
+@import
+	url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap')
+	;
+
+/* .gowun-dodum-regular {
+        } */
+.mainContainer {
+	position: relative;
+	text-align: center;
+	width: 100%; -
+	-color: white;
+	/* text-shadow: 0.5px 0.5px 0.5px black; */
+}
+
+* /
+	.mainContainer img {
+	width: 100%;
+	vertical-align: middle;
+}
+
+.centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.header {
+	text-align: center;
+	margin-top: 100px;
+}
+
+.card-group {
+	width: 1500px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+}
+
+#car {
+	margin: 5px;
+	padding: 5px 45px;
+}
+
+#card {
+	justify-content: center;
+	padding: auto;
+}
+
+.pcard {
+	text-align: center;
+	margin: auto;
+}
+
+#cardImg {
+	display: flex;
+}
+
+.card-img-top {
+	display: flex;
+	margin-right: 110px;
+}
+/* 안녕하세요 ㅇㅇ님 */
+.pic3 {
+	background-image: url("../resources/img/landmark3.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.circle {
+	position: absolute;
+	width: 130px;
+	height: 130px;
+	border-radius: 100%;
+	background-color: #white;
+}
+
+.log {
+	position: absolute;
+	width: 250px;
+	height: 40px;
+	background-color: #ddd;
+	border-radius: 8px;
+}
+
 .logo {
 	text-align: center;
 	margin: auto;
@@ -176,53 +283,112 @@ border: 2px solid lightgray;
 
 					<ul
 						class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-						<li><a href="#" class="nav-link px-2 link-secondary">홈</a></li>
-						<li><a href="#" class="nav-link px-2 link-dark">동행모집</a></li>
-						<li><a href="#" class="nav-link px-2 link-dark">성향테스트</a></li>
-						<li><a href="#" class="nav-link px-2 link-dark">나의 짝꿍 찾기</a></li>
+						<li><a href="/" class="nav-link px-2 link-secondary">홈</a></li>
+						<li><a href="/notice/list.kh" class="nav-link px-2 link-dark">동행모집</a></li>
+						<li><a href="/mbti/mbtitest.kh"
+							class="nav-link px-2 link-dark">성향테스트</a></li>
+						<li><a href="/mbti/matching.kh"
+							class="nav-link px-2 link-dark">나의 짝꿍 찾기</a></li>
 					</ul>
 
-					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-						<input type="search" class="form-control" placeholder="Search..."
-							aria-label="Search">
+					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search"
+						action="/notice/search.kh" method="get" id="search">
+						<select name="searchCondition" style="display: none;">
+							<c:if test="${searchCondition eq 'all' }">selected</c:if>
+							<option value="all"
+								<c:if test="${searchCondition eq 'all' }"> selected</c:if>>전체</option>
+						</select> <input type="search" class="form-control"
+							placeholder="동행을 검색해보세요" name="searchKeyword" aria-label="Search"
+							onkeypress="if( event.keyCode == 13 ){enterKey()}">
 					</form>
 
 
 					<c:if test="${memberId eq null }">
 						<div class="login-header">
 							<ul>
-								<li><a href="/member/login.kh">로그인&nbsp</a></li>
-								<li><a href="/member/register.kh">&nbsp회원가입</a></li>
+								<li><a href="/member/login.kh">로그인&nbsp&nbsp</a></li>
+								<li><a href="/member/register.kh">&nbsp&nbsp회원가입</a></li>
 							</ul>
 						</div>
 					</c:if>
 
 					<c:if test="${memberId ne null }">
-						<div class="dropdown text-end">
-							<a href="#"
-								class="d-block link-dark text-decoration-none dropdown-toggle"
-								data-bs-toggle="dropdown" aria-expanded="false"> <c:if
-									test="${memberFilename eq null }">
-									<img id="profilesmall" src="../resources/muploadFiles/basic.png" width="40"
-										height="40" class="rounded-circle">
-								</c:if> <c:if test="${memberFilename ne null }">
-									<img id="profilesmall"
-										src="../resources/muploadFiles/${memberFilename }"
-										width="40" height="40" class="rounded-circle">
-								</c:if>
-							</a>
-							<ul class="dropdown-menu text-small">
-								<li><a class="dropdown-item" href="/member/mypage.kh">내정보</a></li>
-								<li><a class="dropdown-item" href="/member/profile.kh">프로필</a></li>
-								<li><a class="dropdown-item" href="#">쪽지함</a></li>
-								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="/member/logout.kh">로그아웃</a></li>
-							</ul>
-						</div>
+						<c:if test="${memberId eq 'admin' }">
+							<div class="dropdown text-end">
+								<a href="#"
+									class="d-block link-dark text-decoration-none dropdown-toggle"
+									data-bs-toggle="dropdown" aria-expanded="false"> <c:if
+										test="${memberFileRename eq null }">
+										<img id="profilesmall"
+											src="../resources/muploadFiles/basic.png" width="40"
+											height="40" class="rounded-circle">
+									</c:if> <c:if test="${memberFileRename ne null }">
+										<img id="profilesmall"
+											src="../resources/muploadFiles/${memberFileRename }"
+											width="40" height="40" class="rounded-circle">
+									</c:if>
+								</a>
+								<ul class="dropdown-menu text-small">
+									<li><a class="dropdown-item" href="/manager/main.kh">관리자페이지</a></li>
+									<li><hr class="dropdown-divider"></li>
+									<li><a class="dropdown-item" href="/member/logout.kh">로그아웃</a></li>
+								</ul>
+							</div>
+						</c:if>
+						<c:if test="${memberId ne 'admin' }">
+							<div class="dropdown text-end">
+								<a href="#"
+									class="d-block link-dark text-decoration-none dropdown-toggle"
+									data-bs-toggle="dropdown" aria-expanded="false"> <c:if
+										test="${memberFileRename eq null }">
+										<img id="profilesmall"
+											src="../resources/muploadFiles/basic.png" width="40"
+											height="40" class="rounded-circle">
+									</c:if> <c:if test="${memberFileRename ne null }">
+										<img id="profilesmall"
+											src="../resources/muploadFiles/${memberFileRename }"
+											width="40" height="40" class="rounded-circle">
+									</c:if>
+								</a>
+								<ul class="dropdown-menu text-small">
+									<li><a class="dropdown-item" href="/member/mypage.kh">내정보</a></li>
+									<li><a class="dropdown-item" href="/member/profile.kh">프로필</a></li>
+									<li><a class="dropdown-item" href="/message/list.kh">쪽지함</a></li>
+									<li><hr class="dropdown-divider"></li>
+									<li><a class="dropdown-item" href="/member/logout.kh">로그아웃</a></li>
+								</ul>
+							</div>
+						</c:if>
 					</c:if>
 				</div>
 			</div>
 		</header>
+		
+		<c:if test="${memberId ne null }">
+		
+		<div class="container"
+				style="width: 500px; margin-top: 100px; margin-bottom: 100px;">
+				<main class="form-signin w-100 m-auto">
+					<h1 style="text-align:center;">현재 로그인 중입니다.</h1>
+					<br> <br>
+					<button href="javascript:void(0);" onclick="goBack();"
+						class="w-100 btn btn-lg btn-primary"
+						style="margin-top: 30px; background-color: #5AD897; border: 0px;">
+						이전으로 이동</button>
+					<script type="text/javascript">
+						function goBack() {
+							history.back();
+							// history.go(-1);
+						}
+					</script>
+				</main>
+	
+			</div>
+		</c:if>
+		
+		<c:if test="${memberId eq null }">
+		
+		
 		<div class="container"
 			style="width: 500px; margin-top: 100px; margin-bottom: 100px;">
 			<main class="form-signin w-100 m-auto">
@@ -257,6 +423,9 @@ border: 2px solid lightgray;
 			</main>
 
 		</div>
+		</c:if>
+		
+		
 		<div class="container">
 			<footer
 				class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">

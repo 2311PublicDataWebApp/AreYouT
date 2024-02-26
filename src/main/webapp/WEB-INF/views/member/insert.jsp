@@ -19,10 +19,124 @@
 	rel="stylesheet"
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
+
+
+
+
+
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <style>
-#profilesmall {
-border: 2px solid lightgray;
+@font-face {
+	font-family: 'SUITE-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
+		format('woff2');
+	font-weight: 400;
+	font-style: normal;
 }
+
+body {
+	font-family: 'SUITE-Regular';
+}
+
+#profilesmall {
+	border: 2px solid lightgray;
+}
+/* 더보기 */
+/* Top left text */
+.top-left {
+	position: absolute;
+	top: 8px;
+	left: 16px;
+}
+/* 사진 */
+@import
+	url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap')
+	;
+
+/* .gowun-dodum-regular {
+        } */
+.mainContainer {
+	position: relative;
+	text-align: center;
+	width: 100%; -
+	-color: white;
+	/* text-shadow: 0.5px 0.5px 0.5px black; */
+}
+
+* /
+	.mainContainer img {
+	width: 100%;
+	vertical-align: middle;
+}
+
+.centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.header {
+	text-align: center;
+	margin-top: 100px;
+}
+
+.card-group {
+	width: 1500px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+}
+
+#car {
+	margin: 5px;
+	padding: 5px 45px;
+}
+
+#card {
+	justify-content: center;
+	padding: auto;
+}
+
+.pcard {
+	text-align: center;
+	margin: auto;
+}
+
+#cardImg {
+	display: flex;
+}
+
+.card-img-top {
+	display: flex;
+	margin-right: 110px;
+}
+/* 안녕하세요 ㅇㅇ님 */
+.pic3 {
+	background-image: url("../resources/img/landmark3.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.circle {
+	position: absolute;
+	width: 130px;
+	height: 130px;
+	border-radius: 100%;
+	background-color: #white;
+}
+
+.log {
+	position: absolute;
+	width: 250px;
+	height: 40px;
+	background-color: #ddd;
+	border-radius: 8px;
+}
+
 .logo {
 	text-align: center;
 	margin: auto;
@@ -169,115 +283,195 @@ border: 2px solid lightgray;
 
 					<ul
 						class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-						<li><a href="#" class="nav-link px-2 link-secondary">홈</a></li>
-						<li><a href="#" class="nav-link px-2 link-dark">동행모집</a></li>
-						<li><a href="#" class="nav-link px-2 link-dark">성향테스트</a></li>
-						<li><a href="#" class="nav-link px-2 link-dark">나의 짝꿍 찾기</a></li>
+						<li><a href="/" class="nav-link px-2 link-secondary">홈</a></li>
+						<li><a href="/notice/list.kh" class="nav-link px-2 link-dark">동행모집</a></li>
+						<li><a href="/mbti/mbtitest.kh"
+							class="nav-link px-2 link-dark">성향테스트</a></li>
+						<li><a href="/mbti/matching.kh"
+							class="nav-link px-2 link-dark">나의 짝꿍 찾기</a></li>
 					</ul>
 
-					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-						<input type="search" class="form-control" placeholder="Search..."
-							aria-label="Search">
+					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search"
+						action="/notice/search.kh" method="get" id="search">
+						<select name="searchCondition" style="display: none;">
+							<c:if test="${searchCondition eq 'all' }">selected</c:if>
+							<option value="all"
+								<c:if test="${searchCondition eq 'all' }"> selected</c:if>>전체</option>
+						</select> <input type="search" class="form-control"
+							placeholder="동행을 검색해보세요" name="searchKeyword" aria-label="Search"
+							onkeypress="if( event.keyCode == 13 ){enterKey()}">
 					</form>
 
 
 					<c:if test="${memberId eq null }">
 						<div class="login-header">
 							<ul>
-								<li><a href="/member/login.kh">로그인&nbsp</a></li>
-								<li><a href="/member/register.kh">&nbsp회원가입</a></li>
+								<li><a href="/member/login.kh">로그인&nbsp&nbsp</a></li>
+								<li><a href="/member/register.kh">&nbsp&nbsp회원가입</a></li>
 							</ul>
 						</div>
 					</c:if>
 
 					<c:if test="${memberId ne null }">
-						<div class="dropdown text-end">
-							<a href="#"
-								class="d-block link-dark text-decoration-none dropdown-toggle"
-								data-bs-toggle="dropdown" aria-expanded="false"> <c:if
-									test="${memberFilename eq null }">
-									<img id="profilesmall" src="../resources/muploadFiles/basic.png" width="40"
-										height="40" class="rounded-circle">
-								</c:if> <c:if test="${memberFilename ne null }">
-									<img id="profilesmall"
-										src="../resources/muploadFiles/${memberFilename }"
-										width="40" height="40" class="rounded-circle">
-								</c:if>
-							</a>
-							<ul class="dropdown-menu text-small">
-								<li><a class="dropdown-item" href="/member/mypage.kh">내정보</a></li>
-								<li><a class="dropdown-item" href="/member/profile.kh">프로필</a></li>
-								<li><a class="dropdown-item" href="#">쪽지함</a></li>
-								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="/member/logout.kh">로그아웃</a></li>
-							</ul>
-						</div>
+						<c:if test="${memberId eq 'admin' }">
+							<div class="dropdown text-end">
+								<a href="#"
+									class="d-block link-dark text-decoration-none dropdown-toggle"
+									data-bs-toggle="dropdown" aria-expanded="false"> <c:if
+										test="${memberFileRename eq null }">
+										<img id="profilesmall"
+											src="../resources/muploadFiles/basic.png" width="40"
+											height="40" class="rounded-circle">
+									</c:if> <c:if test="${memberFileRename ne null }">
+										<img id="profilesmall"
+											src="../resources/muploadFiles/${memberFileRename }"
+											width="40" height="40" class="rounded-circle">
+									</c:if>
+								</a>
+								<ul class="dropdown-menu text-small">
+									<li><a class="dropdown-item" href="/manager/main.kh">관리자페이지</a></li>
+									<li><hr class="dropdown-divider"></li>
+									<li><a class="dropdown-item" href="/member/logout.kh">로그아웃</a></li>
+								</ul>
+							</div>
+						</c:if>
+						<c:if test="${memberId ne 'admin' }">
+							<div class="dropdown text-end">
+								<a href="#"
+									class="d-block link-dark text-decoration-none dropdown-toggle"
+									data-bs-toggle="dropdown" aria-expanded="false"> <c:if
+										test="${memberFileRename eq null }">
+										<img id="profilesmall"
+											src="../resources/muploadFiles/basic.png" width="40"
+											height="40" class="rounded-circle">
+									</c:if> <c:if test="${memberFileRename ne null }">
+										<img id="profilesmall"
+											src="../resources/muploadFiles/${memberFileRename }"
+											width="40" height="40" class="rounded-circle">
+									</c:if>
+								</a>
+								<ul class="dropdown-menu text-small">
+									<li><a class="dropdown-item" href="/member/mypage.kh">내정보</a></li>
+									<li><a class="dropdown-item" href="/member/profile.kh">프로필</a></li>
+									<li><a class="dropdown-item" href="/message/list.kh">쪽지함</a></li>
+									<li><hr class="dropdown-divider"></li>
+									<li><a class="dropdown-item" href="/member/logout.kh">로그아웃</a></li>
+								</ul>
+							</div>
+						</c:if>
 					</c:if>
 				</div>
 			</div>
 		</header>
+		<c:if test="${memberId ne null }">
+		
+		<div class="container"
+				style="width: 500px; margin-top: 100px; margin-bottom: 100px;">
+				<main class="form-signin w-100 m-auto">
+					<h1 style="text-align:center;">현재 로그인 중입니다.</h1>
+					<br> <br>
+					<button href="javascript:void(0);" onclick="goBack();"
+						class="w-100 btn btn-lg btn-primary"
+						style="margin-top: 30px; background-color: #5AD897; border: 0px;">
+						이전으로 이동</button>
+					<script type="text/javascript">
+						function goBack() {
+							history.back();
+							// history.go(-1);
+						}
+					</script>
+				</main>
+	
+			</div>
+		</c:if>
+		<c:if test="${memberId eq null }">
+		
+		
 		<div class="container"
 			style="width: 500px; margin-top: 100px; margin-bottom: 100px;">
 			<main class="form-signin w-100 m-auto">
-				<form action="/member/register.kh" method="post">
+				<form id="frm" action="/member/register.kh" method="post">
 					<fieldset>
 						<img class="mb-4" src="/resources/img/LOGO1.png" width="80"
 							height="80" role="img" class="footerLogo">
-						<h1 class="h3 mb-3 fw-normal">회원가입</h1>
+						<h1 class="h3 mb-3 fw-normal" style="font-weight:bolder">회원가입</h1>
+						<br>
 						<ul style="list-style-type: none; padding-left: 0;">
 							<li>
+							&nbsp아이디
 								<div class="form-floating">
 									<input type="text" class="form-control" name="memberId"
 										id="memberId" placeholder="name@example.com"> <label
-										for="floatingInput">아이디</label>
+										for="floatingInput">4~12자리 영문자, 숫자 입력</label>
+										
 								</div>
 							</li>
 							<br>
 							<li>
+							&nbsp비밀번호
 								<div class="form-floating">
 									<input type="password" class="form-control" name="memberPw"
 										id="memberPw" placeholder="Password"> <label
-										for="floatingPassword">비밀번호</label>
+										for="floatingPassword">6~20자리 영문자, 숫자 입력</label>
 								</div>
 							</li>
 							<br>
 							<li>
+							&nbsp비밀번호 확인
+								<div class="form-floating">
+									<input type="password" class="form-control" name="memberPwConfirm"
+										id="memberPwConfirm" placeholder="Password"> <label
+										for="floatingPassword">비밀번호 재입력</label>
+								</div>
+							</li>
+							<br>
+							<li>
+							&nbsp이름
 								<div class="form-floating">
 									<input type="text" class="form-control" name="memberName"
 										id="memberName" placeholder="이름"> <label
-										for="floatingInput">이름</label>
+										for="floatingInput">2글자 이상 한글 입력</label>
 								</div>
 							</li>
 							<br>
 							<li>
+							&nbsp닉네임
 								<div class="form-floating">
 									<input type="text" class="form-control" name="memberNickname"
 										id="memberNickname" placeholder="닉네임"> <label
-										for="floatingInput">닉네임</label>
+										for="floatingInput">2~10글자 닉네임 입력</label>
 								</div>
 							</li>
 							<br>
 							<li>
+							&nbsp나이
 								<div class="form-floating">
 									<input type="text" class="form-control" name="memberAge"
 										id="memberAge" placeholder="나이"> <label
-										for="floatingInput">나이</label>
+										for="floatingInput">숫자 입력</label>
 								</div>
 							</li>
 							<br>
-							<li><div class="form-floating">
-									<input type="text" class="form-control" name="memberEmail"
+							<li>
+							&nbsp이메일
+							<div class="form-floating">
+									<input type="email" class="form-control" name="memberEmail"
 										id="memberEmail" placeholder="이메일"> <label
-										for="floatingInput">이메일</label>
+										for="floatingInput">도메인 포함하여 이메일 입력</label>
 								</div></li>
 							<br>
-							<li><div class="form-floating">
+							<li>
+							&nbsp전화번호
+							<div class="form-floating">
 									<input type="text" class="form-control" name="memberPhone"
 										id="memberPhone" placeholder="전화번호"> <label
-										for="floatingInput">전화번호</label>
+										for="floatingInput">- 포함하여 전화번호 입력</label>
 								</div></li>
 							<br>
-							<li><label for="memberGender">성별</label> <br> 남 <input
+							<li>
+							<label for="memberGender">&nbsp성별</label> <br>
+							
+							&nbsp남 <input
 								type="radio" name="memberGender" id="memberGender" value="M">
 								여 <input type="radio" name="memberGender" id="memberGender"
 								value="F"></li>
@@ -285,8 +479,9 @@ border: 2px solid lightgray;
 					</fieldset>
 					<br>
 					<div>
-						<button class="w-100 btn btn-lg btn-primary" type="submit"
-							style="margin-top: 30px; background-color: #5AD897; border: 0px;">회원가입</button>
+					<input type="button" value="회원가입" onclick="checkValueAndSubmit()" style="width:475px; font-size: larger; margin-top:30px; color:white; background-color: #5AD897; height: 45px; border: 1px solid #DCE2E3; border-radius: 8px;">
+						<!-- <button class="w-100 btn btn-lg btn-primary" type="submit"
+							style="margin-top: 30px; background-color: #5AD897; border: 0px;">회원가입</button> -->
 						<button class="w-100 btn btn-lg btn-primary" type="reset"
 							style="margin-top: 30px; background-color: #5AD897; border: 0px;">초기화</button>
 					</div>
@@ -294,6 +489,7 @@ border: 2px solid lightgray;
 				</form>
 			</main>
 		</div>
+		</c:if>
 		<div class="container">
 			<footer
 				class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
@@ -328,9 +524,146 @@ border: 2px solid lightgray;
 		</div>
 	</main>
 
-
-
-
 </body>
+<script>
+
+function checkValueAndSubmit() {
+	const userIdBox = document.getElementById("memberId");
+	const idValue = userIdBox.value;
+	const idRegEx = /^[a-zA-Z0-9]{4,12}$/;
+	
+	// idValue가 정규표현식에 적합하지 않으면
+	if (idValue == "") {
+		alert("아이디를 입력해주세요");
+		userIdBox.focus();
+		return; // return;을 해줘야 submit이 발동되지 않는다. (주의!)
+	}
+	else if (!idRegEx.test(idValue)) {
+		alert("아이디는 영문자로 시작하고 영문자, 숫자로만 4~12글자만 입력해주세요.");
+		userIdBox.focus();
+		return; // return;을 해줘야 submit이 발동되지 않는다. (주의!)
+	}
+	
+	const userPwBox = document.getElementById("memberPw");
+	const pwValue = userPwBox.value;
+	const userPwConfirmBox = document.getElementById("memberPwConfirm");
+	const pw2Value = userPwConfirmBox.value;
+	const pwRegEx = /^[a-zA-Z0-9]{6,20}$/;
+	
+	
+	
+	if (pwValue == "") {
+		alert("비밀번호를 입력해주세요");
+		userPwBox.focus();
+		return;
+	}
+	else if (!pwRegEx.test(pwValue)) {
+		alert("비밀번호는 영문자, 숫자로만 6~20글자만 입력해주세요.");
+		userPwBox.focus();
+		return;
+	}
+	else if(userPwBox.value != userPwConfirmBox.value) {
+		alert("입력한 비밀번호를 다시 확인해주세요.")
+		return;
+	}
+	
+	
+	const userNameBox = document.getElementById("memberName");
+	const nameValue = userNameBox.value;
+	const nameRegEx = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{2,}$/;
+	
+	if (nameValue == "") {
+		alert("이름을 입력해주세요");
+		userNameBox.focus();
+		return;
+	}
+	else if (!nameRegEx.test(nameValue)) {
+		alert("이름은 2글자 이상 한글로 입력해주세요.");
+		userNameBox.focus();
+		return;
+	}
+	
+	const userNicknameBox = document.getElementById("memberNickname");
+	const nicknameValue = userNicknameBox.value;
+	const nicknameRegEx = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣a-zA-Z0-9]{2,10}$/;
+	
+	if (nicknameValue == "") {
+		alert("닉네임을 입력해주세요");
+		userNicknameBox.focus();
+		return;
+	}
+	else if (!nicknameRegEx.test(nicknameValue)) {
+		alert("닉네임은 2~10글자로 입력해주세요.");
+		userNicknameBox.focus();
+		return;
+	}
+	
+	const userAgeBox = document.getElementById("memberAge");
+	const ageValue = userAgeBox.value;
+	const ageRegEx = /^[0-9]{1,3}$/;
+	
+	if (ageValue == "") {
+		alert("나이를 입력해주세요");
+		userAgeBox.focus();
+		return;
+	}
+	else if (!ageRegEx.test(ageValue)) {
+		alert("나이는 숫자로 입력해주세요.");
+		userAgeBox.focus();
+		return;
+	}
+	
+	
+	const userEmailBox = document.getElementById("memberEmail");
+	const emailValue = userEmailBox.value;
+	const emailRegEx = /^[a-zA-Z0-9]{4,20}@[a-zA-Z0-9]{2,20}\.[a-zA-Z0-9]{2,3}$/;
+	
+	
+	if (emailValue == "") {
+		alert("이메일을 입력해주세요");
+		userEmailBox.focus();
+		return;
+	}
+	else if (!emailRegEx.test(emailValue)) {
+		alert("이메일은 도메인을 포함하여 정확히 입력해주세요.");
+		userEmailBox.focus();
+		return;
+	}
+	
+	const userPhoneBox = document.getElementById("memberPhone");
+	const phoneValue = userPhoneBox.value;
+	const phoneRegEx = /^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$/;
+	
+	
+	if (phoneValue == "") {
+		alert("전화번호를 입력해주세요");
+		userPhoneBox.focus();
+		return;
+	}
+	else if (!phoneRegEx.test(phoneValue)) {
+		alert("전화번호를 정확히 입력해주세요.");
+		userPhoneBox.focus();
+		return;
+	}
+	
+	 var chkRadio = document.getElementsByName("memberGender");  //라디오 버튼 name 
+	    var chk_cnt = 0; 
+	    for(var i=0; i<chkRadio.length; i++){ 
+	      if(chkRadio[i].checked == true) chk_cnt++; 
+	    } 
+	 
+	    if(chk_cnt<1) { 
+	      alert("성별을 체크하세요"); 
+	      document.formname.chkRadio[0].focus(); 
+	      return; 
+	    } 
+	
+	const frm = document.getElementById("frm");
+	frm.submit();
+	
+}
+
+
+</script>
 </html>
 

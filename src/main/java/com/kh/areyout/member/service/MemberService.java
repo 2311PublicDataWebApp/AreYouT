@@ -34,7 +34,7 @@ public interface MemberService {
 	 * @param member
 	 * @return result
 	 */
-	int updateMember(MemberVO member);
+	int modifyMember(MemberVO member);
 
 	/**
 	 * 회원 탈퇴 Service
@@ -66,5 +66,5 @@ public interface MemberService {
 	 * @param member
 	 * @return
 	 */
-	int updateProfile(MemberVO member);
+	int modifyProfile(MemberVO member);
 }

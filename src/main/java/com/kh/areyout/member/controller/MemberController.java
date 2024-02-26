@@ -13,9 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,7 +29,9 @@ public class MemberController {
 
 	@Autowired
 	private MemberService mService;
-
+	
+	
+	
 	@RequestMapping(value = "/member/register.kh", method = RequestMethod.GET)
 	public String showInsertForm() {
 		return "member/insert";
@@ -38,7 +42,10 @@ public class MemberController {
 		try {
 			int result = mService.insertMember(member);
 			if (result > 0) {
-				return "redirect:/index.jsp";
+				model.addAttribute("msg", "회원가입이 완료되었습니다.");
+				model.addAttribute("url", "/");
+				return "common/alert";
+				//return "redirect:/index.jsp";
 			} else {
 				model.addAttribute("msg", "회원가입이 완료되지 않았습니다.");
 				return "common/errorPage";
@@ -65,10 +72,10 @@ public class MemberController {
 			if (member != null) {
 				session.setAttribute("memberId", member.getMemberId());
 				session.setAttribute("memberName", member.getMemberName());
-				session.setAttribute("memberFilename", member.getMemberFileRename());
+				session.setAttribute("memberFileRename", member.getMemberFileRename());
 				return "redirect:/index.jsp";
 			} else {
-				model.addAttribute("msg", "회원 정보가 일치하지 않습니다.");
+				model.addAttribute("msg", "로그인에 실패하였습니다.");
 				return "common/errorPage";
 			}
 		} catch (Exception e) {
@@ -151,12 +158,14 @@ public class MemberController {
 			@ModelAttribute MemberVO member
 			, Model model) {
 		try {
-			int result = mService.updateMember(member);
+			int result = mService.modifyMember(member);
 			if (result > 0) {
 				model.addAttribute("member", member);
-				return "redirect:/member/mypage.kh";
+				model.addAttribute("msg", "정보 수정이 완료되었습니다.");
+				model.addAttribute("url", "/member/mypage.kh");
+				return "common/alert";
 			} else {
-				model.addAttribute("msg", "수정을 완료하지 못했습니다.");
+				model.addAttribute("msg", "정보 수정을 완료하지 못했습니다.");
 				return "common/errorPage";
 			}
 		} catch (Exception e) {
@@ -220,7 +229,6 @@ public class MemberController {
 	// 프로필 수정
 	@RequestMapping(value = "/member/updateprofile.kh", method = RequestMethod.POST)
 	public String modifyProfile(
-			ModelAndView mv,
 			@ModelAttribute MemberVO member
 			, Model model
 			, @RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile
@@ -240,12 +248,14 @@ public class MemberController {
 				member.setMemberFilePath((String) infoMap.get("filePath"));
 				member.setMemberFileLength((long) infoMap.get("fileSize"));
 			}
-			int result = mService.updateProfile(member);
+			int result = mService.modifyProfile(member);
 			if (result > 0) {
 				model.addAttribute("member", member);
-				return "redirect:/member/profile.kh";
+				model.addAttribute("msg", "프로필 수정이 완료되었습니다.");
+				model.addAttribute("url", "/member/profile.kh");
+				return "common/alert";
 			} else {
-				model.addAttribute("msg", "수정을 완료하지 못했습니다.");
+				model.addAttribute("msg", "프로필 수정을 완료하지 못했습니다.");
 				return "common/errorPage";
 			}
 		} catch (Exception e) {
@@ -404,7 +414,9 @@ public class MemberController {
 			int result = mService.findPw(member);
 			if (result > 0) {
 				model.addAttribute("member", member);
-				return "redirect:/";
+				model.addAttribute("msg", "비밀번호가 변경되었습니다.");
+				model.addAttribute("url", "/");
+				return "common/alert";
 			} else {
 				model.addAttribute("msg", "수정을 완료하지 못했습니다.");
 				return "common/errorPage";

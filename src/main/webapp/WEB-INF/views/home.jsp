@@ -28,121 +28,114 @@
 
 <style>
 @font-face {
-    font-family: 'SUITE-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
+	font-family: 'SUITE-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
+		format('woff2');
+	font-weight: 400;
+	font-style: normal;
 }
+
 body {
 	font-family: 'SUITE-Regular';
 }
+
 #profilesmall {
-border: 2px solid lightgray;
+	border: 2px solid lightgray;
 }
-        /* 더보기 */
-        /* Top left text */
-        .top-left {
-        position: absolute;
-        top: 8px;
-        left: 16px;
+/* 더보기 */
+/* Top left text */
+.top-left {
+	position: absolute;
+	top: 8px;
+	left: 16px;
 }
-        /* 사진 */
-        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+/* 사진 */
+@import
+	url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap')
+	;
 
-        /* .gowun-dodum-regular {
+/* .gowun-dodum-regular {
         } */
-       /*  .container {
-            position: relative;
-            text-align: center;
-            --color: white;
-            font-family: "Gowun Dodum", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            font-size: large;
-            /* text-shadow: 0.5px 0.5px 0.5px black; */
+.mainContainer {
+	position: relative;
+	text-align: center;
+	width: 100%; -
+	-color: white;
+	/* text-shadow: 0.5px 0.5px 0.5px black; */
+}
 
-        } */
+* /
+	.mainContainer img {
+	width: 100%;
+	vertical-align: middle;
+}
 
-        .centered {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            margin-top: 190px;
-        }
+.centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
 
-        .header {
-            text-align: center;
-            margin-top: 100px;
-        }
+.header {
+	text-align: center;
+	margin-top: 100px;
+}
 
-        .card-group {
-            width: 1500px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: row;
-        }
+.card-group {
+	width: 1500px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+}
 
-        #car {
-            margin: 5px;
-            padding: 5px 45px;
-        }
+#car {
+	margin: 5px;
+	padding: 5px 45px;
+}
 
-        #card {
-            justify-content: center;
-            padding: auto;
-        }
+#card {
+	justify-content: center;
+	padding: auto;
+}
 
-        .pcard {
-            text-align: center;
-            margin: auto;
-        }
+.pcard {
+	text-align: center;
+	margin: auto;
+}
 
-        #cardImg {
-            display: flex;
+#cardImg {
+	display: flex;
+}
 
-        }
+.card-img-top {
+	display: flex;
+	margin-right: 110px;
+}
+/* 안녕하세요 ㅇㅇ님 */
+.pic3 {
+	background-image: url("../resources/img/landmark3.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
 
-        .card-img-top {
-            display: flex;
-            margin-right: 110px;
-        }
- /* 안녕하세요 ㅇㅇ님 */
-        .pic1 {
-            position: relative;
-        }
-        .pic3 {
-        	background-image:url("/resources/img/travel2.jpg");
-        	background-size: 600px 440px;
-   			background-repeat: no-repeat;
-   			background-position: center;
-        }
-        .imp {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            margin-top: -450px;
-            margin-left: 220px;
-        }
-        .circle {
-            position: absolute;
-            width: 130px;
-            height: 130px;
-            border-radius: 100%;
-            background-color: #ddd;
-            margin-top: -510px;
-            margin-left: 1000px;
-        }
-        .log {
-            position: absolute;
-            width: 250px;
-            height: 40px;
-            background-color: #ddd;
-            margin-top: -360px;
-            margin-left: 1470px;
-            border-radius: 8px;
-        }
+.circle {
+	position: absolute;
+	width: 130px;
+	height: 130px;
+	border-radius: 100%;
+	background-color: #white;
+}
+
+.log {
+	position: absolute;
+	width: 250px;
+	height: 40px;
+	background-color: #ddd;
+	border-radius: 8px;
+}
 
 .logo {
 	text-align: center;
@@ -290,254 +283,201 @@ border: 2px solid lightgray;
 
 					<ul
 						class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-						<li><a href="#" class="nav-link px-2 link-secondary">홈</a></li>
-						<li><a href="#" class="nav-link px-2 link-dark">동행모집</a></li>
-						<li><a href="#" class="nav-link px-2 link-dark">성향테스트</a></li>
-						<li><a href="#" class="nav-link px-2 link-dark">나의 짝꿍 찾기</a></li>
+						<li><a href="/" class="nav-link px-2 link-secondary">홈</a></li>
+						<li><a href="/notice/list.kh" class="nav-link px-2 link-dark">동행모집</a></li>
+						<li><a href="/mbti/mbtitest.kh"
+							class="nav-link px-2 link-dark">성향테스트</a></li>
+						<li><a href="/mbti/matching.kh"
+							class="nav-link px-2 link-dark">나의 짝꿍 찾기</a></li>
 					</ul>
 
-					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-						<input type="search" class="form-control" placeholder="Search..."
-							aria-label="Search">
+					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search"
+						action="/notice/search.kh" method="get" id="search">
+						<select name="searchCondition" style="display: none;">
+							<c:if test="${searchCondition eq 'all' }">selected</c:if>
+							<option value="all"
+								<c:if test="${searchCondition eq 'all' }"> selected</c:if>>전체</option>
+						</select> <input type="search" class="form-control"
+							placeholder="동행을 검색해보세요" name="searchKeyword" aria-label="Search"
+							onkeypress="if( event.keyCode == 13 ){enterKey()}">
 					</form>
 
 
 					<c:if test="${memberId eq null }">
 						<div class="login-header">
 							<ul>
-								<li><a href="/member/login.kh">로그인&nbsp</a></li>
-								<li><a href="/member/register.kh">&nbsp회원가입</a></li>
+								<li><a href="/member/login.kh">로그인&nbsp&nbsp</a></li>
+								<li><a href="/member/register.kh">&nbsp&nbsp회원가입</a></li>
 							</ul>
 						</div>
 					</c:if>
 
 					<c:if test="${memberId ne null }">
-						<div class="dropdown text-end">
-							<a href="#"
-								class="d-block link-dark text-decoration-none dropdown-toggle"
-								data-bs-toggle="dropdown" aria-expanded="false"> <c:if
-									test="${memberFilename eq null }">
-									<img id="profilesmall" src="../resources/muploadFiles/basic.png" width="40"
-										height="40" class="rounded-circle">
-								</c:if> <c:if test="${memberFilename ne null }">
-									<img id="profilesmall"
-										src="../resources/muploadFiles/${memberFilename }"
-										width="40" height="40" class="rounded-circle">
-								</c:if>
-							</a>
-							<ul class="dropdown-menu text-small">
-								<li><a class="dropdown-item" href="/member/mypage.kh">내정보</a></li>
-								<li><a class="dropdown-item" href="/member/profile.kh">프로필</a></li>
-								<li><a class="dropdown-item" href="/message/list.kh">쪽지함</a></li>
-								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="/member/logout.kh">로그아웃</a></li>
-							</ul>
-						</div>
+						<c:if test="${memberId eq 'admin' }">
+							<div class="dropdown text-end">
+								<a href="#"
+									class="d-block link-dark text-decoration-none dropdown-toggle"
+									data-bs-toggle="dropdown" aria-expanded="false"> <c:if
+										test="${memberFileRename eq null }">
+										<img id="profilesmall"
+											src="../resources/muploadFiles/basic.png" width="40"
+											height="40" class="rounded-circle">
+									</c:if> <c:if test="${memberFileRename ne null }">
+										<img id="profilesmall"
+											src="../resources/muploadFiles/${memberFileRename }"
+											width="40" height="40" class="rounded-circle">
+									</c:if>
+								</a>
+								<ul class="dropdown-menu text-small">
+									<li><a class="dropdown-item" href="/manager/main.kh">관리자페이지</a></li>
+									<li><hr class="dropdown-divider"></li>
+									<li><a class="dropdown-item" href="/member/logout.kh">로그아웃</a></li>
+								</ul>
+							</div>
+						</c:if>
+						<c:if test="${memberId ne 'admin' }">
+							<div class="dropdown text-end">
+								<a href="#"
+									class="d-block link-dark text-decoration-none dropdown-toggle"
+									data-bs-toggle="dropdown" aria-expanded="false"> <c:if
+										test="${memberFileRename eq null }">
+										<img id="profilesmall"
+											src="../resources/muploadFiles/basic.png" width="40"
+											height="40" class="rounded-circle">
+									</c:if> <c:if test="${memberFileRename ne null }">
+										<img id="profilesmall"
+											src="../resources/muploadFiles/${memberFileRename }"
+											width="40" height="40" class="rounded-circle">
+									</c:if>
+								</a>
+								<ul class="dropdown-menu text-small">
+									<li><a class="dropdown-item" href="/member/mypage.kh">내정보</a></li>
+									<li><a class="dropdown-item" href="/member/profile.kh">프로필</a></li>
+									<li><a class="dropdown-item" href="/message/list.kh">쪽지함</a></li>
+									<li><hr class="dropdown-divider"></li>
+									<li><a class="dropdown-item" href="/member/logout.kh">로그아웃</a></li>
+								</ul>
+							</div>
+						</c:if>
 					</c:if>
 				</div>
 			</div>
 		</header>
 		<!-- 사진 -->
-<div class="container">
-    <img src="/resources/img/main.png" alt="trip" style="width: 1300px; height: 400px; border-radius: 30px; filter: blur(0.8px); margin-top: 40px;">
-</div>
-<!-- 바로가기 및 로그인 및 회원가입 -->
-<img src="/resources/img/sub2.PNG" 
-style="width: 300px; height: 500px; margin-top: 100px; border-radius: 20px;">
-<img src="/resources/img/sub1.jpg"
-style="width: 300px; height: 500px; margin-left: 320px; margin-top: 100px; border-radius: 20px; float: left; margin-right: 20px;">
-<c:if test="${memberId eq null }">
-<div class="pic1">
-    <img src="./img/Superfresco Easy 56-sq ft Green Non-Woven Textured Solid Unpasted Wallpaper Lowes_com.jpg"
-    style="width: 640px; height: 220px;  border-radius: 20px; margin-top: -800px; margin-left: 980px; position: relative;">
-    <div class="imp">반가워요👋 <br> 
-        ㅇㅇ님💫</div>
-        <div class="circle">
-        </div>
-        <div class="log">
-        <button class="w-100 btn btn-lg btn-primary" onclick="location.href='/member/login.kh' "
-						style="background-color:#5AD897; border: 0px;">로그인</button>
-        </div>
-    </div>
-    
-    <div class="pic2" style="margin-top: 240px;">
-    <img src="./img/Superfresco Easy 56-sq ft Green Non-Woven Textured Solid Unpasted Wallpaper Lowes_com.jpg"
-    style="width: 640px; height: 220px;  border-radius: 20px; margin-top: -800px; margin-left: 980px; position: relative;">
-    <div class="imp">반가워요👋 <br> 
-        ㅇㅇ님💫</div>
-        <div class="circle"></div>
-        <div class="log">
-        <button class="w-100 btn btn-lg btn-primary" onclick="location.href='/member/register.kh' "
-						style="background-color:#5AD897; border: 0px;">회원가입</button>
-        </div>
-    </div>
-</c:if>
-<c:if test="${memberId ne null }">
-	<div class="pic3" style="width: 600px; height: 440px; margin-left: 990px; margin-top:-470px; border-radius: 20px; border:1px solid #EEEEEE; box-shadow: 5px 5px 5px #EEEEEE;">
-<!--     <img src="./img/Superfresco Easy 56-sq ft Green Non-Woven Textured Solid Unpasted Wallpaper Lowes_com.jpg" -->
-<!--     style="width: 640px; height: 440px; border-radius: 20px; margin-top: -1000px; margin-left: 980px;"> -->
-    <div class="imp" style="width:450px; margin:730px 0 0 500px;">반가워요~ ${memberName } 여행자님👋
-    <br>나와 잘 맞는 동행을 찾아보세요!</div>
-        <div class="circle" style="margin: 120px 0 0 70px;">
-        	<img src="../resources/muploadFiles/${memberFilename }" style="border: 3px solid lightgray; border-radius: 70px; width: 130px; height: 130px;" >
-        </div>
-        <div class="log" style="margin: 290px 0 0 200px;">
-        <button class="w-100 btn btn-lg btn-primary" onclick="location.href='/mbti/matching.kh' "
-						style="background-color:#5AD897; border: 0px; margin: 0 0 0 0;">동행 매칭하기</button>
-        <button class="w-100 btn btn-lg btn-primary" onclick="location.href='/member/logout.kh' "
-						style="background-color:#5AD897; border: 0px; margin:20px 0 0 0;">로그아웃</button>
-        </div>
-    </div>
-</c:if>
+		<div class="mainContainer">
+			<div class="container">
+				<img src="/resources/img/main.jpg" alt="trip"
+					style="position: relative; width: 1300px; height: 400px; filter: blur(0.8px); margin-top: 40px;">
+			</div>
+			<div class="centered"
+				style="color: white; margin: auto; font-size: x-large">함 &nbsp
+				께 &nbsp 라 &nbsp 면 &nbsp &nbsp &nbsp &nbsp 더 &nbsp 욱 &nbsp &nbsp
+				&nbsp &nbsp 즐 &nbsp 거 &nbsp 운 &nbsp &nbsp &nbsp &nbsp 여 &nbsp 행</div>
+		</div>
+		<!-- 바로가기 및 로그인 및 회원가입 -->
+		<div class="sub1"
+			style="position: relative; margin-left: 320px; margin-top: 100px; float: left; margin-right: 20px;">
+			<div class="sub1img">
+				<a href="/notice/list.kh"> <img src="/resources/img/sub5.png"
+					style="width: 300px; height: 500px; border-radius: 20px;">
+				</a>
+			</div>
+			<div
+				style="position: absolute; margin: -450px 0 0 30px; color: white;">
+				<h5>우리 같이 여행 가자!</h5>
+				<h3 style="font-weight: bold;">동&nbsp행</h3>
+			</div>
+		</div>
+		<div class="sub2"
+			style="position: relative; width: 300px; float: left; margin: 100px 0 0 0;">
+			<div class="sub2img">
+				<a href="/mbti/mbtitest.kh"> <img src="/resources/img/sub02.jpg"
+					style="width: 300px; height: 500px; border-radius: 20px;">
+				</a>
+			</div>
+			<div
+				style="position: absolute; margin: -450px 0 0 30px; color: white;">
+				<h5>두근두근! 나의 여행 성향은?</h5>
+				<h3 style="font-weight: bold;">성향 테스트</h3>
+			</div>
+		</div>
 
-    <!-- 여행신청 -->
-    <div class="card-group" id="card" style="margin-top: 100px;">
-        <div class="card1"
-        style="width: 400px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 20px; margin-right: 20px;">
-        <div class="pcard">
-            <div class="cardImg">
-                <img src="./img/jieun-lim-oMsXE4kIKC8-unsplash.jpg" class="card-img-top" alt="제주도"
-                style="height: 270px; width: 400px; border-radius: 20px; align-items: center;">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title" style="margin-top: 20px;">제주도여행 같이 가실분?!</h5>
-                <p class="card-text"> <br>
-                    저는 ENFP 20대 여자인데 같이 제주도 가서 신나게 노실 분 구해요</p>
-                </div> <br>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">2024.02.01 ~ 2024.02.03 (3일) </li>
-                    <li class="list-group-item">본인 : 20대 / 여성 / ENFP</li>
-                    <li class="list-group-item">상대 : 20대 , 30대 / 여성 / ENFP</li><br>
-                </ul>
-                <div class="card-body" style="margin-bottom: 20px;">
-                    <a href="#" class="card-link">쪽지하기</a>
-                    <a href="#" class="card-link">더보기</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card2"
-        style="width: 400px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 20px; margin-right: 20px;">
-        <div class="pcard">
-            <div class="cardImg">
-                <img src="./img/sebastian-pichler-m2U9C875LJQ-unsplash.jpg" class="card-img-top" alt="대만"
-                style="height: 270px; width: 400px; border-radius: 20px; align-items: center;">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title" style="margin-top: 20px;">제주도여행 같이 가실분?!</h5>
-                <p class="card-text" style=" display: flex; align-items: center; justify-content: center;"> <br>
-                    저는 ENFP 20대 여자인데 같이 제주도 가서 신나게 노실 분 구해요</p>
-                </div><br>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">2024.02.01 ~ 2024.02.03 (3일) </li>
-                    <li class="list-group-item">본인 : 20대 / 여성 / ENFP</li>
-                    <li class="list-group-item">상대 : 20대 , 30대 / 여성 / ENFP</li><br>
-                </ul>
-                <div class="card-body" style="margin-bottom: 20px;">
-                    <a href="#" class="card-link">쪽지하기</a>
-                    <a href="#" class="card-link">더보기</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card3"
-        style="width: 400px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 20px;">
-            <div class="pcard">
-                <div class="cardImg">
-                    <img src="./img/sebastian-pichler-m2U9C875LJQ-unsplash.jpg" class="card-img-top" alt="대만"
-                    style="height: 270px; width: 400px; border-radius: 20px; align-items: center;">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title" style="margin-top: 20px;">제주도여행 같이 가실분?!</h5>
-                    <p class="card-text"> <br>
-                        저는 ENFP 20대 여자인데 같이 제주도 가서 신나게 노실 분 구해요</p>
-                    </div><br>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">2024.02.01 ~ 2024.02.03 (3일) </li>
-                        <li class="list-group-item">본인 : 20대 / 여성 / ENFP</li>
-                        <li class="list-group-item">상대 : 20대 , 30대 / 여성 / ENFP</li><br>
-                    </ul>
-                    <div class="card-body" style="margin-bottom: 20px;">
-                        <a href="#" class="card-link">쪽지하기</a>
-                        <a href="#" class="card-link">더보기</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- 여행신청 2 -->
-        <div class="card-group" id="card" style="margin-top: 100px;">
-            <div class="card1"
-            style="width: 400px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 20px; margin-right: 20px;">
-            <div class="pcard">
-                <div class="cardImg">
-                    <img src="./img/sebastian-pichler-m2U9C875LJQ-unsplash.jpg" class="card-img-top" alt="대만"
-                    style="height: 270px; width: 400px; border-radius: 20px; align-items: center;">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title" style="margin-top: 20px;">제주도여행 같이 가실분?!</h5>
-                    <p class="card-text"> <br>
-                        저는 ENFP 20대 여자인데 같이 제주도 가서 신나게 노실 분 구해요</p>
-                    </div><br>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">2024.02.01 ~ 2024.02.03 (3일) </li>
-                    <li class="list-group-item">본인 : 20대 / 여성 / ENFP</li>
-                    <li class="list-group-item">상대 : 20대 , 30대 / 여성 / ENFP</li><br>
-                </ul>
-                <div class="card-body" style="margin-bottom: 20px;">
-                    <a href="#" class="card-link">쪽지하기</a>
-                    <a href="#" class="card-link">더보기</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card2"
-        style="width: 400px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 20px; margin-right: 20px;">
-        <div class="pcard">
-            <div class="cardImg">
-                <img src="./img/sebastian-pichler-m2U9C875LJQ-unsplash.jpg" class="card-img-top" alt="대만"
-                style="height: 270px; width: 400px; border-radius: 20px; align-items: center;">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title" style="margin-top: 20px;">제주도여행 같이 가실분?!</h5>
-                <p class="card-text"> <br>
-                    저는 ENFP 20대 여자인데 같이 제주도 가서 신나게 노실 분 구해요</p>
-                </div><br>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">2024.02.01 ~ 2024.02.03 (3일) </li>
-                    <li class="list-group-item">본인 : 20대 / 여성 / ENFP</li>
-                    <li class="list-group-item">상대 : 20대 , 30대 / 여성 / ENFP</li><br>
-                </ul>
-                <div class="card-body" style="margin-bottom: 20px;">
-                    <a href="#" class="card-link">쪽지하기</a>
-                    <a href="#" class="card-link">더보기</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card3"
-        style="width: 400px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 20px;">
-        <div class="pcard">
-            <div class="cardImg">
-                <img src="./img/sebastian-pichler-m2U9C875LJQ-unsplash.jpg" class="card-img-top" alt="대만"
-                style="height: 270px; width: 400px; border-radius: 20px; align-items: center;">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title" style="margin-top: 20px;">제주도여행 같이 가실분?!</h5>
-                <p class="card-text"> <br>
-                    저는 ENFP 20대 여자인데 같이 제주도 가서 신나게 노실 분 구해요</p>
-                </div><br>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">2024.02.01 ~ 2024.02.03 (3일) </li>
-                    <li class="list-group-item">본인 : 20대 / 여성 / ENFP</li>
-                    <li class="list-group-item">상대 : 20대 , 30대 / 여성 / ENFP</li><br>
-                </ul>
-                <div class="card-body" style="margin-bottom: 20px;">
-                    <a href="#" class="card-link">쪽지하기</a>
-                    <a href="#" class="card-link">더보기</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
+		<c:if test="${memberId eq null }">
+			<div class="pic1"
+				style="width: 600px; height: 220px; margin-left: 990px; margin-top: 115px; border-radius: 20px; border: 1px solid #EEEEEE; box-shadow: 5px 5px 5px #EEEEEE;">
+				<!--     <img src="./img/Superfresco Easy 56-sq ft Green Non-Woven Textured Solid Unpasted Wallpaper Lowes_com.jpg" -->
+				<!--     style="width: 640px; height: 440px; border-radius: 20px; margin-top: -1000px; margin-left: 980px;"> -->
+				<div class="imp" style="width: 450px; margin: 50px 0 0 250px;">
+					안녕하세요 여행자님! <br> 로그인 후, 다양한 서비스를 즐겨보세요!
+				</div>
+				<div class="circle" style="margin: -50px 0 0 70px;">
+					<img src="../resources/img/hi01.png"
+						style="border: 0px solid lightgray; border-radius: 70px; width: 130px; height: 130px;">
+				</div>
+				<div class="log" style="margin: 30px 0 0 250px;">
+					<button class="w-100 btn btn-lg btn-primary"
+						onclick="location.href='/member/login.kh' "
+						style="background-color: #5AD897; border: 0px; margin: 0 0 0 0;">로그인</button>
+				</div>
+			</div>
+
+			<div class="pic2"
+				style="width: 600px; height: 220px; margin-top: 20px; margin-left: 990px; border-radius: 20px; border: 1px solid #EEEEEE; box-shadow: 5px 5px 5px #EEEEEE;">
+				<!--     <img src="./img/Superfresco Easy 56-sq ft Green Non-Woven Textured Solid Unpasted Wallpaper Lowes_com.jpg" -->
+				<!--     style="width: 640px; height: 440px; border-radius: 20px; margin-top: -1000px; margin-left: 980px;"> -->
+				<div class="imp" style="width: 450px; margin: 50px 0 0 250px;">
+					아직 회원이 아니신가요? <br> 지금 바로 회원이 되어보세요!
+				</div>
+				<div class="circle" style="margin: -50px 0 0 70px;">
+					<img src="../resources/img/hi02.png"
+						style="border: 0px solid lightgray; border-radius: 70px; width: 130px; height: 130px;">
+				</div>
+				<div class="log" style="margin: 30px 0 0 250px;">
+					<button class="w-100 btn btn-lg btn-primary"
+						onclick="location.href='/member/register.kh' "
+						style="background-color: #5AD897; border: 0px; margin: 0 0 0 0;">회원가입</button>
+				</div>
+			</div>
+		</c:if>
+
+
+
+
+		<c:if test="${memberId ne null }">
+			<div class="pic3"
+				style="position: relative; width: 600px; height: 440px; margin-left: 990px; margin-top: 120px; border-radius: 20px; border: 1px solid #EEEEEE; box-shadow: 5px 5px 5px #EEEEEE;">
+				<!-- <img
+					src="./img/Superfresco Easy 56-sq ft Green Non-Woven Textured Solid Unpasted Wallpaper Lowes_com.jpg"
+					style="width: 640px; height: 440px; border-radius: 20px; margin-top: -1000px; margin-left: 980px;"> -->
+				<div class="imp"
+					style="position: absolute; width: 450px; margin: 80px 0 0 230px;">
+					반가워요~ ${memberName } 여행자님👋 <br>나와 잘 맞는 동행을 찾아보세요!
+				</div>
+				<div class="circle" style="margin: 50px 0 0 70px;">
+					<c:if test="${memberFileRename ne null }">
+						<img src="../resources/muploadFiles/${memberFileRename }"
+							style="border: 3px solid lightgray; border-radius: 70px; width: 130px; height: 130px;">
+					</c:if>
+					<c:if test="${memberFileRename eq null }">
+						<img src="../resources/muploadFiles/basic.png"
+							style="border: 3px solid lightgray; border-radius: 70px; width: 130px; height: 130px;">
+					</c:if>
+				</div>
+				<div class="log" style="margin: 200px 0 0 230px;">
+					<button class="w-100 btn btn-lg btn-primary"
+						onclick="location.href='/mbti/matching.kh' "
+						style="background-color: #5AD897; border: 0px; margin: 0 0 0 0;">동행
+						매칭하기</button>
+					<button class="w-100 btn btn-lg btn-primary"
+						onclick="location.href='/member/logout.kh' "
+						style="background-color: #5AD897; border: 0px; margin: 20px 0 0 0;">로그아웃</button>
+				</div>
+			</div>
+		</c:if>
+		<br> <br> <br> <br> <br> <br> <br>
+		<br>
+
 		<div class="container">
 			<footer
 				class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
@@ -576,4 +516,16 @@ style="width: 300px; height: 500px; margin-left: 320px; margin-top: 100px; borde
 
 
 </body>
+
+<script>
+	function enterkey() {
+		if (window.event.keyCode == 13) {
+
+			// 엔터키가 눌렸을 때 실행하는 반응
+			//         $("#form").submit();
+			const frm = document.getElementById("search");
+			frm.submit();
+		}
+	}
+</script>
 </html>

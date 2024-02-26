@@ -197,12 +197,12 @@
 								<a href="#"
 									class="d-block link-dark text-decoration-none dropdown-toggle"
 									data-bs-toggle="dropdown" aria-expanded="false"> <c:if
-										test="${member.memberFilename eq null }">
+										test="${memberFileRename eq null }">
 										<img id="profilesmall" src="../resources/muploadFiles/basic.png" width="40"
 											height="40" class="rounded-circle">
-									</c:if> <c:if test="${member.memberFilename ne null }">
+									</c:if> <c:if test="${memberFileRename ne null }">
 										<img id="profilesmall"
-											src="../resources/muploadFiles/${member.memberFileRename }"
+											src="../resources/muploadFiles/${memberFileRename }"
 											width="40" height="40" class="rounded-circle">
 									</c:if>
 								</a>
