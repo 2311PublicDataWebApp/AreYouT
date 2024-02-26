@@ -12,6 +12,7 @@ import com.kh.areyout.notice.domain.PageInfo;
 import com.kh.areyout.notice.service.NoticeService;
 import com.kh.areyout.notice.store.NoticeStore;
 
+
 @Service
 public class NoticeServiceImpl implements NoticeService{
 	
@@ -34,7 +35,7 @@ public class NoticeServiceImpl implements NoticeService{
 	 * 공지사항 상세조회 Service
 	 */
 	@Override
-	public NoticeVO selectByNoticeNo(int noticeNo) {
+	public NoticeVO selectByNoticeNo(Integer noticeNo) {
 		// TODO Auto-generated method stub
 		NoticeVO notice = nStore.selectByNoticeNo(session, noticeNo);
 		return notice;

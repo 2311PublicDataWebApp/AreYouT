@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import com.kh.areyout.notice.domain.NoticeVO;
 import com.kh.areyout.notice.domain.PageInfo;
 
+
+
 public interface NoticeStore {
 
 	/**
@@ -23,7 +25,7 @@ public interface NoticeStore {
 	 * @param noticeNo
 	 * @return notice
 	 */
-	NoticeVO selectByNoticeNo(SqlSession session, int noticeNo);
+	NoticeVO selectByNoticeNo(SqlSession session, Integer noticeNo);
 
 	/**
 	 * 공지사항 검색 Store

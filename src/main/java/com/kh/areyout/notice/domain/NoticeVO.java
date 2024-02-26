@@ -14,10 +14,29 @@ public class NoticeVO {
 	private String noticeFileRename;
 	private String noticeFilePath;
 	private long noticeFileLength;
-
-	public NoticeVO() {
-
+	
+	
+	public NoticeVO() {}
+	
+	
+	
+	public NoticeVO(int noticeNo, String noticeSubject, String noticeContent, String noticeWriter, Date noticeDate,
+			Timestamp updateDate, String noticeFilename, String noticeFileRename, String noticeFilePath,
+			long noticeFileLength) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeSubject = noticeSubject;
+		this.noticeContent = noticeContent;
+		this.noticeWriter = noticeWriter;
+		this.noticeDate = noticeDate;
+		this.updateDate = updateDate;
+		this.noticeFilename = noticeFilename;
+		this.noticeFileRename = noticeFileRename;
+		this.noticeFilePath = noticeFilePath;
+		this.noticeFileLength = noticeFileLength;
 	}
+
+
 
 	public int getNoticeNo() {
 		return noticeNo;

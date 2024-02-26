@@ -20,6 +20,13 @@
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
 
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
+
+    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
 
@@ -27,13 +34,122 @@
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
+@font-face {
+	font-family: 'SUITE-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
+		format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+
+body {
+	font-family: 'SUITE-Regular';
+}
+
+#profilesmall {
+	border: 2px solid lightgray;
+}
+/* 더보기 */
+/* Top left text */
+.top-left {
+	position: absolute;
+	top: 8px;
+	left: 16px;
+}
+/* 사진 */
+@import
+	url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap')
+	;
+
+/* .gowun-dodum-regular {
+        } */
+.mainContainer {
+	position: relative;
+	text-align: center;
+	width: 100%; -
+	-color: white;
+	/* text-shadow: 0.5px 0.5px 0.5px black; */
+}
+
+* /
+	.mainContainer img {
+	width: 100%;
+	vertical-align: middle;
+}
+
+.centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.header {
+	text-align: center;
+	margin-top: 100px;
+}
+
+.card-group {
+	width: 1500px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+}
+
+#car {
+	margin: 5px;
+	padding: 5px 45px;
+}
+
+#card {
+	justify-content: center;
+	padding: auto;
+}
+
+.pcard {
+	text-align: center;
+	margin: auto;
+}
+
+#cardImg {
+	display: flex;
+}
+
+.card-img-top {
+	display: flex;
+	margin-right: 110px;
+}
+/* 안녕하세요 ㅇㅇ님 */
+.pic3 {
+	background-image: url("../resources/img/landmark3.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.circle {
+	position: absolute;
+	width: 130px;
+	height: 130px;
+	border-radius: 100%;
+	background-color: #white;
+}
+
+.log {
+	position: absolute;
+	width: 250px;
+	height: 40px;
+	background-color: #ddd;
+	border-radius: 8px;
+}
+
 .logo {
 	text-align: center;
 	margin: auto;
 	margin-top: 50px;
 	margin-bottom: 100px;
 }
-
 
 .login-header li {
 	list-style-type: none;
@@ -52,6 +168,16 @@
 }
 
 .login-header a:link, .login-header a:visited {
+	color: gray;
+}
+
+#loginUnder a {
+	font-weight: normal;
+	font-size: smaller;
+	text-decoration: none;
+}
+
+#loginUnder a:link, #loginUnder a:visited {
 	color: gray;
 }
 
@@ -109,6 +235,7 @@
 </style>
 
 
+
 <!-- Custom styles for this template -->
 <link href="headers.css" rel="stylesheet">
 </head>
@@ -154,54 +281,93 @@
 
 		<header class="p-3 mb-3 border-bottom">
 			<div class="container">
-			<a href="/"
+				<a href="/"
 					class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
 					<img src="/resources/img/LOGO1.png" width="200" height="200"
 					role="img" class="logo">
 				</a>
 				<div
 					class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-					
+
 
 					<ul
 						class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-						<li><a href="#" class="nav-link px-2 link-secondary">홈</a></li>
-						<li><a href="#" class="nav-link px-2 link-dark">동행모집</a></li>
-						<li><a href="#" class="nav-link px-2 link-dark">성향테스트</a></li>
-						<li><a href="#" class="nav-link px-2 link-dark">나의 짝꿍 찾기</a></li>
+						<li><a href="/" class="nav-link px-2 link-secondary">홈</a></li>
+						<li><a href="/notice/list.kh" class="nav-link px-2 link-dark">동행모집</a></li>
+						<li><a href="/mbti/mbtitest.kh"
+							class="nav-link px-2 link-dark">성향테스트</a></li>
+						<li><a href="/mbti/matching.kh"
+							class="nav-link px-2 link-dark">나의 짝꿍 찾기</a></li>
 					</ul>
 
-					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-						<input type="search" class="form-control" placeholder="Search..."
-							aria-label="Search">
+					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search"
+						action="/notice/search.kh" method="get" id="search">
+						<select name="searchCondition" style="display: none;">
+							<c:if test="${searchCondition eq 'all' }">selected</c:if>
+							<option value="all"
+								<c:if test="${searchCondition eq 'all' }"> selected</c:if>>전체</option>
+						</select> <input type="search" class="form-control"
+							placeholder="동행을 검색해보세요" name="searchKeyword" aria-label="Search"
+							onkeypress="if( event.keyCode == 13 ){enterKey()}">
 					</form>
 
 
 					<c:if test="${memberId eq null }">
 						<div class="login-header">
 							<ul>
-								<li><a href="./user/login.html">로그인&nbsp</a></li>
-								<li><a href="./user/register.html">&nbsp회원가입</a></li>
+								<li><a href="/member/login.kh">로그인&nbsp&nbsp</a></li>
+								<li><a href="/member/register.kh">&nbsp&nbsp회원가입</a></li>
 							</ul>
 						</div>
 					</c:if>
 
 					<c:if test="${memberId ne null }">
-						<div class="dropdown text-end">
-							<a href="#"
-								class="d-block link-dark text-decoration-none dropdown-toggle"
-								data-bs-toggle="dropdown" aria-expanded="false"> <img
-								src="https://github.com/mdo.png" alt="mdo" width="32"
-								height="32" class="rounded-circle">
-							</a>
-							<ul class="dropdown-menu text-small">
-								<li><a class="dropdown-item" href="#">New project...</a></li>
-								<li><a class="dropdown-item" href="#">Settings</a></li>
-								<li><a class="dropdown-item" href="#">Profile</a></li>
-								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="#">Sign out</a></li>
-							</ul>
-						</div>
+						<c:if test="${memberId eq 'admin' }">
+							<div class="dropdown text-end">
+								<a href="#"
+									class="d-block link-dark text-decoration-none dropdown-toggle"
+									data-bs-toggle="dropdown" aria-expanded="false"> <c:if
+										test="${memberFileRename eq null }">
+										<img id="profilesmall"
+											src="../resources/muploadFiles/basic.png" width="40"
+											height="40" class="rounded-circle">
+									</c:if> <c:if test="${memberFileRename ne null }">
+										<img id="profilesmall"
+											src="../resources/muploadFiles/${memberFileRename }"
+											width="40" height="40" class="rounded-circle">
+									</c:if>
+								</a>
+								<ul class="dropdown-menu text-small">
+									<li><a class="dropdown-item" href="/manager/main.kh">관리자페이지</a></li>
+									<li><hr class="dropdown-divider"></li>
+									<li><a class="dropdown-item" href="/member/logout.kh">로그아웃</a></li>
+								</ul>
+							</div>
+						</c:if>
+						<c:if test="${memberId ne 'admin' }">
+							<div class="dropdown text-end">
+								<a href="#"
+									class="d-block link-dark text-decoration-none dropdown-toggle"
+									data-bs-toggle="dropdown" aria-expanded="false"> <c:if
+										test="${memberFileRename eq null }">
+										<img id="profilesmall"
+											src="../resources/muploadFiles/basic.png" width="40"
+											height="40" class="rounded-circle">
+									</c:if> <c:if test="${memberFileRename ne null }">
+										<img id="profilesmall"
+											src="../resources/muploadFiles/${memberFileRename }"
+											width="40" height="40" class="rounded-circle">
+									</c:if>
+								</a>
+								<ul class="dropdown-menu text-small">
+									<li><a class="dropdown-item" href="/member/mypage.kh">내정보</a></li>
+									<li><a class="dropdown-item" href="/member/profile.kh">프로필</a></li>
+									<li><a class="dropdown-item" href="/message/list.kh">쪽지함</a></li>
+									<li><hr class="dropdown-divider"></li>
+									<li><a class="dropdown-item" href="/member/logout.kh">로그아웃</a></li>
+								</ul>
+							</div>
+						</c:if>
 					</c:if>
 				</div>
 			</div>
@@ -216,28 +382,199 @@
 <!-- 					<div>작성날짜</div> -->
 <!-- 					<div>첨부파일</div> -->
 <!-- 			</thead> -->
-			<tbody>
-			<c:forEach items="${nList }" var="notice" varStatus="i">
-				<div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <h5 class="card-title">${notice.noticeSubject }</h5>
-				    <p class="card-text">.</p>
-				  </div>
-				  <ul class="list-group list-group-flush">
-				    <li class="list-group-item">${notice.noticeWriter }</li>
-				    <li class="list-group-item">${notice.noticeDate }</li>
-<!-- 				    <li class="list-group-item">A third item</li> -->
-				  </ul>
-				  <div class="card-body">
-				    <a href="#" class="card-link">Card link</a>
-				    <a href="#" class="card-link">Another link</a>
-				  </div>
-				</div></c:forEach>
+
+<!-- 	앨범형 -->
+<!--  <section class="py-5 text-center container"> -->
+<!--     <div class="row py-lg-5"> -->
+<!--       <div class="col-lg-6 col-md-8 mx-auto"> -->
+<!--         <h1 class="fw-light">Album example</h1> -->
+<!--         <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p> -->
+<!--         <p> -->
+<!--           <a href="#" class="btn btn-primary my-2">Main call to action</a> -->
+<!--           <a href="#" class="btn btn-secondary my-2">Secondary action</a> -->
+<!--         </p> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </section> -->
+	
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <c:forEach items="${nList}" var="notice" varStatus="i" begin="0" end="8">
+                <div class="col d-flex flex-column h-100">
+                    <div class="card shadow-sm">
+							<c:if test="${empty notice.noticeFileRename}">
+							    <!-- DB에 저장된 파일이 없는 경우 -->
+							    <img id="profilesmall" src="../resources/nuploadFiles/sea.jpg" width="100%" height="225" class="square" style="margin-bottom: 30px;">
+							</c:if>
+							<c:if test="${not empty notice.noticeFileRename}">
+							    <!-- DB에 저장된 파일이 있는 경우 -->
+							    <img id="profilesmall" src="../resources/nuploadFiles/${notice.noticeFileRename}" width="100%" height="225" style="margin-bottom: 30px; alt="Profile Image">
+							</c:if>                        <div class="card-body flex-grow-1">
+                            <p class="card-text">${notice.noticeSubject}</p>
+                            <p>${notice.noticeWriter}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/notice/detail.kh?noticeNo=${notice.noticeNo}" style="text-decoration: none; color:black;">더보기</a></button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/message/list.kh" style="text-decoration: none; color:#5AD897;">쪽지하기</a></button>
+                                </div>
+                                <small class="text-body-secondary">${notice.noticeDate}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+</div>
+<!--         <div class="col"> -->
+<!--           <div class="card shadow-sm"> -->
+<!--             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+<!--             <div class="card-body"> -->
+<!--               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+<!--               <div class="d-flex justify-content-between align-items-center"> -->
+<!--                 <div class="btn-group"> -->
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+<!--                 </div> -->
+<!--                 <small class="text-body-secondary">9 mins</small> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--         <div class="col"> -->
+<!--           <div class="card shadow-sm"> -->
+<!--             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+<!--             <div class="card-body"> -->
+<!--               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+<!--               <div class="d-flex justify-content-between align-items-center"> -->
+<!--                 <div class="btn-group"> -->
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+<!--                 </div> -->
+<!--                 <small class="text-body-secondary">9 mins</small> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+
+<!--         <div class="col"> -->
+<!--           <div class="card shadow-sm"> -->
+<!--             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+<!--             <div class="card-body"> -->
+<!--               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+<!--               <div class="d-flex justify-content-between align-items-center"> -->
+<!--                 <div class="btn-group"> -->
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+<!--                 </div> -->
+<!--                 <small class="text-body-secondary">9 mins</small> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--         <div class="col"> -->
+<!--           <div class="card shadow-sm"> -->
+<!--             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+<!--             <div class="card-body"> -->
+<!--               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+<!--               <div class="d-flex justify-content-between align-items-center"> -->
+<!--                 <div class="btn-group"> -->
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+<!--                 </div> -->
+<!--                 <small class="text-body-secondary">9 mins</small> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--         <div class="col"> -->
+<!--           <div class="card shadow-sm"> -->
+<!--             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+<!--             <div class="card-body"> -->
+<!--               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+<!--               <div class="d-flex justify-content-between align-items-center"> -->
+<!--                 <div class="btn-group"> -->
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+<!--                 </div> -->
+<!--                 <small class="text-body-secondary">9 mins</small> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+
+<!--         <div class="col"> -->
+<!--           <div class="card shadow-sm"> -->
+<!--             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+<!--             <div class="card-body"> -->
+<!--               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+<!--               <div class="d-flex justify-content-between align-items-center"> -->
+<!--                 <div class="btn-group"> -->
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+<!--                 </div> -->
+<!--                 <small class="text-body-secondary">9 mins</small> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--         <div class="col"> -->
+<!--           <div class="card shadow-sm"> -->
+<!--             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+<!--             <div class="card-body"> -->
+<!--               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+<!--               <div class="d-flex justify-content-between align-items-center"> -->
+<!--                 <div class="btn-group"> -->
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+<!--                 </div> -->
+<!--                 <small class="text-body-secondary">9 mins</small> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--         <div class="col"> -->
+<!--           <div class="card shadow-sm"> -->
+<!--             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+<!--             <div class="card-body"> -->
+<!--               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+<!--               <div class="d-flex justify-content-between align-items-center"> -->
+<!--                 <div class="btn-group"> -->
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+<!--                 </div> -->
+<!--                 <small class="text-body-secondary">9 mins</small> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+  </div>
+
+<!-- 			<tbody> -->
+<%-- 			<c:forEach items="${nList }" var="notice" varStatus="i"> --%>
+<!-- 				<div class="card" style="width: 18rem;"> -->
+<!-- 				  <img src="..." class="card-img-top" alt="..."> -->
+<!-- 				  <div class="card-body"> -->
+<%-- 				    <h5 class="card-title">${notice.noticeSubject }</h5> --%>
+<!-- 				    <p class="card-text">.</p> -->
+<!-- 				  </div> -->
+<!-- 				  <ul class="list-group list-group-flush"> -->
+<%-- 				    <li class="list-group-item">${notice.noticeWriter }</li> --%>
+<%-- 				    <li class="list-group-item">${notice.noticeDate }</li> --%>
+<!-- <!-- 				    <li class="list-group-item">A third item</li> --> 
+<!-- 				  </ul> -->
+<!-- 				  <div class="card-body"> -->
+<!-- 				    <a href="#" class="card-link">쪽지하기</a> -->
+<!-- 				    <a href="#" class="card-link">더보기</a> -->
+<!-- 				  </div> -->
+<%-- 				</div></c:forEach> --%>
 				
 				
 <%-- 				<c:forEach items="${nList }" var="notice" varStatus="i"> --%>
-<!-- <!-- 				<div class="square" style="width: 400px; height: 300px; border: solid black; margin-left:100px; margin-top: 100px; display: relative;"> --> -->
+<!-- <!-- 				<div class="square" style="width: 400px; height: 300px; border: solid black; margin-left:100px; margin-top: 100px; display: relative;"> --> 
 <%-- 					<td>${i.count }</td> --%>
 <%-- 					<td><a href="/notice/detail.kh?noticeNo=${notice.noticeNo }">${notice.noticeSubject }</a></td> --%>
 <%-- 					<td>${notice.noticeWriter }</td> --%>
@@ -249,44 +586,106 @@
 <!-- 						<td>X</td> -->
 <%-- 					</c:if> --%>
 <!-- 					</tr> -->
-<!-- <!-- 					</div> --> -->
+<!-- <!-- 					</div> --> 
 <%-- 				</c:forEach> --%>
-			</tbody>
-			<tfoot>
+				</tbody>
+			</table>
 
+<br><br><br>
 				<!-- 페이지네이션 위치 -->
-				<tr align="center">
-					<td colspan="5">
-						<c:if test="${pInfo.startNavi ne '1' }">
-							<a href="/notice/list.kh?page=${pInfo.startNavi - 1 }">[이전]</a>
-						</c:if>
-						<c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
-							<a href="/notice/list.kh?page=${p }">${p }</a>
-						</c:forEach>
-						<c:if test="${pInfo.endNavi ne pInfo.naviTotalCount }">
-							<a href="/notice/list.kh?page=${pInfo.endNavi + 1 }">[다음]</a>
-						</c:if>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="4">
-						<form action="/notice/search.kh" method="get">
-							<select name="searchCondition">
-								<option value="all">전체</option>
-								<option value="writer" selected>작성자</option>
-								<option value="title">제목</option>
-								<option value="content">내용</option>
-							</select>
-							<input type="text" name="searchKeyword" placeholder="검색어를 입력해주세요">
-							<input type="submit" value="검색">
-						</form>
-					</td>
-					<td>
-						<button type="button" onclick="showInsertForm();">글쓰기</button>
-					</td>
-				</tr>
-			</tfoot>
-		</table>
+			<div class="d-flex flex-wrap justify-content-center align-items-center pb-5">
+                    <div class="d-flex col-md-4 justify-content-start">
+                        <form class="row g-1" action="/notice/search.kh" method="get">
+                            <div class="col-auto">
+                                <select class="form-select" name="searchCondition">
+                                <option value="all" selected>전체</option>
+			                <option value="writer">작성자</option>
+			                <option value="title">제목</option>
+			                <option value="content">내용</option>
+                             
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <div class="input-group">
+                                    <input class="form-control" type="search" name="searchKeyword" placeholder="${searchKeyword }">
+                                    <button type="submit" class="btn" style="background-color: #FAFAFA; border-color: #e9ecef;">검색</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+				<div class="d-flex col-md-4 justify-content-end">
+	            	<button type="button" class="btn" style="background-color: #FAFAFA; border-color: #e9ecef;" onclick="showInsertForm();">글쓰기</button>
+				</div>
+			</div>
+			<div class="row mt-3 mb-5">
+                 <div class="col-md-12">
+                     <nav aria-label="Page navigation example">
+                         <ul class="pagination justify-content-center" style="font-weight: 600; ">
+                             <c:if test="${pInfo.startNavi != 1 }">
+                                 <li class="page-item">
+                                   
+                                     <a class="page-link rounded-circle" href="/notice/list.kh?page=${pInfo.startNavi - 1 }" aria-label="Previous">
+                                         <span aria-hidden="true">&laquo;</span>
+                                     </a>
+                                 </li>
+                             </c:if>
+                             <c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
+                                 <li class="page-item">
+                                     <a class="page-link rounded-circle mx-2" href="/notice/list.kh?page=${p }" style="border: none; color: #313131;">
+                                         ${p }
+                                     </a>
+                                 </li>
+                             </c:forEach>
+                             <c:if test="${pInfo.endNavi != pInfo.naviTotalCount }">
+                                 <li class="page-item">
+                                     <a class="page-link rounded-circle" href="/notice/list.kh?page=${pInfo.endNavi + 1 }" aria-label="Next">
+                                         <span aria-hidden="true">&raquo;</span>
+                                     </a>
+                                 </li>
+                             </c:if>
+                         </ul>
+                     </nav>
+                 </div>
+             </div>
+
+
+
+
+
+
+<!-- 			 페이지네이션 위치 -->
+<!-- 		<div style="margin:0 0 0 500px;"> -->
+<!-- 			<tr style="text-align: center; margin-bottom: 10px;"> -->
+<!-- 			    <td colspan="5"> -->
+<%-- 			        <c:if test="${pInfo.startNavi ne '1' }"> --%>
+<%-- 			            <a href="/notice/list.kh?page=${pInfo.startNavi - 1 }">[이전]</a> --%>
+<%-- 			        </c:if> --%>
+<%-- 			        <c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p"> --%>
+<%-- 			            <a href="/notice/list.kh?page=${p }">${p }</a> --%>
+<%-- 			        </c:forEach> --%>
+<%-- 			        <c:if test="${pInfo.endNavi ne pInfo.naviTotalCount }"> --%>
+<%-- 			            <a href="/notice/list.kh?page=${pInfo.endNavi + 1 }">[다음]</a> --%>
+<%-- 			        </c:if> --%>
+<!-- 			    </td> -->
+<!-- 			</tr> -->
+<!-- 			<tr style="text-align: center; margin-bottom: 10px; "> -->
+<!-- 			    <td colspan="4"> -->
+<!-- 			        <form action="/notice/search.kh" method="get"> -->
+<!-- 			            <select name="searchCondition"> -->
+<!-- 			                <option value="all">전체</option> -->
+<!-- 			                <option value="writer" selected>작성자</option> -->
+<!-- 			                <option value="title">제목</option> -->
+<!-- 			                <option value="content">내용</option> -->
+<!-- 			            </select> -->
+<!-- 			            <input type="text" name="searchKeyword" placeholder="검색어를 입력해주세요"> -->
+<!-- 			            <input type="submit" value="검색"> -->
+<!-- 			        </form> -->
+<!-- 			    </td> -->
+<!-- 			    <td> -->
+<!-- 			        <button type="button" onclick="showInsertForm();">글쓰기</button> -->
+<!-- 			    </td> -->
+<!-- 			</tr> -->
+<!-- 		</div> -->
 		<script>
 			function showInsertForm() {
 				// 공지사항 글쓰기 페이지 이동
@@ -295,33 +694,54 @@
 		</script>
 <!-- 		푸터 -->
 <div class="container">
-  <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
-    <div class="col mb-3"></div>
-    <div class="col mb-3">
-      <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
-        <img src="/resources/img/LOGO1.png" width="80" height="80"
-					role="img" class="footerLogo">
-      </a>
-      <p class="text-muted">&copy; 2024 Company, Inc</p>
-    </div>
+			<footer
+				class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
+				<div class="col mb-3"></div>
+				<div class="col mb-3">
+					<a href="/"
+						class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+						<img src="/resources/img/LOGO1.png" width="80" height="80"
+						role="img" class="footerLogo">
+					</a>
+					<p class="text-muted">&copy; 2024 Company, Inc</p>
+				</div>
 
-    <div class="col mb-3"></div>
+				<div class="col mb-3"></div>
 
-    <div class="col mb-3">
-      <h5>ⓒ주식회사 너티야</h5>
-      <ul class="nav flex-column">
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">사업자등록번호: 123-45-67890</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">대표전화: 1234:5678</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">서울 중구 남대문로120</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">info@areyout.com</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">대표이사 동행</a></li>
-      </ul>
-    </div>
-  </footer>
-</div>
-</div>
-
+				<div class="col mb-3">
+					<h5>ⓒ주식회사 너티야</h5>
+					<ul class="nav flex-column">
+						<li class="nav-item mb-2"><a href="#"
+							class="nav-link p-0 text-muted">사업자등록번호: 123-45-67890</a></li>
+						<li class="nav-item mb-2"><a href="#"
+							class="nav-link p-0 text-muted">대표전화: 1234:5678</a></li>
+						<li class="nav-item mb-2"><a href="#"
+							class="nav-link p-0 text-muted">서울 중구 남대문로120</a></li>
+						<li class="nav-item mb-2"><a href="#"
+							class="nav-link p-0 text-muted">info@areyout.com</a></li>
+						<li class="nav-item mb-2"><a href="#"
+							class="nav-link p-0 text-muted">대표이사 동행</a></li>
+					</ul>
+				</div>
+			</footer>
+		</div>
 	</main>
 
+
+
+
+</body>
+
+<script>
+	function enterkey() {
+		if (window.event.keyCode == 13) {
+
+			// 엔터키가 눌렸을 때 실행하는 반응
+			//         $("#form").submit();
+			const frm = document.getElementById("search");
+			frm.submit();
+		}
+	}
+</script>
 	</body>
 </html>

@@ -11,6 +11,8 @@ import com.kh.areyout.notice.domain.NoticeVO;
 import com.kh.areyout.notice.domain.PageInfo;
 import com.kh.areyout.notice.store.NoticeStore;
 
+
+
 @Repository
 public class NoticeStoreImpl implements NoticeStore {
 
@@ -34,7 +36,7 @@ public class NoticeStoreImpl implements NoticeStore {
 	 * @return notice
 	 */
 	@Override
-	public NoticeVO selectByNoticeNo(SqlSession session, int noticeNo) {
+	public NoticeVO selectByNoticeNo(SqlSession session, Integer noticeNo) {
 		NoticeVO notice = session.selectOne("NoticeMapper.selectByNoticeNo", noticeNo);
 		return notice;
 	}

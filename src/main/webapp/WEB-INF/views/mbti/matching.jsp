@@ -1,31 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author"
-	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-<meta name="generator" content="Hugo 0.101.0">
-<title>여행신청게시판 작성</title>
-
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-	crossorigin="anonymous">
-
-
-
-
-
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-	<style>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>동행 매칭하기</title>
+		<link rel="stylesheet" type="text/css" href="/resources/css/detail.css" />
+        <link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+			crossorigin="anonymous">
+		
+		    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
+		
+		    
+		
+		    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+		
+		<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+		
+		
+		
+		
+		<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+		   
+			<style>
 @font-face {
 	font-family: 'SUITE-Regular';
 	src:
@@ -224,16 +225,17 @@ body {
 	white-space: nowrap;
 	-webkit-overflow-scrolling: touch;
 }
-
-
 </style>
 
-	<!-- Custom styles for this template -->
-	<link href="headers.css" rel="stylesheet">
-
+		     
+    </head>
 	</head>
 	<body>
+	
 	<!-- 헤더   -->
+	
+	
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
@@ -365,27 +367,21 @@ body {
 				</div>
 			</div>
 		</header>
-		
-		
-		<form action="/notice/insert.kh" method="post" enctype="multipart/form-data">
+	
+    <form action="/mbti/matching.kh" method="post">
+    	<div style="margin-left: 700px;">
+		<h2 style="margin-bottom: 50px; margin-left: 140px; margin-top: 50px;">나의 MBTI</h2>
+        <%-- <label for="memberMbti">나의 MBTI:</label><span>${member.memberMbti }</span> --%>
+ 
+        <input type="text" id="memberMbti" name="memberMbti" value="${member.memberMbti }" style="padding: 30px 0 30px 140px; width:150px height: 57px; border: 1px solid #DCE2E3; border-radius: 5px; margin-left: 50px;" required>
+        <br>
+        <!-- 기타 필요한 입력 필드 추가 -->
 
-					<div style="margin-left: 600px; margin-bottom: 10px;" >제목</div>
-					<input type="text" name="noticeSubject" style="margin-left: 600px;">
-				
-					<label>작성자</label>
-					<input type="text" name="noticeWriter">
-					
-					<div style="margin-left: 600px; margin-bottom: 10px;">내용</div>
-					<textarea rows="4" cols="51" name="noticeContent" style="margin-left: 600px; margin-bottom: 20px;"></textarea>
-				
-					<div style="margin-left: 600px; margin-bottom: 10px;">첨부파일</div>
-					<input type="file" name="uploadFile" style="margin-left: 600px; margin-bottom: 20px;">
-				
-			<div>
-				<input type="submit" value="등록하기" style="margin-left: 600px;">
-			</div>
-		</form>
-		<!-- 		푸터 -->
+        <input type="submit" value="매칭 찾기" style="margin-top: 50px; margin-left: 180px;">
+    </div>
+    </form>
+    
+    <!-- 		푸터 -->
 <div class="container">
 			<footer
 				class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
@@ -436,4 +432,5 @@ body {
 		}
 	}
 </script>
+</body>
 </html>
