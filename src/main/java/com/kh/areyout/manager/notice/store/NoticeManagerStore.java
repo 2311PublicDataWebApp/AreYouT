@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.kh.areyout.manager.notice.domain.PageInfo;
+import com.kh.areyout.manager.PageInfo;
 import com.kh.areyout.notice.domain.NoticeVO;
 
 public interface NoticeManagerStore {

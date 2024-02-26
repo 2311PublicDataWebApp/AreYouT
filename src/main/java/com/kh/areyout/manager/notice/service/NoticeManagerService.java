@@ -3,7 +3,7 @@ package com.kh.areyout.manager.notice.service;
 import java.util.List;
 import java.util.Map;
 
-import com.kh.areyout.manager.notice.domain.PageInfo;
+import com.kh.areyout.manager.PageInfo;
 import com.kh.areyout.notice.domain.NoticeVO;
 
 public interface NoticeManagerService {

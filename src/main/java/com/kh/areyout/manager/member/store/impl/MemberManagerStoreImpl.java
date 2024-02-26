@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kh.areyout.manager.member.domain.MemberVO;
-import com.kh.areyout.manager.member.domain.PageInfo;
+import com.kh.areyout.manager.PageInfo;
 import com.kh.areyout.manager.member.store.MemberManagerStore;
 
 @Repository

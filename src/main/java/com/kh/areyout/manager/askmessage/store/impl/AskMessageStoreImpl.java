@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kh.areyout.manager.askmessage.domain.AskMessageVO;
-import com.kh.areyout.manager.askmessage.domain.PageInfo;
+import com.kh.areyout.manager.PageInfo;
 import com.kh.areyout.manager.askmessage.store.AskMessageStore;
 
 @Repository
@@ -79,6 +79,13 @@ public class AskMessageStoreImpl implements AskMessageStore{
 		
 	    List<AskMessageVO> amList = session.selectList("AskMessageMapper.selectSearchList", paramMap, rowBounds);
 		return amList;
+	}
+
+	//문의하기
+	@Override
+	public int UserAskMessage(SqlSession session, AskMessageVO askMessage) {
+		int result = session.insert("AskMessageMapper.UserAskMessage", askMessage);
+		return result;
 	}
 
 }

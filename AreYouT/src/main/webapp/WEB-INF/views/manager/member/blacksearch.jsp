@@ -173,7 +173,6 @@
                     <h2>사이트 관리</h2>
                     <hr id="menu-line">
                     <ul class="list-unstyled">
-                        <li class="menu-item"><a href="/manager/main.kh">대쉬보드</a></li><br><br><br>
                         <li class="menu-item"><a href="#">회원 관리</a>
                             <ul class="sub-menu">
                                 <li><a href="/manager/member/list.kh">일반 회원 관리</a></li>

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.areyout.manager.member.domain.MemberVO;
-import com.kh.areyout.manager.member.domain.PageInfo;
+import com.kh.areyout.manager.PageInfo;
 import com.kh.areyout.manager.member.service.MemberManagerService;
 
 @Controller
@@ -22,7 +22,7 @@ public class MemberManagerController {
 	MemberManagerService mmService;
 	
 	//블랙리스트 해제 처리
-	@RequestMapping(value = "manager/member/white.do", method = RequestMethod.POST)
+	@RequestMapping(value = "manager/member/white.kh", method = RequestMethod.POST)
 	public String whiteMember(@RequestParam("check-white-members") String selectMembers, Model model) {
 		try {
 			String[] members = selectMembers.split(",");
@@ -37,7 +37,7 @@ public class MemberManagerController {
 					return "common/errorPage";
 				}
 			}
-			return "redirect:/manager/member/blacklist.do";
+			return "redirect:/manager/member/blacklist.kh";
 		} catch (Exception e) {
 			model.addAttribute("msg", e.getMessage());
 			return "common/errorPage";
@@ -46,7 +46,7 @@ public class MemberManagerController {
 	
 	
 	//일반 회원 탈퇴처리
-	@RequestMapping(value = "/manager/member/delete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/member/delete.kh", method = RequestMethod.POST)
 	public String deleteMember(@RequestParam("check-delete-members") String selectMembers, Model model) {
 		try {
 			String[] members = selectMembers.split(",");
@@ -61,7 +61,7 @@ public class MemberManagerController {
 					return "common/errorPage";
 				}
 			}
-			return "redirect:/manager/member/list.do";
+			return "redirect:/manager/member/list.kh";
 		} catch (Exception e) {
 			model.addAttribute("msg", e.getMessage());
 			return "common/errorPage";
@@ -69,7 +69,7 @@ public class MemberManagerController {
 	}
 	
 	//정지 회원 탈퇴처리
-		@RequestMapping(value = "/manager/member/blackdelete.do", method = RequestMethod.POST)
+		@RequestMapping(value = "/manager/member/blackdelete.kh", method = RequestMethod.POST)
 		public String blackdeleteMember(@RequestParam("check-delete-members") String selectMembers, Model model) {
 			try {
 				String[] members = selectMembers.split(",");
@@ -84,7 +84,7 @@ public class MemberManagerController {
 						return "common/errorPage";
 					}
 				}
-				return "redirect:/manager/member/blacklist.do";
+				return "redirect:/manager/member/blacklist.kh";
 			} catch (Exception e) {
 				model.addAttribute("msg", e.getMessage());
 				return "common/errorPage";
@@ -92,7 +92,7 @@ public class MemberManagerController {
 		}
 	
 	//일반 회원 정지 처리
-	@RequestMapping(value = "/manager/member/black.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/member/black.kh", method = RequestMethod.POST)
 	public String blackMember(@RequestParam("check-black-members") String selectMembers, Model model) {
 		try {
 			String[] members = selectMembers.split(",");
@@ -107,7 +107,7 @@ public class MemberManagerController {
 					return "common/errorPage";
 				}
 			}
-			return "redirect:/manager/member/list.do";
+			return "redirect:/manager/member/list.kh";
 		} catch (Exception e) {
 			model.addAttribute("msg", e.getMessage());
 			return "common/errorPage";
@@ -115,7 +115,7 @@ public class MemberManagerController {
 	}
 	
 	//블랙리스트 조회
-	@RequestMapping(value = "/manager/member/blacklist.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/member/blacklist.kh", method = RequestMethod.GET)
 	public ModelAndView showBlackList(ModelAndView mv
 			, @RequestParam(value = "page", required = false, defaultValue = "1") Integer currentPage) {
 		try {
@@ -133,7 +133,7 @@ public class MemberManagerController {
 	}
 	
 	//검색 조회
-	@RequestMapping(value = "/manager/member/search.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/member/search.kh", method = RequestMethod.GET)
 	public ModelAndView showSearchMember(ModelAndView mv
 			, @RequestParam("search-type") String type
 			, @RequestParam("search-keyword") String keyword
@@ -160,7 +160,7 @@ public class MemberManagerController {
 	}
 	
 	//블랙리스트 검색 조회
-	@RequestMapping(value = "/manager/member/blacksearch.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/member/blacksearch.kh", method = RequestMethod.GET)
 	public ModelAndView showSearchBlack(ModelAndView mv
 			, @RequestParam("search-type") String type
 			, @RequestParam("search-keyword") String keyword
@@ -187,7 +187,7 @@ public class MemberManagerController {
 	}
 	
 	//회원 목록조회
-	@RequestMapping(value = "/manager/member/list.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/member/list.kh", method = RequestMethod.GET)
 	public ModelAndView showMemberList(ModelAndView mv
 			, @RequestParam(value = "page", required = false, defaultValue = "1") Integer currentPage) {
 		try {

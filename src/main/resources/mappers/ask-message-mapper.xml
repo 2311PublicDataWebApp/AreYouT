@@ -63,10 +63,22 @@
   			WHERE ASK_MESSAGE_NO = #{askMessageNo}
   	</update>
   	<insert id="sendAskMessage">
-  		INSERT INTO ASK_MESSAGE_TBL
-  		VALUES(SEQ_ASKMESSAGE_NO.NEXTVAL,
+  		INSERT INTO MEMBER_MESSAGE_TBL
+  		VALUES(SEQ_MESSAGE_NO.NEXTVAL,
   			#{askMessageReceive},
   			'관리자',
+  			DEFAULT,
+  			#{askMessageTitle},
+  			#{askMessageContent},
+  			DEFAULT
+  		)
+  	</insert>
+  	<insert id="UserAskMessage">
+  		INSERT INTO ASK_MESSAGE_TBL
+  		VALUES(
+  			SEQ_ASKMESSAGE_NO.NEXTVAL,
+  			'admin',
+  			#{askMessageSender},
   			DEFAULT,
   			#{askMessageTitle},
   			#{askMessageContent},

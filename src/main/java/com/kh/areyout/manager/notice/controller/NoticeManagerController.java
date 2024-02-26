@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.areyout.manager.notice.service.NoticeManagerService;
 import com.kh.areyout.notice.domain.NoticeVO;
-import com.kh.areyout.manager.notice.domain.PageInfo;
+import com.kh.areyout.manager.PageInfo;
 
 @Controller
 public class NoticeManagerController {
@@ -91,6 +91,7 @@ public class NoticeManagerController {
 			}
 		}
 	
+	//게시판 목록
 	@RequestMapping(value = "/manager/notice/list.kh", method = RequestMethod.GET)
 	public ModelAndView showNoticeList(ModelAndView mv
 			, @RequestParam(value = "page", required = false, defaultValue = "1") 

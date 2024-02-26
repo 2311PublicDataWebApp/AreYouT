@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.areyout.manager.member.domain.MemberVO;
-import com.kh.areyout.manager.member.domain.PageInfo;
+import com.kh.areyout.manager.PageInfo;
 import com.kh.areyout.manager.member.service.MemberManagerService;
 import com.kh.areyout.manager.member.store.MemberManagerStore;
 

@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.kh.areyout.manager.message.domain.MessageVO;
-import com.kh.areyout.manager.message.domain.PageInfo;
+import com.kh.areyout.manager.PageInfo;
 
 public interface MessageStore {
 
@@ -79,8 +79,15 @@ public interface MessageStore {
 	 * @param session
 	 * @param pInfo
 	 * @param memberId
-	 * @return
+	 * @return mList
 	 */
 	List<MessageVO> selectMessageList(SqlSession session, PageInfo pInfo, String memberId);
 
+	/**
+	 * 쪽지 전송 Store
+	 * @param session
+	 * @param message
+	 * @return result
+	 */
+	int sendMessage(SqlSession session, MessageVO message);
 }
