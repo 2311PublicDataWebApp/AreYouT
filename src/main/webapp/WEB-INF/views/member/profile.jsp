@@ -643,20 +643,20 @@ body {
 						</li>
 						<br> MBTI
 						<li>
+								<c:if test="${member.memberMbti ne null}">
 							<div class="form-floating">
-								<c:if test="${memberMbti ne null }">
 									<div class="box"
 										style="padding: 15px 0 0 6px; height: 57px; border: 1px solid #DCE2E3; border-radius: 5px;">
 										<label for="memberMbti"></label> <span>${member.memberMbti }</span>
 									</div>
+							</div>
 								</c:if>
-								<c:if test="${memberMbti eq null }">
+								<c:if test="${member.memberMbti eq null}">
 									<button class="btn btn-lg btn-primary"
 										onclick="location.href='/mbti/mbtitest.kh'"
 										style="background-color: #9FA9D8; border: 0px;">MBTI
 										검사</button>
 								</c:if>
-							</div>
 						</li>
 					</ul>
 				</fieldset>

@@ -634,13 +634,13 @@ body {
 							<br> MBTI
 							<li>
 								<div class="form-floating">
-									<c:if test="${memberMbti ne null }">
-										<input type="button" onclick="location.href='/mbti/mbtitest'"
+									<c:if test="${member.memberMbti ne null }">
+										<input type="button" onclick="location.href='/mbti/mbtitest.kh'"
 											style="width: 125px; font-size: larger; color: white; background-color: #9FA9D8; height: 45px; border: 1px solid #DCE2E3; border-radius: 7px;"
 											value="MBTI 재검사">
 									</c:if>
-									<c:if test="${memberMbti eq null }">
-										<input type="button" onclick="location.href='/mbti/mbtitest'"
+									<c:if test="${member.memberMbti eq null }">
+										<input type="button" onclick="location.href='/mbti/mbtitest.kh'"
 											style="width: 125px; font-size: larger; color: white; background-color: #9FA9D8; height: 45px; border: 1px solid #DCE2E3; border-radius: 7px;"
 											value="MBTI 검사">
 									</c:if>

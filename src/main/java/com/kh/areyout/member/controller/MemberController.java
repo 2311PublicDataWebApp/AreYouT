@@ -187,6 +187,7 @@ public class MemberController {
 
 			}
 			if (member != null) {
+				session.setAttribute("memberFileRename", member.getMemberFileRename());
 				model.addAttribute("member", member);
 				return "member/profile";
 			} else {
