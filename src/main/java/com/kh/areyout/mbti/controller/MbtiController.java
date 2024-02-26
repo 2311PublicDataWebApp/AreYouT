@@ -108,7 +108,7 @@ public class MbtiController {
 //	        }
 //	    }
 
-	// 留덉씠�럹�씠吏� MypageController
+
 //		@RequestMapping(value = "/mbti/matching.kh", method = RequestMethod.GET)
 //		public String mbtiMatching(HttpSession session, Model model) {
 //			try {
@@ -123,7 +123,7 @@ public class MbtiController {
 //					model.addAttribute("member", member);
 //					return "member/matching";
 //				} else {
-//					model.addAttribute("msg", "matching 瑜� �셿猷뚰븯吏� 紐삵뻽�뒿�땲�떎.");
+//					model.addAttribute("msg", 
 //					return "common/errorPage";
 //				}
 //			} catch (Exception e) {
@@ -150,16 +150,12 @@ public class MbtiController {
 //            @RequestParam(name = "imageNumber") int imageNumber
 //    ) {
 //        try {
-//            // �뿬湲곗꽌 �꽌鍮꾩뒪 怨꾩링�쓣 �샇異쒗븯�뿬 �뜲�씠�꽣踰좎씠�뒪�뿉 imageNumber瑜� ���옣�븯�뒗 濡쒖쭅�쓣 援ы쁽�빀�땲�떎.
-//            // �삁瑜� �뱾�뼱, MbtiService �겢�옒�뒪�뿉 saveImageNumber 硫붿꽌�뱶瑜� 異붽��븯怨� �샇異쒗븯�뒗 �떇�쑝濡� �옉�꽦�븷 �닔 �엳�뒿�땲�떎.
-//            // MbtiService.saveImageNumber(imageNumber);
-//
-//            // �븘�옒�뒗 �꽦怨� �떆�쓽 �쓳�떟 肄붾뱶�엯�땲�떎.
+
 //        	Membe
-//            mv.addObject("msg", "imageNumber ���옣�씠 �셿猷뚮릺�뿀�뒿�땲�떎.");
+
 //            mv.setViewName("member/profile");
 //        } catch (Exception e) {
-//            // �떎�뙣 �떆�쓽 �쓳�떟 肄붾뱶�엯�땲�떎.
+
 //            mv.addObject("msg", e.getMessage());
 //            mv.setViewName("common/errorPage");
 //        }
@@ -198,7 +194,7 @@ public class MbtiController {
 //				model.addAttribute("member", member);
 //				return "redirect:/member/mypage.kh";
 //			} else {
-//				model.addAttribute("msg", "�닔�젙�쓣 �셿猷뚰븯吏� 紐삵뻽�뒿�땲�떎.");
+//				model.addAttribute("msg", ");
 //				return "common/errorPage";
 //			}
 //		} catch (Exception e) {

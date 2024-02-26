@@ -35,7 +35,7 @@ public class NoticeController {
 //		return "/notice/register";
 //	}
 	
-	
+	// 게시글 목록
 	@RequestMapping(value = "/notice/list.kh", method = RequestMethod.GET)
 	public ModelAndView showNoticeList(ModelAndView mv,
 	        @RequestParam(value = "page", required = false, defaultValue = "1") Integer currentPage) {
@@ -81,7 +81,6 @@ public class NoticeController {
 //	}
 //	
 //	
-//	// 怨듭��궗�빆 紐⑸줉
 //	@RequestMapping(value = "/notice/list.kh", method = RequestMethod.GET)
 //	public ModelAndView showNoticeList(ModelAndView mv
 //			, @RequestParam(value = "page", required = false, defaultValue = "1") 
@@ -101,17 +100,13 @@ public class NoticeController {
 //		return mv;
 //	}
 //	
-	// 怨듭��궗�빆 寃��깋
+	// 게시글 검색
 	@RequestMapping(value="/notice/search.kh", method=RequestMethod.GET)
 	public ModelAndView searchNoticeList(ModelAndView mv
 			, @RequestParam("searchCondition") String searchCondition
 			, @RequestParam("searchKeyword") String searchKeyword
 			, @RequestParam(value="page", required=false, defaultValue="1") Integer currentPage) {
-		/*
-		 * 2媛쒖쓽 媛믪쓣 �븯�굹�쓽 蹂��닔濡� �떎猷⑤뒗 諛⑸쾿
-		 * 1. VO �겢�옒�뒪瑜� 留뚮뱶�뒗 諛⑸쾿(�씠誘� �빐遊�)
-		 * 2. HashMap �궗�슜�븯�뒗 諛⑸쾿(�씠誘� �빐遊�)
-		 */
+		
 		Map<String, String> paramMap = new HashMap<String, String>();
 		paramMap.put("searchCondition", searchCondition);
 		paramMap.put("searchKeyword", searchKeyword);
@@ -126,14 +121,14 @@ public class NoticeController {
 		return mv;
 	}
 	
-	// 怨듭��궗�빆 �벑濡� GET
+	// 글 등록 GET
 	@RequestMapping(value="/notice/insert.kh", method=RequestMethod.GET)
     public ModelAndView showInsertForm(ModelAndView mv) {
         mv.setViewName("notice/register");
         return mv;
     }
 	
-	// 怨듭��궗�빆 �벑濡� POST
+	// 글등록 POST
 	@RequestMapping(value = "/notice/insert.kh", method = RequestMethod.POST)
 	public ModelAndView insertNotice(ModelAndView mv
 			, @ModelAttribute NoticeVO notice
@@ -156,7 +151,7 @@ public class NoticeController {
 			if (result > 0) {
 				mv.setViewName("redirect:/notice/list.kh");
 			} else {
-				mv.addObject("msg", "怨듭��궗�빆 �벑濡앹씠 �셿猷뚮릺吏� 紐삵뻽�뒿�땲�떎.");
+				mv.addObject("msg", "에러발생");
 				mv.setViewName("common/errorPage");
 			}
 		} catch (Exception e) {
@@ -167,16 +162,16 @@ public class NoticeController {
 		return mv;
 	}
 	
-	// 怨듭��궗�빆 �긽�꽭
+	// 게시글 상세조회
 	@RequestMapping(value = "notice/detail.kh", method = RequestMethod.GET)
 	public ModelAndView showNoticeDetail(ModelAndView mv, int noticeNo) {
 		try {
 			NoticeVO notice = nService.selectByNoticeNo(noticeNo);
 			if (notice != null) {
-				// 硫붿냼�뱶 梨꾩씠�떇 諛⑹떇
+
 				mv.addObject("notice", notice).setViewName("notice/detail");
 			} else {
-				mv.addObject("msg", "�뜲�씠�꽣 遺덈윭�삤湲곌� �셿猷뚮릺吏� 紐삵뻽�뒿�땲�떎.");
+				mv.addObject("msg", "에러발생");
 				mv.setViewName("common/errorPage");
 			}
 		} catch (Exception e) {
@@ -240,7 +235,7 @@ public class NoticeController {
 
 
 	
-	// 怨듭��궗�빆 �궘�젣
+	// 게시글 삭제 get
 	@RequestMapping(value = "/notice/delete.kh", method = RequestMethod.GET)
 	public ModelAndView deleteNotice(ModelAndView mv, int noticeNo) {
 		try {
@@ -248,7 +243,7 @@ public class NoticeController {
 			if (result > 0) {
 				mv.setViewName("redirect:/notice/list.kh");
 			} else {
-				mv.addObject("msg", "�뜲�씠�꽣媛� 議댁옱�븯吏� �븡�뒿�땲�떎.").setViewName("common/errorPage");
+				mv.addObject("msg", "에러발생").setViewName("common/errorPage");
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -257,12 +252,12 @@ public class NoticeController {
 		return mv;
 	}
 	
-	// �럹�씠吏� 泥섎━
+	// 페이징
 	private PageInfo getPageInfo(Integer currentPage, int totalCount) {
 		PageInfo pi = null;
-		int recordCountPerPage = 10; // �븳 �럹�씠吏��떦 蹂댁뿬以� 寃뚯떆臾쇱쓽 媛��닔
-		int naviCountPerPage = 5; 	 // �븳 �럹�씠吏��떦 蹂댁뿬以� 踰붿쐞�쓽 媛��닔
-		int naviTotalCount; 		 // 踰붿쐞�쓽 珥� 媛��닔
+		int recordCountPerPage = 10; 
+		int naviCountPerPage = 5; 	 
+		int naviTotalCount; 		 
 		int startNavi;
 		int endNavi;
 		
@@ -277,33 +272,30 @@ public class NoticeController {
 		return pi;
 	}
 	
-	// 泥⑤��뙆�씪 ���옣
+	// 파일저장
 	private Map<String, Object> saveFile(MultipartFile uploadFile, HttpServletRequest request) throws Exception {
 		// TODO Auto-generated method stub
-		// �뙆�씪 �씠由�
+
 		String fileName = uploadFile.getOriginalFilename();
-		// ���옣 寃쎈줈
+
 		String projectPath 	 = request.getSession().getServletContext().getRealPath("resources");
 		String saveDirectory = projectPath + "\\nuploadFiles";
 		File sDir 			 = new File(saveDirectory);
 		if (!sDir.exists()) {
-			sDir.mkdir(); //nuploadFile �뤃�뜑媛� �뾾�쑝硫� �옄�룞�쑝濡� 留뚮뱾�뼱以�
+			sDir.mkdir(); //nuploadFile 
 		}
-		// �뙆�씪 由щ꽕�엫�쓽 �븘�슂�꽦!!
-		// �궗�슜�옄A�� �궗�슜�옄B媛� 紐⑤몢 �궡�슜�� �떎瑜댁�留� �씠由꾩씠 媛숈� 1.PNG �뙆�씪�쓣 �삱湲� 寃쎌슦瑜� ��鍮꾪빐
-		// �쐞�� 媛숈� �뙆�씪�쓣 援щ퀎�븯湲� �쐞�빐�꽌 由щ꽕�엫�쓣 �븷 �븣�뿉�뒗 �삱由� �떆媛꾩쓣 湲곗��쑝濡� �뙆�씪�씠由꾩쓣 留뚮뱾�뼱�꽌 �뵲濡� ���옣(NOTICE_FILERENAME)
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); // �굹以묒뿉 ��臾몄옄 SS�� �냼臾몄옄 ss 鍮꾧탳�빐蹂닿린
-		String strResult = sdf.format(new Date(System.currentTimeMillis())); // �썝蹂명뙆�씪�쓽 �솗�옣�옄 湲��옄遺��꽣 �떆�옉�릺�룄濡� +1 �빐以�
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); 
+		String strResult = sdf.format(new Date(System.currentTimeMillis())); 
 		String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 		String fileRename = strResult + "." + ext;
 //		Date date = new Date();
 		
 		String savePath 	 = saveDirectory + "\\" + fileRename;
 		File file = new File(savePath);
-		// �뙆�씪 ���옣
+
 		uploadFile.transferTo(file);
-		// DB�뿉 ���옣�븷 �뙆�씪�젙蹂� �뀑�똿
-		// 1. �뙆�씪�씠由�, 2. �뙆�씪由щ꽕�엫, 3. �뙆�씪寃쎈줈, 4. �뙆�씪�겕湲�
+
 		long fileLength = uploadFile.getSize();
 		Map<String, Object> infoMap = new HashMap<String, Object>();
 		infoMap.put("fileName"	, fileName);
@@ -313,7 +305,7 @@ public class NoticeController {
 		return infoMap;
 	}
 	
-	// �뙆�씪 �옱�뾽濡쒕뱶 �떆, 湲곗〈 �뙆�씪 �궘�젣
+	
 	private void deleteFile(HttpServletRequest request, String fileName) {
 		// TODO Auto-generated method stub
 		String rPath = request.getSession().getServletContext().getRealPath("resources");
