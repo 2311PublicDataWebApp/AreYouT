@@ -328,7 +328,7 @@ border: 2px solid lightgray;
 							<ul class="dropdown-menu text-small">
 								<li><a class="dropdown-item" href="/member/mypage.kh">내정보</a></li>
 								<li><a class="dropdown-item" href="/member/profile.kh">프로필</a></li>
-								<li><a class="dropdown-item" href="#">쪽지함</a></li>
+								<li><a class="dropdown-item" href="/message/list.kh">쪽지함</a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="/member/logout.kh">로그아웃</a></li>
 							</ul>

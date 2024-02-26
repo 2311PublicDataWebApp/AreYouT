@@ -67,4 +67,18 @@ public class MessageServiceImpl implements MessageService{
 		int result = mStore.changeYn(session, messageNo);
 		return result;
 	}
+
+	//유저 쪽지함 쪽지 갯수
+	@Override
+	public int getTotalCount(String memberId) {
+		int result = mStore.getTotalCount(memberId, session);
+		return result;
+	}
+
+	//유저 쪽지함 목록
+	@Override
+	public List<MessageVO> selectMessageList(PageInfo pInfo, String memberId) {
+		List<MessageVO> mList = mStore.selectMessageList(session, pInfo, memberId);
+		return mList;
+	}
 }

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -109,6 +111,26 @@ public class MessageController {
 		}
 		return mv;
 	}
+	
+	//메세지 관리 목록 조회
+		@RequestMapping(value = "/message/list.kh", method = RequestMethod.GET)
+		public ModelAndView showUserMessageList(ModelAndView mv
+				, HttpSession session
+				, @RequestParam(value = "page", required = false, defaultValue = "1") Integer currentPage) {
+			try {
+				String memberId = (String)session.getAttribute("memberId");
+				int totalCount = mService.getTotalCount(memberId);
+				PageInfo pInfo = this.getPageInfo(currentPage, totalCount);
+				List<MessageVO> mmList = mService.selectMessageList(pInfo, memberId);
+				mv.addObject("mmList",mmList);
+				mv.addObject("pInfo", pInfo);
+				mv.setViewName("message/list");
+			} catch (Exception e) {
+				mv.addObject("msg", e.getMessage());
+				mv.setViewName("common/errorPage");
+			}
+			return mv;
+		}
 	
 	private PageInfo getPageInfo(Integer currentPage, int totalCount) {
 		PageInfo pi =null;

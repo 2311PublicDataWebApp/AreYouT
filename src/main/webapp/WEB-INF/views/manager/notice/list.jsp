@@ -195,26 +195,28 @@
                 <div class="container mt-3" id="member-manager">
                     <h3>여행신청 게시판 관리</h3>
                     <hr>
-                        <form class="form-inline" id="search">
-                            <div class="input-group mr-sm-2">
-                                <div class="input-group-prepend">
-                                    <select class="custom-select">
+                        <form class="form-inline" id="search" action="/manager/notice/search.kh" method="get">
+                            <div class="input-group-prepend">
+                                    <select class="custom-select" name="searchCondition">
                                         <option value="title" selected>제목</option>
-                                        <option value="author">작성자</option>
-                                        <option value="post-number">게시글 번호</option>
+                                        <option value="content">내용</option>
+                                        <option value="writer">작성자</option>
                                     </select>
                                 </div>
-                                <input class="form-control" type="search" placeholder="검색어를 입력하세요" aria-label="Search">
+                                <input class="form-control" type="search" placeholder="검색어를 입력하세요" aria-label="Search"
+                                value="${pInfo.searchKeyword}" name="searchKeyword">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-success" type="submit">검색</button>
-                                </div>
-                            </div>
-                            <div class="ml-auto">
-                                <button type="button" class="btn btn-danger">게시글 삭제</button>
                             </div>
                         </form>
+                            <div class="ml-auto">
+                            	<form action="/manager/notice/delete.kh" method="post">
+                            	<input type="hidden" id="check-delete-notice" name="check-delete-notice">
+                                <button type="submit" class="btn btn-danger" onclick="getDeleteNotice();">게시글 삭제</button>
+                            	</form>
+                            </div>
                         <br>
-                        <form action="" id="member-list">
+                        <form action="/manager/notice/list.kh" method="get" id="member-list">
                             <div id="board-list">
                                 <div class="container" id="board-list-container">
                                     <table class="board-table">
@@ -228,14 +230,31 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        <c:forEach items="${nmList}" var="notice" varStatus="i">
                                         <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>홍길동</td>
-                                            <td>2018-04-04</td>
-                                            <td><a href="#">아마존 투어 갔다오실 분</a></td>
-                                            <td>00001</td>
+                                            <td><input type="checkbox" name="select-notice" value="${notice.noticeNo}"></td>
+                                            <td>${notice.noticeWriter}</td>
+                                            <td>${notice.noticeDate}</td>
+                                            <td><a href="/manager/notice/detail.kh?noticeNo=${notice.noticeNo}">${notice.noticeSubject}</a></td>
+                                            <td>${notice.noticeNo}</td>
                                         </tr>
+                                        </c:forEach>
                                         </tbody>
+                                        <tfoot>
+                                        	<tr align="center">
+                                        		<td colspan="5">
+                                        	<c:if test="${pInfo.startNavi ne '1'}">
+												<a href="/manager/notice/list.kh?page=${pInfo.startNavi - 1}">[이전]</a>
+											</c:if>
+											<c:forEach begin="${pInfo.startNavi}" end="${pInfo.endNavi}" var="p">
+							               		<a href="/manager/notice/list.kh?page=${p}">${p}</a>
+							            	</c:forEach>
+							            	<c:if test="${pInfo.endNavi ne pInfo.naviTotalCount}">
+												<a href="/manager/notice/list.kh?page=${pInfo.endNavi + 1}">[다음]</a>
+                                        	</c:if>
+                                        		</td>
+                                        	</tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -254,6 +273,30 @@
                 e.stopPropagation();
             });
         });
+        
+        function getDeleteNotice(){
+    		// 체크된 input 요소 선택
+    		var checkedCheckboxes = document.querySelectorAll('input[name="select-notice"]:checked');
+
+    		// 체크된 input 요소의 값을 저장할 배열
+    		var checkedValues = [];
+
+    		// 각 체크된 input 요소의 값을 배열에 추가
+    		checkedCheckboxes.forEach(function(checkbox) {
+    		    checkedValues.push(checkbox.value);
+    		});
+
+    		// 배열에 저장된 값 확인
+    		console.log(checkedValues);
+    		
+    		//체크 된 회원 없을 시 오류 메세지 출력
+    		if(checkedValues.length == 0){
+    			alert("체크된 메세지가 없습니다.");
+    		}
+    		else{
+    			document.getElementById('check-delete-notice').value = checkedValues.join(',');
+    	    }
+    	}
     </script>
 </body>
 </html>

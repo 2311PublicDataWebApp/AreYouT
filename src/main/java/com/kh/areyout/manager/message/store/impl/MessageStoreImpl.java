@@ -68,4 +68,20 @@ public class MessageStoreImpl implements MessageStore{
 		return result;
 	}
 
+	@Override
+	public int getTotalCount(String memberId, SqlSession session) {
+		int result = session.selectOne("MesaageManagerMapper.selectUserTotalCount", memberId);
+		return result;
+	}
+
+	@Override
+	public List<MessageVO> selectMessageList(SqlSession session, PageInfo pInfo, String memberId) {
+		int limit = pInfo.getRecordCountPerPage();
+		int offset = (pInfo.getCurrentPage() - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<MessageVO> mList = session.selectList("MesaageManagerMapper.selectUserMessage", memberId, rowBounds);
+		return mList;
+	}
+
 }
