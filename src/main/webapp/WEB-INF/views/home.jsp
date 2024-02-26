@@ -329,7 +329,7 @@ body {
 									</c:if>
 								</a>
 								<ul class="dropdown-menu text-small">
-									<li><a class="dropdown-item" href="/manager/main.kh">관리자페이지</a></li>
+									<li><a class="dropdown-item" href="/manager/member/list.kh">관리자페이지</a></li>
 									<li><hr class="dropdown-divider"></li>
 									<li><a class="dropdown-item" href="/member/logout.kh">로그아웃</a></li>
 								</ul>
@@ -353,7 +353,7 @@ body {
 								<ul class="dropdown-menu text-small">
 									<li><a class="dropdown-item" href="/member/mypage.kh">내정보</a></li>
 									<li><a class="dropdown-item" href="/member/profile.kh">프로필</a></li>
-									<li><a class="dropdown-item" href="/message/list.kh">쪽지함</a></li>
+									<li><a id="popupLink" class="dropdown-item" href="/message/list.kh" target="_blank">쪽지함</a></li>
 									<li><hr class="dropdown-divider"></li>
 									<li><a class="dropdown-item" href="/member/logout.kh">로그아웃</a></li>
 								</ul>
@@ -527,5 +527,16 @@ body {
 			frm.submit();
 		}
 	}
+	document.addEventListener("DOMContentLoaded", function() {
+		  var popupLink = document.getElementById('popupLink');
+		  popupLink.addEventListener('click', function(event) {
+		    event.preventDefault(); // 링크의 기본 동작을 막음
+		    var width = 600;
+		    var height = 400;
+		    var left = (screen.width / 2) - (width / 2);
+		    var top = (screen.height / 2) - (height / 2);
+		    window.open(this.getAttribute('href'), 'popupWindow', 'width=' + width + ', height=' + height + ', left=' + left + ', top=' + top + ', resizable=yes, scrollbars=yes');
+		  });
+		});
 </script>
 </html>

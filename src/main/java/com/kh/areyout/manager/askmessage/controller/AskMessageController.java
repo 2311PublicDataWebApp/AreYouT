@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.areyout.manager.askmessage.domain.AskMessageVO;
-import com.kh.areyout.manager.askmessage.domain.PageInfo;
+import com.kh.areyout.manager.PageInfo;
 import com.kh.areyout.manager.askmessage.service.AskMessageService;
 
 @Controller
@@ -22,8 +24,44 @@ public class AskMessageController {
 	@Autowired
 	AskMessageService amService;
 	
+	//문의 하기
+		@RequestMapping(value = "/message/asksend.kh", method = RequestMethod.POST)
+		public ModelAndView UserAskMessage(ModelAndView mv
+				,HttpSession session
+				, @ModelAttribute AskMessageVO askMessage) {
+			try {
+				String memberId = (String)session.getAttribute("memberId");
+				askMessage.setAskMessageSender(memberId);
+				int result = amService.UserAskMessage(askMessage);
+				if(result > 0) { 
+					mv.setViewName("redirect:/message/list.kh");
+				} 
+			} catch (Exception e) {
+				mv.addObject("msg", e.getMessage());
+				mv.setViewName("common/errorPage");
+			}
+			
+			return mv;
+		}
+	
+	//문의하기 창 조회
+	@RequestMapping(value = "/message/asksend.kh", method = RequestMethod.GET)
+	public ModelAndView showUserAskSendForm(ModelAndView mv
+			,HttpSession session) {
+		try {
+			String memberId = (String)session.getAttribute("memberId");
+			mv.addObject("memberId", memberId);
+			mv.setViewName("message/asksend");
+		} catch (Exception e) {
+			mv.addObject("msg", e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
+	
 	//문의 메세지 검색
-	@RequestMapping(value = "/manager/message/asksearch.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/message/asksearch.kh", method = RequestMethod.GET)
 	public ModelAndView searchAskMessage(ModelAndView mv
 			, @RequestParam("search-type") String type
 			, @RequestParam("search-keyword") String keyword
@@ -50,7 +88,7 @@ public class AskMessageController {
 	}
 	
 	//문의 메세지 답변 전송
-	@RequestMapping(value = "/manager/message/sendmessage.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/message/sendmessage.kh", method = RequestMethod.POST)
 	public ModelAndView sendAskMessage(ModelAndView mv
 			, @ModelAttribute AskMessageVO askMessage) {
 		try {
@@ -66,8 +104,8 @@ public class AskMessageController {
 		return mv;
 	}
 	
-	//문의 메세지 답변창 조회
-	@RequestMapping(value = "/manager/message/asksend.do", method = RequestMethod.GET)
+	//문의 메세지 작성창 조회
+	@RequestMapping(value = "/manager/message/asksend.kh", method = RequestMethod.GET)
 	public ModelAndView showSendForm(ModelAndView mv) {
 		try {
 			mv.setViewName("manager/message/asksend");
@@ -80,7 +118,7 @@ public class AskMessageController {
 	}
 	
 	//문의 메세지 상세 조회
-	@RequestMapping(value = "/manager/message/askdetail.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/message/askdetail.kh", method = RequestMethod.GET)
 	public ModelAndView showAskDetail(ModelAndView mv, int askMessageNo) {
 		try {
 			AskMessageVO askMessage = amService.selectAskMessageByNo(askMessageNo);
@@ -100,7 +138,7 @@ public class AskMessageController {
 	}
 	
 	//문의 메세지 삭제
-	@RequestMapping(value = "/manager/message/askdelete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/message/askdelete.kh", method = RequestMethod.POST)
 	public String messageDelete(@RequestParam("check-delete-message") String selectMessage, Model model) {
 		try {
 			String[] messages = selectMessage.split(",");
@@ -121,11 +159,11 @@ public class AskMessageController {
 			model.addAttribute("msg", e.getMessage());
 			return "common/errorPage";
 		}
-		return "redirect:/manager/message/askmessage.do";
+		return "redirect:/manager/message/askmessage.kh";
 	}
 	
 	//문의 메세지함
-	@RequestMapping(value = "/manager/message/askmessage.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/message/askmessage.kh", method = RequestMethod.GET)
 	public ModelAndView showAskMessageList(ModelAndView mv
 			, @RequestParam(value = "page", required = false, defaultValue = "1") Integer currentPage) {
 		try {

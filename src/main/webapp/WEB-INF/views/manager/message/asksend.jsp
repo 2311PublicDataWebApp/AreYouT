@@ -24,7 +24,7 @@
         </style>
 	</head>
 	<body>
-	<form action="/manager/message/sendmessage.do" id="sendForm" method="post">
+	<form action="/manager/message/sendmessage.kh" id="sendForm" method="post">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-2 text-center offset-lg-5">
@@ -32,7 +32,7 @@
                     <hr>
                 </div>
                 <div class="col-lg-5 text-right justify-content-end">
-                    <button type="submit" class="btn btn-dark" onclick="submitForm()">쪽지 전송</button></a>
+                    <button type="submit" class="btn btn-dark" onclick="submitForm()">쪽지 전송</button>
                 </div>
             </div>
             <div>
@@ -54,7 +54,7 @@
                                 <input type="text" placeholder="받는 분의 아이디를 적어주세요" style="width: 300px;"
                                 name="askMessageReceive" id="receive">
                                 <b>보내는 이</b>
-                                <span>관리자</span>
+                                <span>admin</span>
                             </div>
                         </div>
                     </div>
@@ -68,6 +68,19 @@
         </div>
         </form>
         <script>
+            function getTodayDate() {
+                var today = new Date();
+
+                var year = today.getFullYear();
+                var month = (today.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 1을 더하고 2자리로 패딩
+                var day = today.getDate().toString().padStart(2, '0'); // 일은 1부터 시작하므로 2자리로 패딩
+
+                var formattedDate = year + '-' + month + '-' + day;
+                return formattedDate;
+            }
+        
+            // 오늘 날짜를 입력 필드에 설정
+            document.getElementById('nowDate').value = getTodayDate();
 	        function submitForm() {
 	            var form = document.getElementById("sendForm");
 // 	            var formData = new FormData(form);

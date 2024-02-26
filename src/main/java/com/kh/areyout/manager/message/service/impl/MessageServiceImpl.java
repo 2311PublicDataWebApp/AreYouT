@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.areyout.manager.message.domain.MessageVO;
-import com.kh.areyout.manager.message.domain.PageInfo;
+import com.kh.areyout.manager.PageInfo;
 import com.kh.areyout.manager.message.service.MessageService;
 import com.kh.areyout.manager.message.store.MessageStore;
 
@@ -80,5 +80,12 @@ public class MessageServiceImpl implements MessageService{
 	public List<MessageVO> selectMessageList(PageInfo pInfo, String memberId) {
 		List<MessageVO> mList = mStore.selectMessageList(session, pInfo, memberId);
 		return mList;
+	}
+
+	//쪽지 전송
+	@Override
+	public int sendMessage(MessageVO message) {
+		int result = mStore.sendMessage(session, message);
+		return result;
 	}
 }

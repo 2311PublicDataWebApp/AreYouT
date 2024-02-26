@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.areyout.manager.askmessage.domain.AskMessageVO;
-import com.kh.areyout.manager.askmessage.domain.PageInfo;
+import com.kh.areyout.manager.PageInfo;
 import com.kh.areyout.manager.askmessage.service.AskMessageService;
 import com.kh.areyout.manager.askmessage.store.AskMessageStore;
 
@@ -64,6 +64,12 @@ public class AskMessageServiceImpl implements AskMessageService{
 	public List<AskMessageVO> searchAskMessageList(PageInfo pInfo) {
 		List<AskMessageVO> amList = amStore.searchAskMessageList(session, pInfo);
 		return amList;
+	}
+
+	@Override
+	public int UserAskMessage(AskMessageVO askMessage) {
+		int result = amStore.UserAskMessage(session, askMessage);
+		return result;
 	}
 
 }

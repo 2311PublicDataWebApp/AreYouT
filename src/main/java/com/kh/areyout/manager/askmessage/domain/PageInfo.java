@@ -10,6 +10,7 @@ public class PageInfo {
 	private int endNavi;
 	private String searchType;
 	private String searchKeyword;
+	private String memberId;
 	
 	public PageInfo() {}
 	
@@ -83,12 +84,19 @@ public class PageInfo {
 	public void setEndNavi(int endNavi) {
 		this.endNavi = endNavi;
 	}
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
 
 	@Override
 	public String toString() {
 		return "PageInfo [currentPage=" + currentPage + ", totalCount=" + totalCount + ", naviTotalCount="
 				+ naviTotalCount + ", recordCountPerPage=" + recordCountPerPage + ", naviCountPerPage="
 				+ naviCountPerPage + ", startNavi=" + startNavi + ", endNavi=" + endNavi + ", searchType=" + searchType
-				+ ", searchKeyword=" + searchKeyword + "]";
+				+ ", searchKeyword=" + searchKeyword + ", memberId=" + memberId + "]";
 	}
 }

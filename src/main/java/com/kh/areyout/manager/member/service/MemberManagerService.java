@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.areyout.manager.member.domain.MemberVO;
-import com.kh.areyout.manager.member.domain.PageInfo;
+import com.kh.areyout.manager.PageInfo;
 
 public interface MemberManagerService {
 	/**

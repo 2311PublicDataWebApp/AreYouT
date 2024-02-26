@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.kh.areyout.manager.member.domain.MemberVO;
-import com.kh.areyout.manager.member.domain.PageInfo;
+import com.kh.areyout.manager.PageInfo;
 
 public interface MemberManagerStore {
 

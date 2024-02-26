@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.kh.areyout.manager.askmessage.domain.AskMessageVO;
-import com.kh.areyout.manager.askmessage.domain.PageInfo;
+import com.kh.areyout.manager.PageInfo;
 
 public interface AskMessageStore {
 
@@ -71,5 +71,13 @@ public interface AskMessageStore {
 	 * @return amList
 	 */
 	List<AskMessageVO> searchAskMessageList(SqlSession session, PageInfo pInfo);
+
+	/**
+	 * 문의하기 Store
+	 * @param session
+	 * @param askMessage
+	 * @return result
+	 */
+	int UserAskMessage(SqlSession session, AskMessageVO askMessage);
 
 }

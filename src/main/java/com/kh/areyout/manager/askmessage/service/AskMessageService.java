@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.areyout.manager.askmessage.domain.AskMessageVO;
-import com.kh.areyout.manager.askmessage.domain.PageInfo;
+import com.kh.areyout.manager.PageInfo;
 
 public interface AskMessageService {
 
@@ -61,5 +61,12 @@ public interface AskMessageService {
 	 * @return amList
 	 */
 	List<AskMessageVO> searchAskMessageList(PageInfo pInfo);
+
+	/**
+	 * 문의하기 Service
+	 * @param askMessage
+	 * @return result
+	 */
+	int UserAskMessage(AskMessageVO askMessage);
 
 }

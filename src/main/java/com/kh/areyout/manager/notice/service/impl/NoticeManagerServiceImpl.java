@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.areyout.manager.notice.domain.PageInfo;
+import com.kh.areyout.manager.PageInfo;
 import com.kh.areyout.manager.notice.service.NoticeManagerService;
 import com.kh.areyout.manager.notice.store.NoticeManagerStore;
 import com.kh.areyout.notice.domain.NoticeVO;

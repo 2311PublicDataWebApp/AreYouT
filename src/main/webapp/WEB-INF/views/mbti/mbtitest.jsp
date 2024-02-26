@@ -391,7 +391,7 @@ body {
 									</c:if>
 								</a>
 								<ul class="dropdown-menu text-small">
-									<li><a class="dropdown-item" href="/manager/main.kh">관리자페이지</a></li>
+									<li><a class="dropdown-item" href="/manager/member/list.kh">관리자페이지</a></li>
 									<li><hr class="dropdown-divider"></li>
 									<li><a class="dropdown-item" href="/member/logout.kh">로그아웃</a></li>
 								</ul>
