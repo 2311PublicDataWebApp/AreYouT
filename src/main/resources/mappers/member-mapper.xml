@@ -60,4 +60,13 @@
 	<delete id="deleteMember">
 		DELETE FROM MEMBER_TBL WHERE MEMBER_ID = #{memberId} AND MEMBER_PW = #{memberPw}
 	</delete>
+	
+	
+	<update id="updateMbti">
+        UPDATE MEMBER_TBL SET MEMBER_MBTI = #{memberMbti}
+        WHERE MEMBER_ID = #{memberId }
+    </update>
+    <select id="getMatchingMembersByMbti" resultMap="MemberResultMap">
+    SELECT * FROM MEMBER_TBL WHERE MEMBER_MBTI = #{memberMbti} AND MEMBER_ID != #{memberId}
+    </select>
 </mapper>

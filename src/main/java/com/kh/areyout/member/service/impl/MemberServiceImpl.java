@@ -37,7 +37,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int updateMember(MemberVO member) {
+	public int modifyMember(MemberVO member) {
 		int result = mStore.modifyMember(session, member);
 		return result;
 	}
@@ -69,7 +69,7 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	@Override
-	public int updateProfile(MemberVO member) {
+	public int modifyProfile(MemberVO member) {
 		int result = mStore.modifyProfile(session, member);
 		return result;
 	}
