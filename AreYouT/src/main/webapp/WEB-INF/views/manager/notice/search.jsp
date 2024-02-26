@@ -172,21 +172,22 @@
                     <div class="btn-container">
                         <br><button type="button" class="btn btn-danger">로그아웃</button><br><br>
                     </div>
+                    <a href="/"><button type="button" class="btn btn-info">메인으로</button></a>
                     <h2>사이트 관리</h2>
                     <hr id="menu-line">
                     <ul class="list-unstyled">
-                        <li class="menu-item"><a href="#">대쉬보드</a></li><br><br><br>
+                        <li class="menu-item"><a href="/manager/main.kh">대쉬보드</a></li><br><br><br>
                         <li class="menu-item"><a href="#">회원 관리</a>
                             <ul class="sub-menu">
-                                <li><a href="#">일반 회원 관리</a></li>
-                                <li><a href="#">블랙리스트 관리</a></li>
+                                <li><a href="/manager/member/list.kh">일반 회원 관리</a></li>
+                                <li><a href="/manager/member/blacklist.kh">블랙리스트 관리</a></li>
                             </ul>
                         </li><br><br><br>
-                        <li class="menu-item"><a href="#">여행신청 게시판 관리</a></li><hr id="menu-line"><br><br><br><br><br><br><br>
+                        <li class="menu-item"><a href="/manager/notice/list.kh">여행신청 게시판 관리</a></li><hr id="menu-line"><br><br><br><br><br><br><br>
                         <li class="menu-item"><a href="#">쪽지 관리</a>
                             <ul class="sub-menu">
-                                <li><a href="#">1대1 문의 쪽지함</a></li>
-                                <li><a href="#">일반 쪽지 관리</a></li>
+                                <li><a href="/manager/message/askmessage.kh">1대1 문의 쪽지함</a></li>
+                                <li><a href="/manager/message/list.kh">일반 쪽지 관리</a></li>
                             </ul>
                         </li><br>
                     </ul>

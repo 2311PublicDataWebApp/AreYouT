@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -31,7 +32,12 @@
                     <hr>
                 </div>
                 <div class="col-lg-5 text-right justify-content-end">
-                    <button class="btn btn-dark">쪽지 답장</button>
+                    <a href="/message/send.kh">
+                        <button class="btn btn-dark">쪽지 답장</button>
+                    </a>&nbsp;
+                    <a href="/message/list.kh">
+                        <button class="btn btn-dark">목록으로</button>
+                    </a>
                 </div>
             </div>
             <div>
@@ -40,23 +46,25 @@
                         <div class="col-lg-12 text-center">
                             <div class="text-container">
                                 <b>제목</b>
-                                <span>안녕하세요</span>
+                                <span>${message.messageTitle}</span>
                                 <b>날짜</b>
-                                <span>2024.02.19</span>
+                                <span>${message.sendDate}</span>
                             </div>
                             <hr>
                             <div class="text-container">
                                 <b>받는 이</b>
-                                <span>hong0404</span>
+                                <span>${message.messageReceive}</span>
                                 <b>보내는 이</b>
-                                <span>koHong0404</span>
+                                <span>${message.messageSender}</span>
                             </div>
                         </div>
                     </div>
                     <hr>
                 </div>
                 <div class="text-center">
-                    <textarea name="message-content" id="" cols="140" rows="30%" readonly>하이염</textarea>
+                    <textarea name="message-content" id="" cols="140" rows="30%" readonly>
+                        ${message.messageContent}
+                    </textarea>
                 </div>
             </div>
         </div>

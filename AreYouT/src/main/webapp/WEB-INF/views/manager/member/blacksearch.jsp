@@ -169,21 +169,22 @@
                     <div class="btn-container">
                         <br><button type="button" class="btn btn-danger">로그아웃</button><br><br>
                     </div>
+                    <a href="/"><button type="button" class="btn btn-info">메인으로</button></a>
                     <h2>사이트 관리</h2>
                     <hr id="menu-line">
                     <ul class="list-unstyled">
-                        <li class="menu-item"><a href="#">대쉬보드</a></li><br><br><br>
+                        <li class="menu-item"><a href="/manager/main.kh">대쉬보드</a></li><br><br><br>
                         <li class="menu-item"><a href="#">회원 관리</a>
                             <ul class="sub-menu">
-                                <li><a href="/manager/member/list.do">일반 회원 관리</a></li>
-                                <li><a href="/manager/member/blacklist.do">블랙리스트 관리</a></li>
+                                <li><a href="/manager/member/list.kh">일반 회원 관리</a></li>
+                                <li><a href="/manager/member/blacklist.kh">블랙리스트 관리</a></li>
                             </ul>
                         </li><br><br><br>
                         <li class="menu-item"><a href="#">여행신청 게시판 관리</a></li><hr id="menu-line"><br><br><br><br><br><br><br>
                         <li class="menu-item"><a href="#">쪽지 관리</a>
                             <ul class="sub-menu">
-                                <li><a href="/manager/message/askmessage.do">1대1 문의 쪽지함</a></li>
-                                <li><a href="/manager/message/list.do">일반 쪽지 관리</a></li>
+                                <li><a href="/manager/message/askmessage.kh">1대1 문의 쪽지함</a></li>
+                                <li><a href="/manager/message/list.kh">일반 쪽지 관리</a></li>
                             </ul>
                         </li><br>
                     </ul>
@@ -192,8 +193,9 @@
                 <div class="container mt-3" id="member-manager">
                     <h3>블랙리스트 관리</h3>
                     <hr>
+                        <div class="form-inline">
                             <div class="input-group mr-sm-2">
-                                <form class="form-inline" id="search" action="/manager/member/blacksearch.do" method="GET">
+                                <form class="form-inline" id="search" action="/manager/member/blacksearch.kh" method="GET">
                                 <div class="input-group-prepend">
 	                                    <select class="custom-select" name=search-type>
 	                                        <option value="name" selected>이름</option>
@@ -207,18 +209,20 @@
 	                                </div>
 	                            </form>
                             </div>
-                            <div class="ml-auto">
-                                <form action="/manager/member/white.do" method="post">
+                            <div class="ml-auto form-inline">
+                                <form action="/manager/member/white.kh" method="post">
                             		<input type="hidden" id="check-white-members" name="check-white-members">
                              		<button type="submit" class="btn btn-dark" onclick="getWhiteMembers();">블랙 리스트 해제</button>
                             	</form>
-                                <form action="/manager/member/blackdelete.do" method="post">
+                                &nbsp;
+                                <form action="/manager/member/blackdelete.kh" method="post">
                              		<input type="hidden" id="check-delete-members" name="check-delete-members">
                              		<button type="submit" class="btn btn-danger" onclick="getDeleteMembers();">회원 탈퇴 처리</button>
                              	</form>
                             </div>
+                        </div>
                         <br>
-                        <form action="/manager/member/blacksearch.do" id="member-list" method="get">
+                        <form action="/manager/member/blacksearch.kh" id="member-list" method="get">
                             <div id="board-list">
                                 <div class="container" id="board-list-container">
                                     <table class="board-table">
@@ -250,15 +254,15 @@
                                         </tbody>
                                         <tfoot>
                                         	<tr align="center">
-												<td colspan="5">
+												<td colspan="7">
 													<c:if test="${pInfo.startNavi ne '1'}">
-														<a href="/manager/member/blacksearch.do?page=${pInfo.startNavi - 1}&search-type=${pInfo.searchType}&search-keyword=${pInfo.searchKeyword}">[이전]</a>
+														<a href="/manager/member/blacksearch.kh?page=${pInfo.startNavi - 1}&search-type=${pInfo.searchType}&search-keyword=${pInfo.searchKeyword}">[이전]</a>
 													</c:if>
 													<c:forEach begin="${pInfo.startNavi}" end="${pInfo.endNavi}" var="p">
-							               				<a href="/manager/member/blacksearch.do?page=${p}&search-type=${pInfo.searchType}&search-keyword=${pInfo.searchKeyword}">${p}</a>
+							               				<a href="/manager/member/blacksearch.kh?page=${p}&search-type=${pInfo.searchType}&search-keyword=${pInfo.searchKeyword}">${p}</a>
 							            			</c:forEach>
 							            			<c:if test="${pInfo.endNavi ne pInfo.naviTotalCount}">
-														<a href="/manager/member/blacksearch.do?page=${pInfo.endNavi + 1}&search-type=${pInfo.searchType}&search-keyword=${pInfo.searchKeyword}">[다음]</a>
+														<a href="/manager/member/blacksearch.kh?page=${pInfo.endNavi + 1}&search-type=${pInfo.searchType}&search-keyword=${pInfo.searchKeyword}">[다음]</a>
 													</c:if>
 												</td>
 											</tr>

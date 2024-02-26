@@ -1,7 +1,6 @@
 package com.kh.areyout.member.domain;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 public class MemberVO {
 	private String memberId;

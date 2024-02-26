@@ -1,7 +1,5 @@
 package com.kh.areyout.member.store;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 
 import com.kh.areyout.member.domain.MemberVO;

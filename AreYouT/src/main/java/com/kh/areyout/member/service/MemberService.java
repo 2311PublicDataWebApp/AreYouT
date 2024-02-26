@@ -1,7 +1,5 @@
 package com.kh.areyout.member.service;
 
-import java.util.List;
-
 import com.kh.areyout.member.domain.MemberVO;
 
 public interface MemberService {

@@ -109,9 +109,12 @@
             display: block;
             clear: both;
             }
-            .container {
+            .container:not(button) {
             width: 1100px;
             margin: 0 auto;
+            padding-left: 40px;
+            text-align: center;
+            display: inline-block;
             }
             .blind {
             position: absolute;
@@ -124,6 +127,9 @@
             table a{
                 color: black;
             }
+            #head{
+                padding-left: 60px;
+            }
     </style>
 </head>
 <body>
@@ -131,26 +137,36 @@
         <div class="row">
             <div class="col-md-10" id="" style="display: flex; justify-content: center;">
             <div class="container mt-3" id="member-manager">
+                <div id = head>
                 <h3>쪽지함</h3>
                 <hr>
-                    <form class="form-inline" id="search">
+                <div class="form-inline">
+                    <form class="form-inline" id="search" action="/message/search.kh" method="get">
                         <div class="input-group mr-sm-2">
                             <div class="input-group-prepend">
-                                <select class="custom-select">
+                                <select class="custom-select" name="search-type">
                                     <option value="title" selected>제목</option>
-                                    <option value="author">작성자</option>
-                                    <option value="post-number">게시글 번호</option>
+                                    <option value="content">내용</option>
+                                    <option value="message-number">쪽지 번호</option>
+                                    <option value="sender">보낸 사람</option>
                                 </select>
                             </div>
-                            <input class="form-control" type="search" placeholder="검색어를 입력하세요" aria-label="Search">
+                            <input class="form-control" type="search" placeholder="검색어를 입력하세요" aria-label="Search"
+                            value="${pInfo.searchKeyword}" name="search-keyword">
                             <div class="input-group-append">
                                 <button class="btn btn-outline-success" type="submit">검색</button>
                             </div>
                         </div>
-                        <div class="ml-auto">
-                            <button type="button" class="btn btn-danger">쪽지 정보 삭제</button>
-                        </div>
                     </form>
+                    <a href="/message/send.kh">
+                    <button type="button" class="btn btn-success">쪽지 보내기</button>&nbsp;
+                    </a>    
+                    <form action="/message/delete.kh" method="post" id="delete-form">
+                        <input type="hidden" id="check-delete-message" name="check-delete-message">
+                        <button type="submit" class="btn btn-danger" onclick="getDeleteMessage();">쪽지 삭제</button>
+                    </form>
+                </div>
+                </div>
                     <br>
                     <form action="/message/list.kh" method="get" id="member-list">
                         <div id="board-list">
@@ -168,14 +184,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="${mmList}" var="message" varStatus="i">
+                                        <c:forEach items="${mList}" var="message" varStatus="i">
                                         	<tr>
                                             	<td><input type="checkbox" name="select-message" value="${message.messageNo}"></td>
                                             	<td>${message.messageSender}</td>
                                             	<td>${message.messageReceive}</td>
                                             	<td>${message.sendDate}</td>
                                             	<td>
-                                            		<a href="javascript:void(0);" onclick="pop(${message.messageNo});">
+                                            		<a href="/message/detail.kh?messageNo=${message.messageNo}">
                                             			${message.messageTitle}
                                             		</a>
                                             	</td>
@@ -186,7 +202,7 @@
                                     </tbody>
                                     <tfoot>
                                         	<tr align="center">
-                                        		<td colspan="5">
+                                        		<td colspan="7">
                                         	<c:if test="${pInfo.startNavi ne '1'}">
 												<a href="/message/list.kh?page=${pInfo.startNavi - 1}">[이전]</a>
 											</c:if>
@@ -200,6 +216,7 @@
                                         	</tr>
                                         </tfoot>
                                 </table>
+                                <a href="/message/asksend.kh">1 대 1 문의</a>
                             </div>
                         </div>
                     </form>
@@ -207,5 +224,31 @@
             </div>
         </div>
     </div>
+    <script>
+        function getDeleteMessage(){
+    		// 체크된 input 요소 선택
+    		var checkedCheckboxes = document.querySelectorAll('input[name="select-message"]:checked');
+
+    		// 체크된 input 요소의 값을 저장할 배열
+    		var checkedValues = [];
+
+    		// 각 체크된 input 요소의 값을 배열에 추가
+    		checkedCheckboxes.forEach(function(checkbox) {
+    		    checkedValues.push(checkbox.value);
+    		});
+
+    		// 배열에 저장된 값 확인
+    		console.log(checkedValues);
+    		
+    		//체크 된 회원 없을 시 오류 메세지 출력
+    		if(checkedValues.length == 0){
+    			alert("체크된 메세지가 없습니다.");
+    		}
+    		else{
+    			document.getElementById('check-delete-message').value = checkedValues.join(',');
+    	    }
+            
+    	}
+    </script>
 </body>
 </html>

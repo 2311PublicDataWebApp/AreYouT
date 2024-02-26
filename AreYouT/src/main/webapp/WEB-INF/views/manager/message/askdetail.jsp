@@ -32,7 +32,7 @@
                     <hr>
                 </div>
                 <div class="col-lg-5 text-right justify-content-end">
-                    <button class="btn btn-dark">쪽지 답장</button>
+                    <a href="/manager/message/asksend.kh"><button class="btn btn-dark">쪽지 답장</button></a>
                 </div>
             </div>
             <div>

@@ -313,7 +313,7 @@ border: 2px solid lightgray;
 							<ul class="dropdown-menu text-small">
 								<li><a class="dropdown-item" href="/member/mypage.kh">내정보</a></li>
 								<li><a class="dropdown-item" href="/member/profile.kh">프로필</a></li>
-								<li><a class="dropdown-item" href="/message/list.kh">쪽지함</a></li>
+								<li><a class="dropdown-item" href="#" onclick="openPopup('/message/list.kh')">쪽지함</a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="/member/logout.kh">로그아웃</a></li>
 							</ul>
@@ -554,7 +554,18 @@ style="width: 300px; height: 500px; margin-left: 320px; margin-top: 100px; borde
 			</footer>
 		</div>
 	</main>
-
+<script>
+	function openPopup(url) {
+	    // 팝업 창의 폭과 높이를 설정합니다. 적절히 조정하세요.
+	    var width = 800;
+	    var height = 600;
+	    // 팝업 창을 가운데 정렬하기 위해 화면의 중앙 위치를 계산합니다.
+	    var left = (window.screen.width - width) / 2;
+	    var top = (window.screen.height - height) / 2;
+	    // 팝업 창을 엽니다.
+	    window.open(url, 'popup', 'width=' + width + ', height=' + height + ', left=' + left + ', top=' + top);
+	}
+</script>
 
 
 
