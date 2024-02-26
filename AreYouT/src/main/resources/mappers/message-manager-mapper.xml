@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-Mapper.dtd">
+	<mapper namespace="MesaageManagerMapper">
+		<resultMap type="Message" id="messageManagerResultMap">
+	  		<id	property="messageNo"			column="MESSAGE_NO"/>
+	  		<result	 property="messageReceive"	column="MESSAGE_RECEIVE"/>
+	  		<result	 property="messageSender"	column="MESSAGE_SENDER"/>
+	  		<result	 property="sendDate"		column="SEND_DATE"/>
+	  		<result	 property="messageTitle"	column="MESSAGE_TITLE"/>
+	  		<result	 property="messageContent"	column="MESSAGE_CONTENT"/>
+	  		<result	 property="readYn"			column="READ_YN"/>
+  		</resultMap>
+		<select id="selectTotalCount" resultType="_int">
+  			SELECT COUNT(*) FROM MEMBER_MESSAGE_TBL
+  		</select>
+  		<select id="selectUserTotalCount" resultType="_int">
+  			SELECT COUNT(*) FROM MEMBER_MESSAGE_TBL
+  			WHERE MESSAGE_RECEIVE LIKE #{memberId}
+			OR MESSAGE_SENDER LIKE #{memberId}
+  		</select>
+  		<select id="selectUserMessage" resultMap="messageManagerResultMap">
+  			SELECT * FROM MEMBER_MESSAGE_TBL
+  			WHERE MESSAGE_RECEIVE LIKE #{memberId}
+			OR MESSAGE_SENDER LIKE #{memberId}
+  		</select>
+  		<select id="searchTotalCount" parameterType="java.util.Map" resultType="_int">
+  			SELECT COUNT(*) FROM MEMBER_MESSAGE_TBL
+  			<if test="type == 'title'">
+  			WHERE MESSAGE_TITLE LIKE '%' || #{keyword} || '%'
+  			</if>
+  			<if test="type == 'content'">
+  			WHERE MESSAGE_CONTENT LIKE '%' || #{keyword} || '%'
+  			</if>
+  			<if test="type == 'message-number'">
+  			WHERE MESSAGE_NO LIKE '%' || #{keyword} || '%'
+  			</if>
+  			<if test="type == 'sender'">
+  			WHERE MESSAGE_SENDER LIKE '%' || #{keyword} || '%'
+  			</if>
+  		</select>
+  		<select id="selectSearchList" resultMap="messageManagerResultMap" parameterType="java.util.Map">
+  		SELECT * FROM MEMBER_MESSAGE_TBL
+  		<if test="type == 'title'">
+  			WHERE MESSAGE_TITLE LIKE '%' || #{keyword} || '%'
+  			</if>
+  			<if test="type == 'content'">
+  			WHERE MESSAGE_CONTENT LIKE '%' || #{keyword} || '%'
+  			</if>
+  			<if test="type == 'message-number'">
+  			WHERE MESSAGE_NO = #{keyword}
+  			</if>
+  			<if test="type == 'sender'">
+  			WHERE MESSAGE_SENDER LIKE '%' || #{keyword} || '%'
+  			</if>
+  	</select>
+  		<select id="selectMessageList" resultMap="messageManagerResultMap">
+  			SELECT * FROM MEMBER_MESSAGE_TBL
+  			ORDER BY READ_YN ASC, MESSAGE_TITLE ASC
+  		</select>
+  		<select id="selectMessage" resultMap="messageManagerResultMap">
+  			SELECT * FROM MEMBER_MESSAGE_TBL
+  			WHERE MESSAGE_NO=#{messageNo}
+  		</select>
+  		<delete id="deleteMessage">
+  			DELETE FROM MEMBER_MESSAGE_TBL
+  			WHERE MESSAGE_NO = #{num}
+  		</delete>
+  		<update id="changeReadYn">
+  			UPDATE MEMBER_MESSAGE_TBL
+  			SET READ_YN = 'Y'
+  			WHERE MESSAGE_NO = #{messageNo}
+  		</update>
+	</mapper>
