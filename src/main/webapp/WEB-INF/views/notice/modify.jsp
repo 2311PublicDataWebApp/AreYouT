@@ -380,7 +380,7 @@ body {
 			<div style="margin-left: 600px; margin-bottom: 30px;">${notice.noticeWriter}</div>
 					
 			<div style="margin-left: 600px; margin-bottom: 10px;">내용</div>
-					<input type="text" name="noticeSubject" style="margin-left: 600px; margin-bottom: 20px; width: 800px; height: 500px; vertical-align: top;" value="${notice.noticeContent}">
+					<input type="text" name="noticeContent" style="margin-left: 600px; margin-bottom: 20px; width: 800px; height: 500px; vertical-align: top;" value="${notice.noticeContent}">
 				
 
 

@@ -534,15 +534,15 @@ body {
 											height="40" class="rounded-circle">
 									</c:if> <c:if test="${memberFileRename ne null }">
 										<img id="profilesmall"
-											src="../resources/muploadFiles/${memberFileRename }"
+											src="../resources/muploadFiles/basic.png"
 											width="40" height="40" class="rounded-circle">
 									</c:if>
       <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
         <div class="d-flex justify-content-between">
-          <strong class="text-gray-dark">${member.memberNickname}</strong>
+          <strong class="text-gray-dark" style="margin-left: 30px;">${member.memberNickname}</strong>
           <a href="/message/list.kh">쪽지</a>
         </div>
-        <span class="d-block">${member.memberMbti}</span>
+        <span class="d-block" style="margin-left: 30px;">${member.memberMbti}</span>
       </div>
     </div>
     </div>
