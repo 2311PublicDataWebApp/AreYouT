@@ -22,6 +22,8 @@ import com.kh.areyout.notice.domain.NoticeVO;
 import com.kh.areyout.notice.domain.PageInfo;
 import com.kh.areyout.notice.service.NoticeService;
 
+
+
 @Controller
 public class NoticeController {
 	
@@ -33,41 +35,78 @@ public class NoticeController {
 //		return "/notice/register";
 //	}
 	
-	
-	
-	
-	
-	// 공지사항 목록
+	// 게시글 목록
 	@RequestMapping(value = "/notice/list.kh", method = RequestMethod.GET)
-	public ModelAndView showNoticeList(ModelAndView mv
-			, @RequestParam(value = "page", required = false, defaultValue = "1") 
-				Integer currentPage) {
-		try {
-			int totalCount = nService.getTotalCount();
-			PageInfo pInfo = this.getPageInfo(currentPage, totalCount);
-			List<NoticeVO> nList = nService.selectNoticeList(pInfo);
-			mv.addObject("nList", nList);
-			mv.addObject("pInfo", pInfo);
-			mv.setViewName("notice/list");
-		} catch (Exception e) {
-			// TODO: handle exception
-			mv.addObject("msg", e.getMessage());
-			mv.setViewName("common/errorPage");
-		}
-		return mv;
+	public ModelAndView showNoticeList(ModelAndView mv,
+	        @RequestParam(value = "page", required = false, defaultValue = "1") Integer currentPage) {
+	    try {
+	        int totalCount = nService.getTotalCount();
+	        PageInfo pInfo = this.getPageInfo(currentPage, totalCount);
+	        List<NoticeVO> nList = nService.selectNoticeList(pInfo);
+	        mv.addObject("nList", nList);
+	        mv.addObject("pInfo", pInfo);
+	        
+	        if ("/".equals(mv.getViewName())) {
+	            // "/" 경로로 들어왔을 때의 추가 처리
+	        } else if ("notice/list".equals(mv.getViewName())) {
+	            // "/notice/list.kh" 경로로 들어왔을 때의 추가 처리
+	        }
+
+	    } catch (Exception e) {
+	        mv.addObject("msg", e.getMessage());
+	        mv.setViewName("common/errorPage");
+	    }
+	    return mv;
 	}
 	
-	// 공지사항 검색
+	
+	
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public ModelAndView showHomeList(ModelAndView mv
+//			, @RequestParam(value = "page", required = false, defaultValue = "1") 
+//				Integer currentPage) {
+//		try {
+//			int totalCount = nService.getTotalCount();
+//			PageInfo pInfo = this.getPageInfo(currentPage, totalCount);
+//			List<NoticeVO> nList = nService.selectNoticeList(pInfo);
+//			mv.addObject("nList", nList);
+//			mv.addObject("pInfo", pInfo);
+//			mv.setViewName("/");
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			mv.addObject("msg", e.getMessage());
+//			mv.setViewName("common/errorPage");
+//		}
+//		return mv;
+//	}
+//	
+//	
+//	@RequestMapping(value = "/notice/list.kh", method = RequestMethod.GET)
+//	public ModelAndView showNoticeList(ModelAndView mv
+//			, @RequestParam(value = "page", required = false, defaultValue = "1") 
+//				Integer currentPage) {
+//		try {
+//			int totalCount = nService.getTotalCount();
+//			PageInfo pInfo = this.getPageInfo(currentPage, totalCount);
+//			List<NoticeVO> nList = nService.selectNoticeList(pInfo);
+//			mv.addObject("nList", nList);
+//			mv.addObject("pInfo", pInfo);
+//			mv.setViewName("notice/list");
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			mv.addObject("msg", e.getMessage());
+//			mv.setViewName("common/errorPage");
+//		}
+//		return mv;
+//	}
+//	
+	// 게시글 검색
 	@RequestMapping(value="/notice/search.kh", method=RequestMethod.GET)
 	public ModelAndView searchNoticeList(ModelAndView mv
 			, @RequestParam("searchCondition") String searchCondition
 			, @RequestParam("searchKeyword") String searchKeyword
 			, @RequestParam(value="page", required=false, defaultValue="1") Integer currentPage) {
-		/*
-		 * 2개의 값을 하나의 변수로 다루는 방법
-		 * 1. VO 클래스를 만드는 방법(이미 해봄)
-		 * 2. HashMap 사용하는 방법(이미 해봄)
-		 */
+		
 		Map<String, String> paramMap = new HashMap<String, String>();
 		paramMap.put("searchCondition", searchCondition);
 		paramMap.put("searchKeyword", searchKeyword);
@@ -82,14 +121,14 @@ public class NoticeController {
 		return mv;
 	}
 	
-	// 공지사항 등록 GET
+	// 글 등록 GET
 	@RequestMapping(value="/notice/insert.kh", method=RequestMethod.GET)
     public ModelAndView showInsertForm(ModelAndView mv) {
         mv.setViewName("notice/register");
         return mv;
     }
 	
-	// 공지사항 등록 POST
+	// 글등록 POST
 	@RequestMapping(value = "/notice/insert.kh", method = RequestMethod.POST)
 	public ModelAndView insertNotice(ModelAndView mv
 			, @ModelAttribute NoticeVO notice
@@ -112,7 +151,7 @@ public class NoticeController {
 			if (result > 0) {
 				mv.setViewName("redirect:/notice/list.kh");
 			} else {
-				mv.addObject("msg", "공지사항 등록이 완료되지 못했습니다.");
+				mv.addObject("msg", "에러발생");
 				mv.setViewName("common/errorPage");
 			}
 		} catch (Exception e) {
@@ -123,16 +162,16 @@ public class NoticeController {
 		return mv;
 	}
 	
-	// 공지사항 상세
+	// 게시글 상세조회
 	@RequestMapping(value = "notice/detail.kh", method = RequestMethod.GET)
 	public ModelAndView showNoticeDetail(ModelAndView mv, int noticeNo) {
 		try {
 			NoticeVO notice = nService.selectByNoticeNo(noticeNo);
 			if (notice != null) {
-				// 메소드 채이닝 방식
+
 				mv.addObject("notice", notice).setViewName("notice/detail");
 			} else {
-				mv.addObject("msg", "데이터 불러오기가 완료되지 못했습니다.");
+				mv.addObject("msg", "에러발생");
 				mv.setViewName("common/errorPage");
 			}
 		} catch (Exception e) {
@@ -144,63 +183,59 @@ public class NoticeController {
 
 	// 공지사항 수정 GET
 	@RequestMapping(value = "/notice/modify.kh", method = RequestMethod.GET)
-	public ModelAndView showModifyForm(ModelAndView mv, int noticeNo) {
-		try {
-			NoticeVO notice = nService.selectByNoticeNo(noticeNo);
-			if (notice != null) {
-				mv.addObject("notice", notice);
-				mv.setViewName("notice/modify");
-			} else {
-				mv.addObject("msg", "데이터 불러오기가 완료되지 못했습니다.");
-				mv.setViewName("common/errorPage");
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			mv.addObject("msg", e.getMessage()).setViewName("common/errorPage");
-		}
-		return mv;
+	public ModelAndView showModifyForm(ModelAndView mv, @RequestParam(value = "noticeNo") Integer noticeNo) {
+	    try {
+	        NoticeVO notice = nService.selectByNoticeNo(noticeNo);
+	        if (notice != null) {
+	            mv.addObject("notice", notice);
+	            mv.setViewName("notice/modify");
+	        } else {
+	            mv.addObject("msg", "해당 데이터가 존재하지 않습니다.");
+	            mv.setViewName("common/errorPage");
+	        }
+	    } catch (Exception e) {
+	        mv.addObject("msg", e.getMessage()).setViewName("common/errorPage");
+	    }
+	    return mv;
 	}
 
 	// 공지사항 수정 POST
+	// 컨트롤러에서의 메소드
 	@RequestMapping(value = "/notice/modify.kh", method = RequestMethod.POST)
-	public ModelAndView updateNotice(ModelAndView mv, @ModelAttribute NoticeVO notice,
-			@RequestParam(value = "reloadFile", required = false) MultipartFile reloadFile, HttpServletRequest request,
-			int noticeNo) {
-		try {
-			/*
-			 * 수정 기능 
-			 * 1. 대체 : 기능 없음 
-			 * 2. 삭제 후 등록 : 파일이 있는지 없는지 확인 후, 삭제 후, 등록
-			 */
-			if (reloadFile != null && !reloadFile.isEmpty()) {
-				String fileName = notice.getNoticeFileRename();
-				if (fileName != null) {
-					// 있으면 파일 삭제
-					this.deleteFile(request, fileName);
-				}
-				// 없으면 새로 업로드하려는 파일 저장
-				Map<String, Object> infoMap = this.saveFile(reloadFile, request);
-				String noticeFilename = (String) infoMap.get("fileName");
-				notice.setNoticeFilename(noticeFilename);
-				notice.setNoticeFileRename((String) infoMap.get("fileRename"));
-				notice.setNoticeFilePath((String) infoMap.get("filePath"));
-				notice.setNoticeFileLength((long) infoMap.get("fileSize"));
-			}
-			int result = nService.updateNotice(notice);
-			if (result > 0) {
-				mv.setViewName("redirect:/notice/detail.kh?noticeNo=" + notice.getNoticeNo());
-			} else {
-				mv.addObject("msg", "데이터가 존재하지 않습니다.");
-				mv.setViewName("common/errorPage");
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			mv.addObject("msg", e.getMessage()).setViewName("common/errorPage");
-		}
-		return mv;
+	public ModelAndView modifyNotice(ModelAndView mv, @ModelAttribute NoticeVO modifiedNotice,
+	        @RequestParam(value = "reloadFile", required = false) MultipartFile reloadFile,
+	        HttpServletRequest request) {
+	    try {
+	        // 기존 파일 삭제 등 필요한 로직 수행
+
+	        // 새로운 파일 저장 및 정보 설정
+	        if (reloadFile != null && !reloadFile.isEmpty()) {
+	            Map<String, Object> infoMap = this.saveFile(reloadFile, request);
+	            modifiedNotice.setNoticeFilename((String) infoMap.get("fileName"));
+	            modifiedNotice.setNoticeFileRename((String) infoMap.get("fileRename"));
+	            modifiedNotice.setNoticeFilePath((String) infoMap.get("filePath"));
+	            modifiedNotice.setNoticeFileLength((long) infoMap.get("fileSize"));
+	        }
+
+	        // 수정된 내용으로 DB 업데이트
+	        Integer result = nService.updateNotice(modifiedNotice);
+	        if (result > 0) {
+	            mv.setViewName("redirect:/notice/detail.kh?noticeNo=" + modifiedNotice.getNoticeNo());
+	        } else {
+	            mv.addObject("msg", "공지사항 수정이 실패하였습니다.");
+	            mv.setViewName("common/errorPage");
+	        }
+	    } catch (Exception e) {
+	        mv.addObject("msg", e.getMessage());
+	        mv.setViewName("common/errorPage");
+	    }
+	    return mv;
 	}
+
+
+
 	
-	// 공지사항 삭제
+	// 게시글 삭제 get
 	@RequestMapping(value = "/notice/delete.kh", method = RequestMethod.GET)
 	public ModelAndView deleteNotice(ModelAndView mv, int noticeNo) {
 		try {
@@ -208,7 +243,7 @@ public class NoticeController {
 			if (result > 0) {
 				mv.setViewName("redirect:/notice/list.kh");
 			} else {
-				mv.addObject("msg", "데이터가 존재하지 않습니다.").setViewName("common/errorPage");
+				mv.addObject("msg", "에러발생").setViewName("common/errorPage");
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -217,12 +252,12 @@ public class NoticeController {
 		return mv;
 	}
 	
-	// 페이징 처리
+	// 페이징
 	private PageInfo getPageInfo(Integer currentPage, int totalCount) {
 		PageInfo pi = null;
-		int recordCountPerPage = 9; // 한 페이지당 보여줄 게시물의 갯수
-		int naviCountPerPage = 5; 	 // 한 페이지당 보여줄 범위의 갯수
-		int naviTotalCount; 		 // 범위의 총 갯수
+		int recordCountPerPage = 10; 
+		int naviCountPerPage = 5; 	 
+		int naviTotalCount; 		 
 		int startNavi;
 		int endNavi;
 		
@@ -237,33 +272,30 @@ public class NoticeController {
 		return pi;
 	}
 	
-	// 첨부파일 저장
+	// 파일저장
 	private Map<String, Object> saveFile(MultipartFile uploadFile, HttpServletRequest request) throws Exception {
 		// TODO Auto-generated method stub
-		// 파일 이름
+
 		String fileName = uploadFile.getOriginalFilename();
-		// 저장 경로
+
 		String projectPath 	 = request.getSession().getServletContext().getRealPath("resources");
 		String saveDirectory = projectPath + "\\nuploadFiles";
 		File sDir 			 = new File(saveDirectory);
 		if (!sDir.exists()) {
-			sDir.mkdir(); //nuploadFile 폴더가 없으면 자동으로 만들어줌
+			sDir.mkdir(); //nuploadFile 
 		}
-		// 파일 리네임의 필요성!!
-		// 사용자A와 사용자B가 모두 내용은 다르지만 이름이 같은 1.PNG 파일을 올길 경우를 대비해
-		// 위와 같은 파일을 구별하기 위해서 리네임을 할 때에는 올린 시간을 기준으로 파일이름을 만들어서 따로 저장(NOTICE_FILERENAME)
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); // 나중에 대문자 SS와 소문자 ss 비교해보기
-		String strResult = sdf.format(new Date(System.currentTimeMillis())); // 원본파일의 확장자 글자부터 시작되도록 +1 해줌
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); 
+		String strResult = sdf.format(new Date(System.currentTimeMillis())); 
 		String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 		String fileRename = strResult + "." + ext;
 //		Date date = new Date();
 		
 		String savePath 	 = saveDirectory + "\\" + fileRename;
 		File file = new File(savePath);
-		// 파일 저장
+
 		uploadFile.transferTo(file);
-		// DB에 저장할 파일정보 셋팅
-		// 1. 파일이름, 2. 파일리네임, 3. 파일경로, 4. 파일크기
+
 		long fileLength = uploadFile.getSize();
 		Map<String, Object> infoMap = new HashMap<String, Object>();
 		infoMap.put("fileName"	, fileName);
@@ -273,7 +305,7 @@ public class NoticeController {
 		return infoMap;
 	}
 	
-	// 파일 재업로드 시, 기존 파일 삭제
+	
 	private void deleteFile(HttpServletRequest request, String fileName) {
 		// TODO Auto-generated method stub
 		String rPath = request.getSession().getServletContext().getRealPath("resources");

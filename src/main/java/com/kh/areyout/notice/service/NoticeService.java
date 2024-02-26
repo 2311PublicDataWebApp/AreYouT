@@ -6,6 +6,8 @@ import java.util.Map;
 import com.kh.areyout.notice.domain.NoticeVO;
 import com.kh.areyout.notice.domain.PageInfo;
 
+
+
 public interface NoticeService {
 
 	/**
@@ -20,7 +22,7 @@ public interface NoticeService {
 	 * @param noticeNo
 	 * @return notice
 	 */
-	NoticeVO selectByNoticeNo(int noticeNo);
+	NoticeVO selectByNoticeNo(Integer noticeNo);
 
 	/**
 	 * 공지사항 검색 Service
