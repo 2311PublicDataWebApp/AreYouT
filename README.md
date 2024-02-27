@@ -32,6 +32,7 @@ __팀명 - nullnull해요__
 <img src="https://img.shields.io/badge/Eclipse IDE-2C2255?style=for-the-badge&logo=eclipse-ide&logoColor=white">
 <img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white">
 <img src="https://img.shields.io/badge/GitHub-%23181717?style=for-the-badge&logo=github&logoColor=white">
+<img src="https://img.shields.io/badge/SQL Developer-F80000?style=for-the-badge&logo=oracle&logoColor=white">
 
 ## 📑사용 언어
 <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white">
