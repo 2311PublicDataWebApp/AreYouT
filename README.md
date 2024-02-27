@@ -23,7 +23,7 @@ __팀명 - nullnull해요__
 너 T(rip mate)야? 웹 사이트는 mbti와 같은 성향을 고려하여 여행 동행자를 구하는 커뮤니티 사이트다.  
 
 ## 📅개발 기간
-2024년 1월 15일 ~ 2024년 2월 23일
+2024년 2월 15일 ~ 2024년 2월 26일
 
 ## 👥멤버 구성 및 담당 기능
 ![image](https://github.com/2311PublicDataWebApp/AreYouT/assets/152952078/465a3a35-bbec-4047-ba17-0abb11ebc6e6)
