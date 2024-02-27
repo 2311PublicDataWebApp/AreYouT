@@ -1,7 +1,7 @@
 # AreYouT
 __팀명 - nullnull해요__  
 팀 프로젝트  
-![화면 캡처 2024-02-27 150649](https://github.com/2311PublicDataWebApp/AreYouT/assets/152952078/8f873062-2b20-4d0b-882a-4f8b65d978af)
+![image](https://github.com/2311PublicDataWebApp/AreYouT/assets/152952078/2c1ed8df-ddaa-47f5-b7b0-ff50527d38da)
 
 ## 목차
 1. [프로젝트 소개](#프로젝트-소개)
